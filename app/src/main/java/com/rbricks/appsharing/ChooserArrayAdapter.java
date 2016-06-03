@@ -47,8 +47,6 @@ public class ChooserArrayAdapter extends ArrayAdapter<String> {
             TextView textView = (TextView) view.findViewById(R.id.bottom_sheet_item_text);
             textView.setText(appName);
             ((ImageView) view.findViewById(R.id.bottom_sheet_item_image)).setImageDrawable(appIcon);
-//            textView.setCompoundDrawablesWithIntrinsicBounds(null,appIcon, null, null);
-//            textView.setCompoundDrawablePadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, getContext().getResources().getDisplayMetrics()));
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }

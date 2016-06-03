@@ -31,7 +31,17 @@
                 android:id="@+id/button_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button 1"
+                android:text="Share Without Dialog"
+                android:padding="16dp"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_dark"/>
+
+            <Button
+                android:id="@+id/button_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Share Dialog"
                 android:padding="16dp"
                 android:layout_margin="8dp"
                 android:textColor="@android:color/white"

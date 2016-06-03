@@ -6,6 +6,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.support.design.widget.BottomSheetBehavior;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +26,9 @@ public class BottomSheetPracActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_sheet_prac);
         Button button1 = (Button) findViewById( R.id.button_1 );
+        Button button2 = (Button) findViewById( R.id.button_2 );
         button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
     }
 
     public BottomSheetBehavior shareFunctionalityHelpchat(GridView gridView) {
@@ -57,6 +60,49 @@ public class BottomSheetPracActivity extends AppCompatActivity implements View.O
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
         return mBottomSheetBehavior;
+    }
+    public void shareFunctionalityDialog() {
+        View view = getLayoutInflater().inflate(R.layout.sheet, null);
+        GridView gridView = ((GridView) view.findViewById(R.id.bottom_sheet_listview_new));
+        final List<ResolveInfo> resInfosNew = new ArrayList<>();
+        List<String> packagesList = new ArrayList<>();
+        final ChooserArrayAdapter chooserArrayAdapter = new ChooserArrayAdapter(this, packagesList);
+        gridView.setAdapter(chooserArrayAdapter);
+
+//        mBottomSheetBehavior.setPeekHeight(300);
+
+        resInfosNew.addAll(getShareHelpchatPackageResolveInfos());
+        packagesList.addAll(getPackagesList(resInfosNew));
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                chooserArrayAdapter.notifyDataSetChanged();
+            }
+        }, 1000);
+
+        BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(this);
+        mBottomSheetDialog.setContentView(view);
+        final BottomSheetBehavior<View> mBottomSheetBehavior = BottomSheetBehavior.from(((View) view.getParent()));
+
+//        final BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) view.getParent());
+
+        mBottomSheetDialog.show();
+//        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int item, long id) {
+                invokeApplication(resInfosNew.get(item).activityInfo.packageName, resInfosNew.get(item));
+            }
+        });
+
+//        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        //***
+
+
+
     }
 
     private List<String> getPackagesList(List<ResolveInfo> resolveInfoList) {
@@ -111,6 +157,10 @@ public class BottomSheetPracActivity extends AppCompatActivity implements View.O
             case R.id.button_1: {
                 GridView bottomSheet = ((GridView) findViewById(R.id.bottom_sheet_listview));
                 BottomSheetBehavior mBottomSheetBehavior = shareFunctionalityHelpchat(bottomSheet);
+                break;
+            }
+            case R.id.button_2: {
+                shareFunctionalityDialog();
                 break;
             }
         }
