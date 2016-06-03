@@ -7,42 +7,48 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class ChooserArrayAdapter extends ArrayAdapter<String> {
     PackageManager mPm;
-    int mTextViewResourceId;
     List<String> mPackages;
 
-    public ChooserArrayAdapter(Context context, int resource, int textViewResourceId, List<String> packages) {
-        super(context, resource, textViewResourceId, packages);
+    public ChooserArrayAdapter(Context context, List<String> packagesList) {
+        super(context, 0, packagesList);
         mPm = context.getPackageManager();
-        mTextViewResourceId = textViewResourceId;
-        mPackages = packages;
+        mPackages = packagesList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         String pkg = mPackages.get(position);
-        View view = super.getView(position, convertView, parent);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.bottomsheetitem, parent, false);
+        }
+        View view = convertView;
 
         try {
             ApplicationInfo ai = mPm.getApplicationInfo(pkg, 0);
-
             CharSequence appName = mPm.getApplicationLabel(ai);
             Drawable appIcon = mPm.getApplicationIcon(pkg);
 
-            TextView textView = (TextView) view.findViewById(mTextViewResourceId);
+            TextView textView = (TextView) view.findViewById(R.id.bottom_sheet_item_text);
             textView.setText(appName);
-            textView.setCompoundDrawablesWithIntrinsicBounds(appIcon, null, null, null);
-            textView.setCompoundDrawablePadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, getContext().getResources().getDisplayMetrics()));
+            ((ImageView) view.findViewById(R.id.bottom_sheet_item_image)).setImageDrawable(appIcon);
+//            textView.setCompoundDrawablesWithIntrinsicBounds(null,appIcon, null, null);
+//            textView.setCompoundDrawablePadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, getContext().getResources().getDisplayMetrics()));
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }

@@ -119,7 +119,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         if (packages.size() >= 1) {
-            ArrayAdapter<String> adapter = new ChooserArrayAdapter(this, android.R.layout.select_dialog_item, android.R.id.text1, packages);
+            ArrayAdapter<String> adapter = new ChooserArrayAdapter(this,packages);
             pd.dismiss();
 
             new AlertDialog.Builder(MainActivity.this)
