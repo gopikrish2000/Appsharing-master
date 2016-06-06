@@ -24,17 +24,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".BottomSheetPracDialogActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".ServiceTestActivity">
-
-        </activity>
-
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ServiceTestActivity" />
         <activity android:name=".IntentServiceEmptyActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".services.GopiService" />
@@ -42,6 +35,13 @@
 
         <receiver android:name=".receivers.GopiBroadcastReceiver" />
 
+        <activity android:name=".concept.Activities.LifeCycleFirstActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".concept.Activities.LifeCycleSecondActivity"></activity>
     </application>
 
 </manifest>
