@@ -52,6 +52,9 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
             }
         }, 500);
 
+       /* PublishSubject<Integer> subject = PublishSubject.create();
+        subject.onNext(2);  // in onItem click*/
+
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
         mBottomSheetDialog.setContentView(view);
         BottomSheetBehavior.from(((View) view.getParent()));
