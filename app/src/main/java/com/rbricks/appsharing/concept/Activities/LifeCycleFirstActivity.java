@@ -8,6 +8,12 @@ import android.widget.Button;
 
 import com.rbricks.appsharing.R;
 
+/* Imp Concepts to Know
+*  1. Activity Main Methods like onMeasure , onLayout , onDraw
+*  2. Bitmaps , Content Providers , Loaders , Service , Activity/Fragment Lifecycle, BackStacks
+*
+* */
+
 public class LifeCycleFirstActivity extends AppCompatActivity {
 
     /* Complete Execution with fragment from FirstActivity to Second
@@ -40,7 +46,51 @@ public class LifeCycleFirstActivity extends AppCompatActivity {
     /*
     * 1. The order of Execution is FirstOnPause , SecondOnCreate - OnStart - OnResume , FirstOnSaveInstanceState , FirstResume
     * 2. You should avoid performing CPU-intensive work during onPause(), such as writing to a database, because it can slow the visible transition to the next activity (you should instead perform heavy-load shutdown operations during onStop()).
+    * 3. .addToBackStack() when u want to undo on back pressed
+    * 4. Use for removing all ur backstack fragments ;;  view.setOnKeyListener(new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            Log.i(tag, "keyCode: " + keyCode);
+            if( keyCode == KeyEvent.KEYCODE_BACK ) {
+                    Log.i(tag, "onKey Back listener is working!!!");
+                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
+    * 5. If activity is recreated savedInstance wont be null . By default All Views having Id are automatically saved, U
+    *    need to handle the rest of widgets. Or u can do this onRestoreInstanceState() => Called only when onSaveInstanceState Called
+    *
+    *    public onCreate(Bundle savedInstanceState) {
+    *    if( savedInstanceState != null ) {
+          Toast.makeText(this, savedInstanceState .getString("message"),Long).show();
+          } }
+    *
+    *   public void onSaveInstanceState(Bundle outState) {
+            outState.putString("message", "This is my message to be reloaded");
+            super.onSaveInstanceState(outState);
+        }
+    * 6. onSaveInstanceState when using fragment is similarly onSavedInstanceState and onActivityCreate for reverse .
+    * 7. Once Fragment is returned from backstack (by removed/replaced ) , its View would be destroyed and recreated. ie
+    *
+    * onDestroyView is always called but onDestroy will be called when fragment is completely distroyed like Activity finish() . So order is
+    * onDestroyView -> onCreateView ( when restored from backstack) but when newly added
+    * onCreate -> onCreateView ... -> onDestroyView -> onDestroy
+    *
+    * 8. Always have noArgument constructor for fragment bcoz in case of low memory system can recreate the fragment
+    * 9. ClearTOP => A B C D -> then A B and B becomes top , B will RECREATE  ; if SingleTop then TOP IS B then it willnot restart the B instead
+    * reuse the B Activity onNewIntent() method will be called.
+    * 10. onMeasure for measuring , onLayout for positioning it , onDraw(canvas) to draw n paint in canvas ( canvas.draw ..)
+    * 11. LinearLayout weight for 3 elements => weight 0 , 1 , 2 then first 0 will be drawn until it fits then remaining space
+    *  1 takes 33% and 2 takes 66% ; so 2 layout passes
+    *
+    *
+    *
     * */
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

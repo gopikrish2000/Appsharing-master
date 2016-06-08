@@ -79,4 +79,9 @@ public class LifeCycleFragment extends Fragment {
         super.onDestroyView();
         System.out.println("LifeCycleFragment.onDestroyView");
     }
+
+    @Override
+    public void setArguments(Bundle args) {
+        super.setArguments(args);
+    }
 }
