@@ -36,7 +36,7 @@ public class CustomGridView extends GridView {
 //            boolean isOnTop = view.getFirstVisiblePosition() != 0 || view.getChildAt(0).getTop() != 0;
 //            boolean isAllItemsVisible = isOnTop && getLastVisiblePosition() == view.getChildCount();
 
-            boolean isOnTop = view.getFirstVisiblePosition() != 0 ;
+            boolean isOnTop = view.getFirstVisiblePosition() != 0 || view.getChildAt(0).getTop() != 0;
             boolean bottomItemVisible = view.getLastVisiblePosition() != (view.getChildCount()-1);
 
             if (isOnTop || bottomItemVisible) {
@@ -44,6 +44,6 @@ public class CustomGridView extends GridView {
             }
         }
 
-        return true;
+        return false;
     }
 }

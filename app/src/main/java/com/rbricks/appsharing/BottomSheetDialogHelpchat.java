@@ -2,11 +2,14 @@ package com.rbricks.appsharing;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.CoordinatorLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,16 +51,18 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View view = inflater.inflate(R.layout.sheet, null);
         GridView gridView = ((GridView) view.findViewById(R.id.bottom_sheet_listview_new));
+//        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.shareParentCoordinatorLayout);
+        CoordinatorLayout coordinatorLayout = null;
         final List<ResolveInfo> resInfosNew = new ArrayList<>();
         List<String> packagesList = new ArrayList<>();
         chooserArrayAdapter = new ChooserArrayAdapter(context, packagesList);
         gridView.setAdapter(chooserArrayAdapter);
 
-        processShareFunctionality(context, resInfosNew, packagesList, view, gridView,false);
+        processShareFunctionality(context, resInfosNew, packagesList, view, gridView,false,coordinatorLayout);
 
     }
 
-    private static void processShareFunctionality(final Context context,final List<ResolveInfo> resInfosNew,final List<String> packagesList,final View view,final GridView gridView,final boolean isShowAllApps) {
+    private static void processShareFunctionality(final Context context,final List<ResolveInfo> resInfosNew,final List<String> packagesList,final View view,final GridView gridView,final boolean isShowAllApps,final CoordinatorLayout coordinatorLayout) {
         Observable<Object> objectObservable = RxJavaFactory.makeObservable(refreshInBackground(context, resInfosNew, packagesList,isShowAllApps));
         objectObservable
                 .subscribeOn(Schedulers.io())
@@ -79,9 +84,33 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
                         chooserArrayAdapter.notifyDataSetChanged();
                         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
                         mBottomSheetDialog.setContentView(view);
-                        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) view.getParent()));
+                        View parentView = ((View) view.getParent());
+                        parentView.setFitsSystemWindows(true);
+                        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((parentView)));
+
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                       /* view.measure(0, 0);
+                        bottomSheetBehavior.setPeekHeight(view.getMeasuredHeight());
+
+                        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) parentView.getLayoutParams();
+                        *//*if (params.getBehavior() instanceof BottomSheetBehavior) {
+                            ((BottomSheetBehavior)params.getBehavior()).setBottomSheetCallback(mBottomSheetBehaviorCallback);
+                        }*//*
+                        params.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+                        parentView.setLayoutParams(params);*/
+
 //                        bottomSheetBehavior.onTouchEvent(null,view.getParent(),Mot)
 //                        bottomSheetBehavior.onInterceptTouchEvent()
+                        /*mBottomSheetDialog.setOnDismissListener(new OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+
+                            }
+                        });*/
+
+//                        bottomSheetBehavior.onNestedScrollAccepted(coordinatorLayout,);
+                       // mBottomSheetDialog.setCanceledOnTouchOutside(false);
                         mBottomSheetDialog.show();
 
                         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,7 +122,7 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
                                     invokeApplication(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, context);
                                 } else {
                                     //Refresh the adapter with All Shareable items
-                                    processShareFunctionality(context, resInfosNew, packagesList, view, gridView, true);
+                                    processShareFunctionality(context, resInfosNew, packagesList, view, gridView, true,coordinatorLayout);
                                 }
 
                             }
