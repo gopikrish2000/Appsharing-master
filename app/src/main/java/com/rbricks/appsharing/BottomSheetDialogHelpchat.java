@@ -3,6 +3,7 @@ package com.rbricks.appsharing;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.rbricks.appsharing.utils.RxJavaFactory;
 
@@ -51,12 +53,12 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         chooserArrayAdapter = new ChooserArrayAdapter(context, packagesList);
         gridView.setAdapter(chooserArrayAdapter);
 
-        processShareFunctionality(context, resInfosNew, packagesList, view, gridView);
+        processShareFunctionality(context, resInfosNew, packagesList, view, gridView,false);
 
     }
 
-    private static void processShareFunctionality(final Context context,final List<ResolveInfo> resInfosNew,final List<String> packagesList,final View view,final GridView gridView) {
-        Observable<Object> objectObservable = RxJavaFactory.makeObservable(refreshInBackground(context, resInfosNew, packagesList));
+    private static void processShareFunctionality(final Context context,final List<ResolveInfo> resInfosNew,final List<String> packagesList,final View view,final GridView gridView,final boolean isShowAllApps) {
+        Observable<Object> objectObservable = RxJavaFactory.makeObservable(refreshInBackground(context, resInfosNew, packagesList,isShowAllApps));
         objectObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -77,36 +79,41 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
                         chooserArrayAdapter.notifyDataSetChanged();
                         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
                         mBottomSheetDialog.setContentView(view);
-                        BottomSheetBehavior.from(((View) view.getParent()));
+                        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(((View) view.getParent()));
+//                        bottomSheetBehavior.onTouchEvent(null,view.getParent(),Mot)
+//                        bottomSheetBehavior.onInterceptTouchEvent()
                         mBottomSheetDialog.show();
 
                         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int item, long id) {
-                                invokeApplication(resInfosNew.get(item).activityInfo.packageName, resInfosNew.get(item), context);
+
+                                ResolveInfo resolveInfo = resInfosNew.get(item);
+                                if (!resolveInfo.activityInfo.packageName.equals("ShareAll")) {
+                                    invokeApplication(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name, context);
+                                } else {
+                                    //Refresh the adapter with All Shareable items
+                                    processShareFunctionality(context, resInfosNew, packagesList, view, gridView, true);
+                                }
+
                             }
                         });
                     }
                 });
     }
 
-    private static Callable refreshInBackground(final Context context, final List<ResolveInfo> resInfosNew, final List<String> packagesList) {
+    private static Callable refreshInBackground(final Context context, final List<ResolveInfo> resInfosNew, final List<String> packagesList,final boolean isShowAllApps) {
         return new Callable<Void>(){
             @Override
             public Void call() throws Exception {
-                resInfosNew.addAll(getShareHelpchatPackageResolveInfos(context));
+                resInfosNew.clear();
+                packagesList.clear();
+
+                resInfosNew.addAll(getShareHelpchatPackageResolveInfos(context,isShowAllApps));
                 packagesList.addAll(getPackagesList(resInfosNew));
                 return null;
             }
         };
-
-
-        /*Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-            }
-        }, 500);*/
     }
 
     // Convert ResolveInfos to the List of String package names
@@ -118,30 +125,41 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         return packagesList;
     }
 
-    private static List<ResolveInfo> getShareHelpchatPackageResolveInfos(Context context) {
+    private static List<ResolveInfo> getShareHelpchatPackageResolveInfos(Context context,boolean isShowAllApps) {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
 
         final List<ResolveInfo> resInfos = context.getPackageManager().queryIntentActivities(shareIntent, 0);
         List<ResolveInfo> resolveInfoList = new ArrayList<>();
-        Set<String> hashSet = new HashSet<>(8);
-        hashSet.addAll(Arrays.asList(packagesSupportedList));
-        if (!resInfos.isEmpty()) {
-            for (ResolveInfo resInfo : resInfos) {
-                String packageName = resInfo.activityInfo.packageName;
-                if (hashSet.contains(packageName) || packageName.contains("mail") || packageName.contains("messaging")) {
-                    resolveInfoList.add(resInfo);
+        if (!isShowAllApps) {
+            Set<String> hashSet = new HashSet<>(8);
+            hashSet.addAll(Arrays.asList(packagesSupportedList));
+            if (!resInfos.isEmpty()) {
+                for (ResolveInfo resInfo : resInfos) {
+                    String packageName = resInfo.activityInfo.packageName;
+                    if (hashSet.contains(packageName) || packageName.contains("mail") || packageName.contains("messaging")) {
+                        resolveInfoList.add(resInfo);
+                    }
                 }
             }
+            addShareAllItem(resolveInfoList);
+        } else {
+            resolveInfoList.addAll(resInfos);
         }
         return resolveInfoList;
     }
 
-    // Modify logic specific to application if Required
-    private static void invokeApplication(String packageName, ResolveInfo resolveInfo,Context context) {
+    private static void addShareAllItem(List<ResolveInfo> resolveInfoList) {
+        ResolveInfo resolveInfo = new ResolveInfo();
+        resolveInfo.activityInfo = new ActivityInfo();
+        resolveInfo.activityInfo.packageName = "ShareAll";
+        resolveInfoList.add(resolveInfo);
+    }
+
+    private static void invokeApplication(String packageName, String activityNameInfo,Context context) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName(packageName, resolveInfo.activityInfo.name));
+        intent.setComponent(new ComponentName(packageName, activityNameInfo));
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, "Hi guys, I found amazing thing to share. Send your love and care in form of gifts to your loved ones from anywhere in world. Log on to giftjaipur.com or download app" + "https://goo.gl/YslIVT" + "and use coupon code app50 to get Rs 50 off on your first purchase.");

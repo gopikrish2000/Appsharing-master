@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +41,17 @@ public class ChooserArrayAdapter extends ArrayAdapter<String> {
         View view = convertView;
 
         try {
-            ApplicationInfo ai = mPm.getApplicationInfo(pkg, 0);
-            CharSequence appName = mPm.getApplicationLabel(ai);
-            Drawable appIcon = mPm.getApplicationIcon(pkg);
+            CharSequence appName;
+            Drawable appIcon;
+            if (pkg.equalsIgnoreCase("ShareAll")) {
+                appName = "Other Apps";
+//                appIcon = getContext().getResources().getDrawable(R.drawable.ic_launcher, getContext().getTheme());
+                appIcon = ContextCompat.getDrawable(getContext(), (R.drawable.ic_launcher));
+            }else {
+                ApplicationInfo ai = mPm.getApplicationInfo(pkg, 0);
+                appName = mPm.getApplicationLabel(ai);
+                appIcon = mPm.getApplicationIcon(pkg);
+            }
 
             TextView textView = (TextView) view.findViewById(R.id.bottom_sheet_item_text);
             textView.setText(appName);
