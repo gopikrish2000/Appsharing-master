@@ -51,7 +51,6 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View view = inflater.inflate(R.layout.sheet, null);
         GridView gridView = ((GridView) view.findViewById(R.id.bottom_sheet_listview_new));
-//        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.shareParentCoordinatorLayout);
         CoordinatorLayout coordinatorLayout = null;
         final List<ResolveInfo> resInfosNew = new ArrayList<>();
         List<String> packagesList = new ArrayList<>();
@@ -191,8 +190,8 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         intent.setComponent(new ComponentName(packageName, activityNameInfo));
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "Hi guys, I found amazing thing to share. Send your love and care in form of gifts to your loved ones from anywhere in world. Log on to giftjaipur.com or download app" + "https://goo.gl/YslIVT" + "and use coupon code app50 to get Rs 50 off on your first purchase.");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "GiftJaipur 50 Rs Coupon...");
+        intent.putExtra(Intent.EXTRA_TEXT, "Helpchat Share Text ");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Helpchat Share Subject");
         intent.setPackage(packageName);
         context.startActivity(intent);
     }
