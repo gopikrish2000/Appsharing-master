@@ -9,40 +9,31 @@
         android:theme="@style/CustomTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".BottomSheetPracActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".BottomSheetPracDialogActivity"
-            android:theme="@style/CustomTheme" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/CustomTheme">
         </activity>
         <activity android:name=".ServiceTestActivity" />
-        <activity android:name=".IntentServiceEmptyActivity"></activity>
+        <activity android:name=".IntentServiceEmptyActivity" />
 
         <service android:name=".services.GopiService" />
         <service android:name=".services.GopiIntentService" />
 
         <receiver android:name=".receivers.GopiBroadcastReceiver" />
 
-        <activity android:name=".concept.Activities.LifeCycleFirstActivity">
-
-        </activity>
+        <activity android:name=".concept.Activities.LifeCycleFirstActivity"></activity>
         <activity android:name=".concept.Activities.LifeCycleSecondActivity" />
-        <activity android:name=".concept.Activities.ViewPagerPracActivity"></activity>
+        <activity android:name=".concept.Activities.ViewPagerPracActivity" />
+        <activity android:name=".concept.rxjava.RxJavaSampleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
