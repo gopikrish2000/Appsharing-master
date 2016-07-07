@@ -1,11 +1,14 @@
 package com.rbricks.appsharing.concept.rxjava;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rbricks.appsharing.R;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -27,35 +30,35 @@ public class RxJavaSampleActivity extends AppCompatActivity {
     }
 
     private void sampleRxJavaMethods() {
-        // map is used for changing/transforming the input .Can change the type as well.
-        // map blocks next item if current item is taking some time. But flatMap will run all the
-        // items as new Observable so it wont be blocked.
-        // filter is used to reduce no. of items send to subscriber
-
         Observable.just("1", "2", "32")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .filter(s -> s.contains("2"))
-                .map(s -> {
-                    if (s.equalsIgnoreCase("211")) {
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    return s;
-                })
-                .map(s -> Integer.parseInt(s + "4"))
+                .flatMap(s -> Observable.just(s + "2", s + "3","4"))
+                .filter(s -> !s.isEmpty())
+//                .map(s -> Integer.parseInt(s + "4"))
                 .map(s -> s + "Added")
                 .subscribe(s -> {
                     tos(s + "");
                 });
     }
 
+    private void secondExample() {
+        Observable a = Observable.just(1, 2, 3, 4);
+        Observable b = Observable.just(3, 4, 5, 6);
+
+// If you simply want a list of distinct items:
+        Observable uniqueItems = a.merge(b).distinct();
+
+// If you just want to filter "a" so it contains none of the items in "b"
+       /* Observable filteredA = b.toList().flatMap(itemsInB -> {
+            a.filter(item -> !itemsInB.contains(item));
+        });*/
+       
+    }
+
 
     public void tos (String string) {
-        Toast.makeText(RxJavaSampleActivity.this, string, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(RxJavaSampleActivity.this, string, Toast.LENGTH_SHORT).show();
         String result = rxTextView.getText().toString();
         result += "  " + string + " \n";
         rxTextView.setText(result);

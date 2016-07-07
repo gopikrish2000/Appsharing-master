@@ -1,0 +1,14 @@
+
+// map is used for changing/transforming the input .Can change the type as well.
+// map blocks next item if current item is taking some time. But flatMap will run all the
+// items as new Observable so it wont be blocked.
+// filter is used to reduce no. of items send to subscriber
+
+// 1. Flat Map for emiting more items than the input/ Also can modify the input by giving new Observable .
+// 2. Flat Map does emit asynchronously without blocking.
+// FIRST will throw a NoSuchElementException while TAKEFIRST will return an empty Observable (one that calls onCompleted but never calls onNext).
+// The SAMPLE operator periodically looks at an Observable and emits whichever item it has most RECENTLY EMITTED since the previous sampling. but
+// THROTTLEFIRST emits the first in interval.
+// DEBOUNCE for a particular interval. will emit most recent in a given time period.  DISTINCT function
+
+// Merge will merge . Concat will append in the end. StartWith will prepend at start.

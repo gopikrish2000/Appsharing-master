@@ -36,4 +36,5 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.3.0'
+    compile 'com.squareup.duktape:duktape-android:0.9.5'
 }
