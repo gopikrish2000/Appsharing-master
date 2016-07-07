@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.rbricks.appsharing.R;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -31,14 +32,20 @@ public class RxJavaSampleActivity extends AppCompatActivity {
 
     private void sampleRxJavaMethods() {
         Observable.just("1", "2", "32")
+
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .flatMap(s -> Observable.just(s + "2", s + "3","4"))
+                .flatMap(s -> {
+                    System.out.println("s = " + s);
+                    return Observable.just(s, "4");
+                })
                 .filter(s -> !s.isEmpty())
 //                .map(s -> Integer.parseInt(s + "4"))
-                .map(s -> s + "Added")
+//                .map(s -> s + "Added")
                 .subscribe(s -> {
                     tos(s + "");
+                }, error -> {
+                    System.out.println("error = " + error);
                 });
     }
 

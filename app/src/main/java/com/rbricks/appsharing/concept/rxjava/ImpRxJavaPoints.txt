@@ -12,3 +12,10 @@
 // DEBOUNCE for a particular interval. will emit most recent in a given time period.  DISTINCT function
 
 // Merge will merge . Concat will append in the end. StartWith will prepend at start.
+
+//flatMap should be used when all results matter, regardless of their timing, and switchMap should be used when only results from the last Observable matter.
+
+. DEFER -> do not create the Observable until the observer subscribes, and create a FRESH Observable for each observer.
+It wont execute the observable until it is subscribed.
+
+. AMB -> given two or more source Observables, emit all of the items from only the first of these Observables to emit an item or notification
