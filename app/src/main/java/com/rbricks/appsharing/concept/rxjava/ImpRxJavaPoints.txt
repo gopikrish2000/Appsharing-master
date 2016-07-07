@@ -19,3 +19,19 @@
 It wont execute the observable until it is subscribed.
 
 . AMB -> given two or more source Observables, emit all of the items from only the first of these Observables to emit an item or notification
+
+. Compose -> used to change the original Stream instantaneously but FLATMAP will compose newly on every
+item onNext method ONLY . So use compose for observeOn/SubscribeOn kind which should effect whole stream.
+
+
+************ Subjects *************
+See http://reactivex.io/documentation/subject.html
+All below with 2 subscribers A , B (subscribed after A & after 1,2 already send before) ;
+With input sequence 1,2,3,4
+
+1. AsyncSubject -> Emits the last value (and only the last value) emitted by the source Observable, and only after that source Observable completes.
+2. BehaviourSubject -> Emit the recent Value ( if not emited yet will return default value) & future values.
+3. PublishSubject -> Emit only the future values ( won't take previously pushed values )
+4. ReplaySubject -> Emits All ITEMS to all subscribers regardless of when they subscribed.
+
+************************************
