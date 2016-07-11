@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import rx.subjects.AsyncSubject;
 import rx.subjects.BehaviorSubject;
@@ -35,7 +37,7 @@ public class RxJavaSampleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rx_java_sample);
         rxTextView = ((TextView) findViewById(R.id.rxTextView));
         findViewById(R.id.buttonClearResult).setOnClickListener(s -> rxTextView.setText(""));
-        findViewById(R.id.executeResult).setOnClickListener(s -> fifthExample());
+        findViewById(R.id.executeResult).setOnClickListener(s -> zomatoTwoCallsExceptionCheck());
 
     }
 
@@ -113,7 +115,7 @@ public class RxJavaSampleActivity extends AppCompatActivity {
 
     private void fifthExample() {
 
-        PredicateMy addition = (a, b) -> a + b;
+        /*PredicateMy addition = (a, b) -> a + b;
         int value = addition.operation(1, 2);
         System.out.println("value = " + value);
 
@@ -123,7 +125,19 @@ public class RxJavaSampleActivity extends AppCompatActivity {
         }
 
         List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd", "", "jkl");
-        List<String> filtered = strings.s
+        strings.stream().filter(s -> s.length()>2).forEach(s -> System.out.println("s = " + s));
+
+        Function<String, Integer> converter = Integer::parseInt;
+        Integer result = converter.apply("2");
+        System.out.println("result = " + result);*/
+
+    }
+
+    private void zomatoTwoCallsExceptionCheck() {
+        Observable<String> firstObservable = Observable.just("2");
+        Observable<String> secondObservable = Observable.<String>create(s -> {throw new RuntimeException();}).onErrorResumeNext(Observable.just("1"));
+        Observable.zip(firstObservable, secondObservable, (s, s2) -> s).subscribe(s -> System.out.println("s = " + s), e -> {e.printStackTrace();
+            System.out.println("inside error");});
 
     }
 
