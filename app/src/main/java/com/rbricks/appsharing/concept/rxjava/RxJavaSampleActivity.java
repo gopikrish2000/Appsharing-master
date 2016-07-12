@@ -13,6 +13,7 @@ import com.rbricks.appsharing.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -135,9 +136,17 @@ public class RxJavaSampleActivity extends AppCompatActivity {
 
     private void zomatoTwoCallsExceptionCheck() {
         Observable<String> firstObservable = Observable.just("2");
-        Observable<String> secondObservable = Observable.<String>create(s -> {throw new RuntimeException();}).onErrorResumeNext(Observable.just("1"));
-        Observable.zip(firstObservable, secondObservable, (s, s2) -> s).subscribe(s -> System.out.println("s = " + s), e -> {e.printStackTrace();
-            System.out.println("inside error");});
+        Observable<String> secondObservable = Observable.<String>create(s -> {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            throw new RuntimeException();}).onErrorResumeNext(Observable.just(null));
+        Observable.zip(firstObservable, secondObservable, (s, s2) -> new Object[]{s,s2}).subscribe(s -> System.out.println("s[0] = " + s[0] + " s[1] " + s[1]), e -> {
+            e.printStackTrace();
+            System.out.println("inside error");
+        });
 
     }
 
