@@ -23,6 +23,11 @@ It wont execute the observable until it is subscribed.
 . Compose -> used to change the original Stream instantaneously but FLATMAP will compose newly on every
 item onNext method ONLY . So use compose for observeOn/SubscribeOn kind which should effect whole stream.
 
+Throttle Vs debounce : like sleep vs wait 
+
+Throttle : 2 sec means in 2 sec time if event comes notify it to subscriber.
+Debounce : 2 sec means if event got fired continuously n if there is a gap of 2 seconds then fire notify to subscriber
+
 
 ************ Subjects *************
 See http://reactivex.io/documentation/subject.html
@@ -34,4 +39,11 @@ With input sequence 1,2,3,4
 3. PublishSubject -> Emit only the future values ( won't take previously pushed values )
 4. ReplaySubject -> Emits All ITEMS to all subscribers regardless of when they subscribed.
 
-************************************
+************************************ 
+
+************ Questions ***********
+Questions ::
+1. Why baseActivity lifeCycle composite Subscription all other activities are not using ( or bindToLifeCycle in compose as we r extending RxAppCompatActivity)
+2. DefaultEventBus we r putting in Map of Subjects . How is it different from normal temporary Publish Subject . 
+3. Also how can i use event bus in code . Also when the subject is being removed from the map ?? Also when the unsubscribe is happening. 
+***
