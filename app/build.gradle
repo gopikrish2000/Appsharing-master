@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.0"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.rbricks.appsharing"
@@ -22,25 +22,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.processManifest.doLast {
-                def manifestOutFile = output.processManifest.manifestOutputFile
-                def xml = new XmlParser().parse(manifestOutFile)
-                def usesSdk = xml.'uses-sdk'
-
-                usesSdk.replaceNode{
-                    'uses-sdk'('android:minSdkVersion': '15',
-                            'android:targetSdkVersion': '15')
-                }
-
-                def fw=new FileWriter(manifestOutFile.toString())
-
-                new XmlNodePrinter(new PrintWriter(fw)).print(xml)
-            }
-        }
     }
 }
 

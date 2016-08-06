@@ -15,7 +15,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".BottomSheetPracDialogActivity"
-            android:theme="@style/CustomTheme"></activity>
+            android:theme="@style/CustomTheme" />
         <activity android:name=".ServiceTestActivity" />
         <activity android:name=".IntentServiceEmptyActivity" />
 
@@ -28,16 +28,21 @@
         <activity android:name=".concept.Activities.LifeCycleSecondActivity" />
         <activity android:name=".concept.Activities.ViewPagerPracActivity" />
         <activity android:name=".concept.rxjava.RxJavaSampleActivity">
+        </activity>
+        <activity android:name=".concept.duktape.DuktapeActivity">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
-        <activity android:name=".concept.duktape.DuktapeActivity">
-            <!--<intent-filter>
+        <activity android:name=".concept.animations.AnimationActivity">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
     </application>
 
