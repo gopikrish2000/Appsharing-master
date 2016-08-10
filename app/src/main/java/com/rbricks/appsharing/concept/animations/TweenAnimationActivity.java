@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.rbricks.appsharing.R;
 
-public class AnimationActivity extends AppCompatActivity {
+public class TweenAnimationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
