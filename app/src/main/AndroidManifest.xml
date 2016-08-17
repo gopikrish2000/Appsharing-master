@@ -27,20 +27,14 @@
         <activity android:name=".concept.Activities.LifeCycleFirstActivity" />
         <activity android:name=".concept.Activities.LifeCycleSecondActivity" />
         <activity android:name=".concept.Activities.ViewPagerPracActivity" />
-        <activity android:name=".concept.rxjava.RxJavaSampleActivity"></activity>
+        <activity android:name=".concept.rxjava.RxJavaSampleActivity" />
         <activity android:name=".concept.duktape.DuktapeActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
-        <activity android:name=".concept.animations.TweenAnimationActivity">
         </activity>
 
+        <activity android:name=".concept.animations.TweenAnimationActivity"></activity>
         <activity android:name=".concept.animations.PropertyAnimationActivity">
+        </activity>
+        <activity android:name=".concept.animations.AdvancedAnimationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

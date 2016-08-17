@@ -1,0 +1,149 @@
+
+
+animations ::
+
+1. view animation -> a. tween animation ( change of size, rotate , shape, translate etc) ;; b. frame animation ( add multiple drawables so it changes frame by frame from one image to other as animation)
+        Tween animation: Creates an animation by performing a series of transformations on a single image with an Animation
+        Frame animation (or Drawable animation) : or creates an animation by showing a sequence of images in order with an AnimationDrawable.
+
+2. Property animation :
+   Creates an animation by modifying an object's property values over a set period of time with an ANIMATOR. This API can be applied on any Java object not only on Views .
+
+######Imp Points to consider for property animation :: ########
+
+Duration: You can specify the duration of an animation. The default length is 300 ms.
+
+Time interpolation: You can specify how the values for the property are calculated as a function of the animation's current elapsed time.
+
+Repeat count and behavior: You can specify whether or not to have an animation repeat when it reaches the end of a duration and how many times to repeat the animation. You can also specify whether you want the animation to play back in reverse. Setting it to reverse plays the animation forwards then backwards repeatedly, until the number of repeats is reached.
+
+Animator sets: You can group animations into logical sets that play together or sequentially or after specified delays.
+
+startpoint , endpoint 
+
+#############
+
+
+*******Disadv of view animations over Property animations :: ***
+
+The view animation system is also constrained in the fact that it only exposes a few aspects of a View object to animate, such as the scaling and rotation of a View but not the background color, for instance.
+
+Another disadvantage of the view animation system is that it only modified where the View was drawn, and not the actual View itself. For instance, if you animated a button to move across the screen, the button draws correctly, but the actual location where you can click the button does not change, so you have to implement your own logic to handle this.
+
+***************
+
+Property animation types classes :  SEE URL https://developer.android.com/guide/topics/graphics/prop-animation.html
+
+1. Value Animator : The main timing engine for property animation that also computes the values for the property to be animated. It has all of the core functionality that calculates animation values and contains the timing details of each animation, information about whether an animation repeats, listeners that receive update events, and the ability to set custom types to evaluate. There are two pieces to animating properties: calculating the animated values and setting those values on the object and property that is being animated. ValueAnimator does not carry out the second piece, so you must listen for updates to values calculated by the ValueAnimator and modify the objects that you want to animate with your own logic. See the section about Animating with ValueAnimator for more information.
+
+ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);  // of TypeEvaluator : float , Interpolater : default ( linear ) , repeat value ( 0 ) 
+animation.setDuration(1000);							  // startValue = 0f , endValue = 1f 
+animation.start();
+
+2. Object Animator : subclass of Value Animator which is MOST used . A subclass of ValueAnimator that allows you to set a target object and object property to animate. This class updates the property accordingly when it computes a new value for the animation.
+The ObjectAnimator is a subclass of the ValueAnimator (discussed in the previous section) and combines the timing engine and value computation of ValueAnimator with the ability to animate a named property of a target object.
+
+ObjectAnimator anim = ObjectAnimator.ofFloat(viewObj, "alpha", 0f, 1f);  // of TypeEvaluator : float , Interpolater : default ( linear ) , View : viewObj 
+anim.setDuration(1000);												 // property : "alpha" as string , repeat value ( 0 ) , startValue = 0f  
+anim.start();														// endValue = 1f
+
+//Setter method setAlpha(), getAlpha() in ViewObj Class is mandatory Else use WrapperClass or use Value Animator . 
+
+Depending on what property or object you are animating, you might need to call the invalidate() method on a View to force the screen to redraw itself with the updated animated values. You do this in the onAnimationUpdate() callback. For example, animating the color property of a Drawable object only cause updates to the screen when that object redraws itself. All of the property setters on View, such as setAlpha() and setTranslationX() invalidate the View properly, so you do not need to invalidate the View when calling these methods with new values. For more information on listeners, see the section about Animation Listeners.
+
+You can extend the AnimatorListenerAdapter class instead of implementing the Animator.AnimatorListener interface, if you do not want to implement all of the methods
+
+ValueAnimator fadeAnim = ObjectAnimator.ofFloat(newBall, "alpha", 1f, 0f);
+fadeAnim.setDuration(250);
+fadeAnim.addListener(new AnimatorListenerAdapter() {
+public void onAnimationEnd(Animator animation) {
+    balls.remove(((ObjectAnimator)animation).getTarget());
+}
+
+3. AnimatorSet : Provides a mechanism to group animations together so that they run in relation to one another. You can set animations to play together, sequentially, or after a specified delay .
+
+AnimatorSet bouncer = new AnimatorSet();
+bouncer.play(bounceAnim).before(squashAnim1);
+bouncer.play(squashAnim1).with(squashAnim2);
+bouncer.play(squashAnim1).with(stretchAnim1);
+bouncer.play(squashAnim1).with(stretchAnim2);
+bouncer.play(bounceBackAnim).after(stretchAnim2);
+ValueAnimator fadeAnim = ObjectAnimator.ofFloat(newBall, "alpha", 1f, 0f);
+fadeAnim.setDuration(250);
+AnimatorSet animatorSet = new AnimatorSet();
+animatorSet.play(bouncer).before(fadeAnim);
+animatorSet.start();
+
+
+4. LayoutTransition : You can animate layout changes within a ViewGroup with the LayoutTransition class. You add them to or remove them from a ViewGroup. Then the remaining Views in the ViewGroup can also animate into their new positions when you add or remove Views.
+
+
+    APPEARING - A flag indicating the animation that runs on items that are appearing in the container.
+    CHANGE_APPEARING - A flag indicating the animation that runs on items that are changing due to a new item appearing in the container.
+    DISAPPEARING - A flag indicating the animation that runs on items that are disappearing from the container.
+    CHANGE_DISAPPEARING - A flag indicating the animation that runs on items that are changing due to an item disappearing from the container.
+
+ <LinearLayout android:animateLayoutChanges="true" />
+
+Setting this attribute (animateLayoutChanges) to true automatically animates Views that are added or removed from the ViewGroup as well as the remaining Views in the ViewGroup.
+
+5. Keyframe : A Keyframe object consists of a time/value pair that lets you define a specific state at a specific time of an animation. Each keyframe can also have its own interpolator to control the behavior .
+
+Keyframe kf0 = Keyframe.ofFloat(0f, 0f);
+Keyframe kf1 = Keyframe.ofFloat(.5f, 360f);
+Keyframe kf2 = Keyframe.ofFloat(1f, 0f);
+PropertyValuesHolder pvhRotation = PropertyValuesHolder.ofKeyframe("rotation", kf0, kf1, kf2);
+ObjectAnimator rotationAnim = ObjectAnimator.ofPropertyValuesHolder(target, pvhRotation)
+rotationAnim.setDuration(5000ms);
+
+6. ViewPropertyAnimator :  Provides a simple way to animate several properties . 
+
+Ex : When simultaneously animating the x and y property of a view.
+
+Way 1 : ObjectAnimator animX = ObjectAnimator.ofFloat(myView, "x", 50f);
+ObjectAnimator animY = ObjectAnimator.ofFloat(myView, "y", 100f);
+AnimatorSet animSetXY = new AnimatorSet();
+animSetXY.playTogether(animX, animY);
+animSetXY.start();
+
+Way 2 : PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat("x", 50f);
+PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat("y", 100f);
+ObjectAnimator.ofPropertyValuesHolder(myView, pvhX, pvyY).start();
+
+Way 3 (using ViewPropertyAnimator) : myView.animate().x(50f).y(100f);
+
+7. Specifying in XML instead of java : 
+
+<set android:ordering="sequentially">
+    <set>
+        <objectAnimator
+            android:propertyName="x"
+            android:duration="500"
+            android:valueTo="400"
+            android:valueType="intType"/>
+        <objectAnimator
+            android:propertyName="y"
+            android:duration="500"
+            android:valueTo="300"
+            android:valueType="intType"/>
+    </set>
+    <objectAnimator
+        android:propertyName="alpha"
+        android:duration="500"
+        android:valueTo="1f"/>
+</set>
+
+Above does x, y simultenously( bcoz its nested under set ) then it runs the alpha for 500 . 
+
+	Run above in java like this 
+AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(myContext, R.anim.property_animator);
+set.setTarget(myObject);
+set.start();
+
+
+
+******
+
+. AnimationSet is OLD dont use it , AnimatorSet is GOOD use it .
+
+
