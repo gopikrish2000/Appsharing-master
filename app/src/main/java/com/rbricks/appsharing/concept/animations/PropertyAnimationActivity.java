@@ -7,12 +7,16 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnimationSet;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,8 +87,110 @@ public class PropertyAnimationActivity extends AppCompatActivity {
             case "valuecolor":
                 valueColor();
                 break;
+            case "animationset":
+                animationSet();
+                break;
+            case "animatorset" :
+                animationSetExampleWithAnimatorSet();
+                break;
+            case "path":
+                pathAnimation();
+                break;
+            case "pathwithvalueanim":
+                pathAnimationWithValueAnim();
+                break;
 
         }
+    }
+
+    public void pathAnimation() {
+        Path path = new Path();
+        // for absolute path
+        /*path.lineTo(400f, 500f);
+        path.lineTo(400f, 600f);*/
+
+        // relative path
+        path.moveTo(propertyAnimationTv.getX(),propertyAnimationTv.getY());
+        path.rLineTo(300f,300f);
+        path.rLineTo(-150f,-150f);
+        path.rLineTo(-150f,150f);
+        path.rLineTo(200f, 200f);
+
+//        path.moveTo(400f, 600f);
+//        path.lineTo(1f, 1f);
+//        ValueAnimator valueAnimator = ValueAnimator.ofFloat();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(propertyAnimationTv, "x", "y", path);
+        objectAnimator.setDuration(4000).setInterpolator(new AccelerateDecelerateInterpolator());
+        objectAnimator.start();
+    }
+
+    public void pathAnimationWithValueAnim() {
+        Path path = new Path();
+        // for absolute path
+        /*path.lineTo(400f, 500f);
+        path.lineTo(400f, 600f);*/
+
+        // relative path
+        path.moveTo(propertyAnimationTv.getX(),propertyAnimationTv.getY());
+        path.rLineTo(300f,300f);
+        path.rLineTo(-150f,-150f);
+        path.rLineTo(-150f,150f);
+        path.rLineTo(200f, 200f);
+
+        float xVal = propertyAnimationTv.getX();
+//        ValueAnimator pathAnimator = ValueAnimator.ofFloat(xVal+300, xVal+150,xVal,xVal+200);
+        ValueAnimator pathAnimator = ValueAnimator.ofFloat(xVal);
+
+        pathAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            float[] point = new float[2];
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                // Gets the animated float fraction
+                float val = animation.getAnimatedFraction();
+
+                // Gets the point at the fractional path length
+                PathMeasure pathMeasure = new PathMeasure(path, true);
+                pathMeasure.getPosTan(pathMeasure.getLength() * val, point, null);
+
+                // Sets view location to the above point
+                propertyAnimationTv.setX(point[0]);
+                propertyAnimationTv.setY(point[1]);
+            }
+        });
+
+        pathAnimator.setDuration(4000).setInterpolator(new AccelerateDecelerateInterpolator());
+        pathAnimator.start();
+    }
+
+
+
+    public void animationSet() {
+        // AnimationSet is old one. Don't use it ( its in android.view package , AnimatorSet is in android.animation package)
+        AnimationSet as = new AnimationSet(true);
+        as.setFillEnabled(false);
+        as.setInterpolator(new BounceInterpolator());
+
+        TranslateAnimation ta = new TranslateAnimation(-300, 100, 0, 0);
+        ta.setDuration(2000);
+        as.addAnimation(ta);
+
+        TranslateAnimation ta2 = new TranslateAnimation(100, 0, 0, 0);
+        ta2.setDuration(2000);
+        ta2.setStartOffset(3000); // allowing 2000 milliseconds for ta to finish
+//        ta2.setFillBefore(true);
+        as.addAnimation(ta2);
+        propertyAnimationTv.startAnimation(as);
+    }
+
+    public void animationSetExampleWithAnimatorSet() {
+//        propertyAnimationTv.animate().xBy(400f).setDuration(2000).xBy(-100);
+        // Below 400f will be from current to Absolute 400 not relative . If u want releative to View.getX+400f
+        ObjectAnimator first = ObjectAnimator.ofFloat(propertyAnimationTv, "x", 400f).setDuration(2000);
+        ObjectAnimator second = ObjectAnimator.ofFloat(propertyAnimationTv, "x", -100f).setDuration(2000);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setInterpolator(new AccelerateInterpolator());
+        (animatorSet.play(second).after(6000)).after(first);
+        animatorSet.start();
     }
 
     private void valueAnimator() {
@@ -139,7 +245,10 @@ public class PropertyAnimationActivity extends AppCompatActivity {
         translateAnimator.setRepeatMode(2);
         translateAnimator.setInterpolator(new AccelerateInterpolator());
 
-        ObjectAnimator moveAnimator = ObjectAnimator.ofFloat(propertyAnimationTv, "translationX", 0f,100f,180f,240f).setDuration(4000);
+            //For Absolute setting values
+//        ObjectAnimator moveAnimator = ObjectAnimator.ofFloat(propertyAnimationTv, "translationX", 0f,100f,180f,240f).setDuration(4000);
+        // For relatively setting values
+        ObjectAnimator moveAnimator = ObjectAnimator.ofFloat(propertyAnimationTv, "translationX", propertyAnimationTv.getTranslationX(),propertyAnimationTv.getTranslationX()+100f,propertyAnimationTv.getTranslationX()+180f,propertyAnimationTv.getTranslationX()+240f).setDuration(4000);
         moveAnimator.setInterpolator(new BounceInterpolator());
 
 
