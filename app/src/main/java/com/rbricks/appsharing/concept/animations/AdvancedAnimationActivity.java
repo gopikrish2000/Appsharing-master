@@ -1,20 +1,26 @@
 package com.rbricks.appsharing.concept.animations;
 
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding.widget.RxTextView;
 import com.rbricks.appsharing.R;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import java8.util.stream.Collectors;
+import java8.util.stream.RefStreams;
+import java8.util.stream.Stream;
+import java8.util.stream.StreamSupport;
 
 import static com.jakewharton.rxbinding.view.RxView.clicks;
 import static com.jakewharton.rxbinding.widget.RxTextView.textChangeEvents;
@@ -75,8 +81,8 @@ public class AdvancedAnimationActivity extends AppCompatActivity {
 //        objectAnimator.setRepeatCount(1);
 //        objectAnimator.setRepeatMode(2);
         objectAnimator.start();
-    }
 
+    }
 
 }
 

@@ -33,25 +33,31 @@
         <activity android:name=".concept.animations.PropertyAnimationActivity" />
         <activity android:name=".concept.animations.AdvancedAnimationActivity">
 
-            <!--
-            <intent-filter>
+          <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".concept.animations.ActivityTransitionAnimationActivity"
             android:theme="@style/ActivityTransitionTheme">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".concept.animations.TransitionDetailsActivity"
             android:theme="@style/ActivityTransitionTheme"> </activity>
+
+        <activity android:name=".concept.streams.StreamsActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

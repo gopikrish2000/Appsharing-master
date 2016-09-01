@@ -1,0 +1,8 @@
+
+Size effects after adding libraries ::
+
+3,163,730 bytes (3.2 MB on disk) without supportstream n with jill
+3,371,766 bytes (3.4 MB on disk) with StreamSupport.
+3,491,995 bytes (3.5 MB on disk) with retrolambda.
+3,765,116 bytes (3.8 MB on disk) with both retrolambda n Streamsupport .
+
