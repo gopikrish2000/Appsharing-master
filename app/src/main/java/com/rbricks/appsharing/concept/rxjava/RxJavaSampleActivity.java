@@ -95,7 +95,7 @@ public class RxJavaSampleActivity extends AppCompatActivity {
 //        PublishSubject<Object> publishSubject = PublishSubject.create(); // First : 3,4,5 , Second : 5
 //        BehaviorSubject<Object> publishSubject = BehaviorSubject.create(); // First: 3,4,5 , Second: 4,5 ( one before subscribing)
 //        ReplaySubject<Object> publishSubject = ReplaySubject.create(); // First: 3,4,5 , Second: 3,4,5 ( ALL ITEMS)
-        AsyncSubject<Object> publishSubject = AsyncSubject.create(); // First: 5 , Second: 5 ( ALL ITEMS)
+        AsyncSubject<Object> publishSubject = AsyncSubject.create(); // First: 5 , Second: 5 ( Returns only last item of in any subscription when ever it completes)
         publishSubject.subscribe(s -> {
             System.out.println(" First one "+s);
         });
