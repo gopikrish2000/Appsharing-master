@@ -3,13 +3,17 @@ package com.rbricks.appsharing.concept.rxjava;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.rbricks.appsharing.R;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -39,6 +43,7 @@ public class RxJavaAdvancedActivity extends AppCompatActivity {
     private void init() {
         resultsTV = (TextView) findViewById(R.id.results_tv);
         implementationEditText = ((EditText) findViewById(R.id.process_et));
+        checkSingleNDoubleClicks();
     }
 
     private void performCurrentImplementation() {
@@ -95,6 +100,10 @@ public class RxJavaAdvancedActivity extends AppCompatActivity {
             System.out.println("s.first = " + s.first + " s.second " + s.second);
             resultsTV.setText("count : "+ s.first + " item is "+ s.second);
         });
+
+        Observable.just(1, -2, 4, 3, 10, 8, 9).scan(0, (a, b) -> a+b).subscribe(s -> {
+            System.out.println("s = " + s);
+        });
     }
 
     private void first() {
@@ -103,6 +112,17 @@ public class RxJavaAdvancedActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> resultsTV.setText(s + ""));
     }
 
+    private void checkSingleNDoubleClicks() {
+        View view = resultsTV;
+        RxView.clicks(view).buffer(500, TimeUnit.MILLISECONDS).map(List::size).filter(clicksCount -> clicksCount > 0)
+                .subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(clicksCount -> {
+            if (clicksCount == 1) {
+                Toast.makeText(RxJavaAdvancedActivity.this, "Double Tap or click on Edit button to edit. ", Toast.LENGTH_SHORT).show();
+            } else if (clicksCount > 1) {
+                Toast.makeText(RxJavaAdvancedActivity.this, "DOUBLE TAPPED. Good!!! ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
 

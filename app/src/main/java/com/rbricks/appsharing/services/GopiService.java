@@ -55,7 +55,7 @@ public class GopiService extends Service {
         };
         thread.start();
 //        return super.onStartCommand(intent, flags, startId);
-        return START_FLAG_REDELIVERY;
+        return START_STICKY;
     }
 
     public class GopiBinder extends Binder {
