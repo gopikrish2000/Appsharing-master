@@ -1,4 +1,4 @@
-package com.rbricks.appsharing.concept.sqllite;
+package com.rbricks.appsharing.concept.notesapp.domains;
 
 import android.os.Parcel;
 import android.os.Parcelable;

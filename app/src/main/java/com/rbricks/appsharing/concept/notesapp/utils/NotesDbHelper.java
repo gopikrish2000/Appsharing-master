@@ -1,8 +1,12 @@
-package com.rbricks.appsharing.concept.sqllite;
+package com.rbricks.appsharing.concept.notesapp.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+/**
+ * Created by gopikrishna on 12/11/16.
+ */
 
 public class NotesDbHelper extends SQLiteOpenHelper {
 

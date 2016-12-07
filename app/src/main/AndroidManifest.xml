@@ -3,7 +3,10 @@
           package="com.rbricks.appsharing">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".concept.Application.AppSharingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,27 +35,10 @@
         <activity android:name=".concept.duktape.DuktapeActivity"/>
         <activity android:name=".concept.animations.TweenAnimationActivity"/>
         <activity android:name=".concept.animations.PropertyAnimationActivity"/>
-        <activity android:name=".concept.animations.AdvancedAnimationActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
+        <activity android:name=".concept.animations.AdvancedAnimationActivity"/>
         <activity
             android:name=".concept.animations.ActivityTransitionAnimationActivity"
             android:theme="@style/ActivityTransitionTheme">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
         <activity
             android:name=".concept.animations.TransitionDetailsActivity"
@@ -60,24 +46,16 @@
         </activity>
         <activity android:name=".concept.streams.StreamsActivity">
 
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
         </activity>
         <activity android:name=".concept.rxjava.RxJavaAdvancedActivity">
-            <!-- <intent-filter>
-                 <action android:name="android.intent.action.MAIN"/>
-
-                 <category android:name="android.intent.category.LAUNCHER"/>
-             </intent-filter>-->
         </activity>
-        <activity android:name=".concept.animations.BrindaAnimationActivity">
+        <activity android:name=".concept.animations.BrindaAnimationActivity"/>
+        <activity android:name=".concept.notesapp.activities.NotesDetailsActivity"/>
+        <activity android:name=".concept.notesapp.activities.NotesListingActivity"/>
+
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

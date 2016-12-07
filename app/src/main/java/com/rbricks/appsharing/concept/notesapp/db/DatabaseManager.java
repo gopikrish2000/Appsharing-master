@@ -1,26 +1,21 @@
-package com.rbricks.appsharing.concept.sqllite;
+package com.rbricks.appsharing.concept.notesapp.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
 import com.rbricks.appsharing.concept.Application.AppSharingApplication;
+import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
+import com.rbricks.appsharing.concept.notesapp.utils.SqlliteTables;
+import com.rbricks.appsharing.concept.notesapp.utils.SqlliteTables.NotesListingTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
 
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.CREATED_ON;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.DESCRIPTION;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.ID;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.IS_DELETED;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.TABLE_NAME;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.TITLE;
-import static com.rbricks.appsharing.concept.sqllite.SqlliteTables.NotesListingTable.UPDATED_ON;
 import static com.rbricks.appsharing.utils.CommonUtils.getCurrentDateTimeForDb;
 import static com.rbricks.appsharing.utils.CommonUtils.isNullOrEmpty;
-
 
 /**
  * Created by gopikrishna on 12/11/16.
@@ -34,11 +29,11 @@ public class DatabaseManager {
             try {
                 String currentDateTimeForDb = getCurrentDateTimeForDb();
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(TITLE, notes.getTitle());
-                contentValues.put(DESCRIPTION, notes.getDescription());
-                contentValues.put(UPDATED_ON, currentDateTimeForDb);
-                contentValues.put(CREATED_ON, currentDateTimeForDb);
-                result = AppSharingApplication.getInstance().getWritableDB().insert(TABLE_NAME, null, contentValues);
+                contentValues.put(NotesListingTable.TITLE, notes.getTitle());
+                contentValues.put(NotesListingTable.DESCRIPTION, notes.getDescription());
+                contentValues.put(NotesListingTable.UPDATED_ON, currentDateTimeForDb);
+                contentValues.put(NotesListingTable.CREATED_ON, currentDateTimeForDb);
+                result = AppSharingApplication.getInstance().getWritableDB().insert(SqlliteTables.NotesListingTable.TABLE_NAME, null, contentValues);
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.d("exception in insertion", e.getLocalizedMessage());
@@ -52,13 +47,13 @@ public class DatabaseManager {
         return Observable.create(subscriber -> {
             try {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(TITLE, notes.getTitle());
-                contentValues.put(DESCRIPTION, notes.getDescription());
-                contentValues.put(UPDATED_ON, getCurrentDateTimeForDb());
+                contentValues.put(NotesListingTable.TITLE, notes.getTitle());
+                contentValues.put(NotesListingTable.DESCRIPTION, notes.getDescription());
+                contentValues.put(NotesListingTable.UPDATED_ON, getCurrentDateTimeForDb());
 
-                int i = AppSharingApplication.getInstance().getWritableDB().update(TABLE_NAME,
+                int i = AppSharingApplication.getInstance().getWritableDB().update(NotesListingTable.TABLE_NAME,
                         contentValues,
-                        ID + " = ?",
+                        NotesListingTable.ID + " = ?",
                         new String[]{String.valueOf(notes.getId())});
                 subscriber.onNext(i != -1);
             } catch (Exception e) {
@@ -69,7 +64,7 @@ public class DatabaseManager {
     }
 
     public static boolean hardDeleteNotes(int id) {
-        int i = AppSharingApplication.getInstance().getWritableDB().delete(TABLE_NAME, ID + " =?",
+        int i = AppSharingApplication.getInstance().getWritableDB().delete(NotesListingTable.TABLE_NAME, NotesListingTable.ID + " =?",
                 new String[]{String.valueOf(id)});
         return i != -1;
     }
@@ -78,11 +73,11 @@ public class DatabaseManager {
         return Observable.create(subscriber -> {
             try {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(IS_DELETED, "1");
+                contentValues.put(NotesListingTable.IS_DELETED, "1");
 
-                int i = AppSharingApplication.getInstance().getWritableDB().update(TABLE_NAME,
+                int i = AppSharingApplication.getInstance().getWritableDB().update(NotesListingTable.TABLE_NAME,
                         contentValues,
-                        ID + " = ?",
+                        NotesListingTable.ID + " = ?",
                         new String[]{String.valueOf(id)});
                 subscriber.onNext(i != -1);
             } catch (Exception e) {
@@ -96,7 +91,7 @@ public class DatabaseManager {
         return Observable.create(subscriber -> {
             List<NotesItem> notesItems = new ArrayList<>();
             Cursor cursor = AppSharingApplication.getInstance().getReadableDb()
-                    .rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + IS_DELETED + " = ? ORDER BY " + UPDATED_ON + " DESC ", new String[]{"0"});
+                    .rawQuery("SELECT * FROM " + NotesListingTable.TABLE_NAME + " WHERE " + NotesListingTable.IS_DELETED + " = ? ORDER BY " + NotesListingTable.UPDATED_ON + " DESC ", new String[]{"0"});
             try {
                 while (cursor.moveToNext()) {
                     NotesItem notesItem = new NotesItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
@@ -120,9 +115,9 @@ public class DatabaseManager {
             List<NotesItem> notesItems = new ArrayList<>();
             String regexSearchTerm = "%" + searchTerm + "%";
             Cursor cursor = AppSharingApplication.getInstance().getReadableDb()
-                    .rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + IS_DELETED + " = ? AND (" + TITLE + " LIKE ?  OR "
-                            + DESCRIPTION + " LIKE ? )"
-                            + " ORDER BY " + UPDATED_ON + " DESC ", new String[]{"0", regexSearchTerm, regexSearchTerm});
+                    .rawQuery("SELECT * FROM " + NotesListingTable.TABLE_NAME + " WHERE " + NotesListingTable.IS_DELETED + " = ? AND (" + NotesListingTable.TITLE + " LIKE ?  OR "
+                            + NotesListingTable.DESCRIPTION + " LIKE ? )"
+                            + " ORDER BY " + NotesListingTable.UPDATED_ON + " DESC ", new String[]{"0", regexSearchTerm, regexSearchTerm});
             try {
                 while (cursor.moveToNext()) {
                     NotesItem notesItem = new NotesItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),
@@ -142,7 +137,7 @@ public class DatabaseManager {
     public static Observable<NotesItem> getNoteById(long id) {
         return Observable.create(subscriber -> {
             Cursor cursor = AppSharingApplication.getInstance().getReadableDb()
-                    .rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + ID + " = ? lIMIT 1", new String[]{id + ""});
+                    .rawQuery("SELECT * FROM " + NotesListingTable.TABLE_NAME + " WHERE " + NotesListingTable.ID + " = ? lIMIT 1", new String[]{id + ""});
             try {
                 while (cursor.moveToNext()) {
                     NotesItem notesItem = new NotesItem(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3),

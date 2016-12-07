@@ -1,7 +1,5 @@
 package com.rbricks.appsharing;
 
-import com.rbricks.appsharing.concept.sqllite.NotesItem;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

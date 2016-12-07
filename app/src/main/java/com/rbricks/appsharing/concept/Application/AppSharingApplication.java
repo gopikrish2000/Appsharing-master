@@ -3,7 +3,7 @@ package com.rbricks.appsharing.concept.Application;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.rbricks.appsharing.concept.sqllite.NotesDbHelper;
+import com.rbricks.appsharing.concept.notesapp.utils.NotesDbHelper;
 
 
 /**
