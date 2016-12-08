@@ -49,7 +49,8 @@ public class NewDatabaseManager {
     }
 
     private static Uri getNotesUri() {
-        return Uri.parse("content://" + NotesContentProvider.PROVIDER_NAME);
+//        return Uri.parse("content://" + NotesContentProvider.PROVIDER_NAME);
+        return NotesContentProvider.NOTES_URI;
     }
 
     public static Observable<Boolean> updateNotes(NotesItem notes) {

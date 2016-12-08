@@ -21,7 +21,7 @@ import static android.provider.UserDictionary.Words.CONTENT_URI;
 
 public class NotesContentProvider extends ContentProvider {
     public static String PROVIDER_NAME = "com.notes.gopi.provider";
-    private static final Uri notesUri = Uri.parse("content://" + PROVIDER_NAME);
+    public static final Uri NOTES_URI = Uri.parse("content://" + PROVIDER_NAME + "/" + NotesListingTable.TABLE_NAME);
     private SQLiteDatabase db;
 
     static final UriMatcher uriMatcher;
@@ -53,6 +53,10 @@ public class NotesContentProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(Uri uri) {
+        switch (uriMatcher.match(uri)) {
+            case 1:
+                return "vnd.android.cursor.dir/vnd." + PROVIDER_NAME;
+        }
         return null;
     }
 
