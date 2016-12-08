@@ -12,6 +12,7 @@ import com.rbricks.appsharing.concept.animations.AdvancedAnimationActivity;
 import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
 import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
 import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
+import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivity;
 import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
 import com.rbricks.appsharing.concept.rxjava.RxJavaAdvancedActivity;
 import com.rbricks.appsharing.concept.streams.StreamsActivity;
@@ -56,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void fillHomeItems() {
         homeItemList.add(new HomeItem("Notes Listing", NotesListingActivity.class));
+        homeItemList.add(new HomeItem("New Notes Listing", NewNotesListingActivity.class));
         homeItemList.add(new HomeItem("BrindaAnimationActivity", BrindaAnimationActivity.class));
         homeItemList.add(new HomeItem("RxJavaAdvancedActivity", RxJavaAdvancedActivity.class));
         homeItemList.add(new HomeItem("StreamsActivity", StreamsActivity.class));

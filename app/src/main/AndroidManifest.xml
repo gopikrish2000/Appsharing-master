@@ -52,6 +52,7 @@
         <activity android:name=".concept.animations.BrindaAnimationActivity"/>
         <activity android:name=".concept.notesapp.activities.NotesDetailsActivity"/>
         <activity android:name=".concept.notesapp.activities.NotesListingActivity"/>
+        <activity android:name=".concept.notesapp.activities.NewNotesListingActivity"/>
 
         <activity android:name=".HomeActivity">
             <intent-filter>
