@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.RelativeLayout;
 
 import com.rbricks.appsharing.concept.animations.AdvancedAnimationActivity;
 import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
@@ -21,26 +20,28 @@ import com.rbricks.appsharing.home.domains.HomeItem;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_home)
-    RelativeLayout activityHome;
-    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.main_rv)
     RecyclerView mainRv;
     private ArrayList<HomeItem> homeItemList;
     private HomeAdapter homeAdapter;
+    private Unbinder unBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+//        unBinder = ButterKnife.bind(this);
+        initViews();
         initData();
+    }
+
+    private void initViews() {
+        toolbar = ((Toolbar) findViewById(R.id.toolbar));
+        mainRv = ((RecyclerView) findViewById(R.id.main_rv));
     }
 
     private void initData() {
@@ -65,5 +66,11 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AdvancedAnimationActivity", AdvancedAnimationActivity.class));
         homeItemList.add(new HomeItem("ServiceTestActivity", ServiceTestActivity.class));
         homeItemList.add(new HomeItem("TransitionDetailsActivity", TransitionDetailsActivity.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        unBinder.unbind();
     }
 }

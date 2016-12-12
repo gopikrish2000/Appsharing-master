@@ -3,6 +3,7 @@ package com.rbricks.appsharing.concept.notesapp.contentprovider;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-import com.rbricks.appsharing.concept.Application.AppSharingApplication;
+import com.rbricks.appsharing.concept.notesapp.utils.NotesDbHelper;
 import com.rbricks.appsharing.concept.notesapp.utils.SqlliteTables.NotesListingTable;
 
 import static android.provider.UserDictionary.Words.CONTENT_URI;
@@ -33,8 +34,13 @@ public class NotesContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        db = AppSharingApplication.getInstance().getWritableDB();
-        return true;
+        Context context = getContext();
+        NotesDbHelper dbHelper = new NotesDbHelper(context);
+        db = dbHelper.getWritableDatabase();
+        if (db != null) {
+            return true;
+        }
+        return false;
     }
 
     @Nullable

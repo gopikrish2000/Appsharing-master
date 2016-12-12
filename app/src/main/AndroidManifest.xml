@@ -60,6 +60,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".concept.notesapp.contentprovider.NotesContentProvider"
+            android:authorities="com.notes.gopi.provider">
+        </provider>
     </application>
 
 </manifest>
