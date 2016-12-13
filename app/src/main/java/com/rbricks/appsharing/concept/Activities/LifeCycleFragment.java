@@ -36,6 +36,14 @@ public class LifeCycleFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         System.out.println("LifeCycleFragment.onActivityCreated");
+        String sampleFragmentSave = savedInstanceState.getString("sampleFragmentSave");
+        System.out.println("sampleFragmentSave in Fragment from onSaveInstanceState of Fragment = " + sampleFragmentSave);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("sampleFragmentSave", "sampleFragmentSave");
     }
 
     @Override
