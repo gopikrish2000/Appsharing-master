@@ -45,7 +45,6 @@
             android:theme="@style/ActivityTransitionTheme">
         </activity>
         <activity android:name=".concept.streams.StreamsActivity">
-
         </activity>
         <activity android:name=".concept.rxjava.RxJavaAdvancedActivity">
         </activity>
@@ -53,18 +52,22 @@
         <activity android:name=".concept.notesapp.activities.NotesDetailsActivity"/>
         <activity android:name=".concept.notesapp.activities.NotesListingActivity"/>
         <activity android:name=".concept.notesapp.activities.NewNotesListingActivity"/>
-
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <provider
             android:name=".concept.notesapp.contentprovider.NotesContentProvider"
-            android:authorities="com.notes.gopi.provider">
+            android:authorities="com.notes.gopi.provider"
+            android:exported="true">
         </provider>
+
+        <activity android:name=".concept.memoryefficient.activities.BitmapMemoryActivity">
+        </activity>
     </application>
 
 </manifest>
