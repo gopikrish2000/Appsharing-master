@@ -59,7 +59,7 @@ public class BitmapMemoryActivity extends AppCompatActivity {
             // First decode with inJustDecodeBounds=true to check dimensions without creating memory
             BitmapFactory.decodeResource(res, resId, options);
 
-            // Calculate inSampleSize
+            // Calculate inSampleSize ; if value is 4 it gives image of width/4 & height/4.
             options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 
             // Decode bitmap with inSampleSize set
