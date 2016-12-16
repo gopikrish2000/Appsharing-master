@@ -1,8 +1,8 @@
 package com.rbricks.appsharing.concept.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -79,13 +79,14 @@ public class LifeCycleFirstActivity extends AppCompatActivity {
     * onDestroyView -> onCreateView ( when restored from backstack) but when newly added
     * onCreate -> onCreateView ... -> onDestroyView -> onDestroy
     *
-    * 8. Always have noArgument constructor for fragment bcoz in case of low memory system can recreate the fragment
+    * 8. Always have noArgument constructor for fragment bcoz in case of low memory system can recreate the fragment. So always pass data n put in bundle to work correct in all cases.
     * 9. ClearTOP => A B C D -> then A B and B becomes top , B will RECREATE  ; if SingleTop then TOP IS B then it willnot restart the B instead
     * reuse the B Activity onNewIntent() method will be called.
     * 10. onMeasure for measuring , onLayout for positioning it , onDraw(canvas) to draw n paint in canvas ( canvas.draw ..)
     * 11. LinearLayout weight for 3 elements => weight 0 , 1 , 2 then first 0 will be drawn until it fits then remaining space
     *  1 takes 33% and 2 takes 66% ; so 2 layout passes
-    *
+    * 12. onNewIntent() will be called when SingleTop is used ( when activity in backstack ) . It will not call the onCreate .
+    *    Also in general onCreate() flow me onNewIntent() won't get called at all.
     *
     *
     * */
