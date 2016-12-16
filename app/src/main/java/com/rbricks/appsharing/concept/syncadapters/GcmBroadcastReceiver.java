@@ -1,14 +1,15 @@
 package com.rbricks.appsharing.concept.syncadapters;
 
+import android.accounts.Account;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 
 public class GcmBroadcastReceiver extends BroadcastReceiver {
-    ...
     // Constants
     // Content provider authority
-    public static final String AUTHORITY = "com.example.android.datasync.provider"
+    public static final String AUTHORITY = "com.example.android.datasync.provider";
     // Account type
     public static final String ACCOUNT_TYPE = "com.example.android.datasync";
     // Account
@@ -37,7 +38,16 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
              * Signal the framework to run your sync adapter. Assume that
              * app initialization has already created the account.
              */
-//            ContentResolver.requestSync(ACCOUNT, AUTHORITY, null);
+        Account ACCOUNT = null;
+        ContentResolver.requestSync(ACCOUNT, AUTHORITY, null);
+
+        // For periodic sync use
+        /*ContentResolver.addPeriodicSync(
+                ACCOUNT,
+                AUTHORITY,
+                Bundle.EMPTY,
+                SYNC_INTERVAL);*/
+
 //        }
     }
 }
