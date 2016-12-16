@@ -25,7 +25,6 @@
 
         <service android:name=".services.GopiService"/>
         <service android:name=".services.GopiIntentService"/>
-
         <service
             android:name=".concept.taskscheduling.services.SchedulingIntentService"
             android:exported="true"
@@ -78,6 +77,17 @@
         <activity android:name=".concept.memoryefficient.activities.BitmapMemoryActivity">
         </activity>
         <activity android:name=".concept.taskscheduling.alarammanaager.AlaramManagerActivity">
+        </activity>
+        <activity android:name=".concept.internethandling.InternetHandlingActivity">
+        </activity>
+
+        <receiver android:name=".concept.internethandling.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".concept.filesystemstorage.FileSystemStorageActivity">
         </activity>
     </application>
 
