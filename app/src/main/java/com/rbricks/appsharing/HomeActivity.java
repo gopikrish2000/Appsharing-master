@@ -11,6 +11,7 @@ import com.rbricks.appsharing.concept.animations.AdvancedAnimationActivity;
 import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
 import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
 import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
+import com.rbricks.appsharing.concept.constraintlayout.ConstraintLayoutActivity;
 import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivity;
 import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
 import com.rbricks.appsharing.concept.rxjava.RxJavaAdvancedActivity;
@@ -20,15 +21,13 @@ import com.rbricks.appsharing.home.domains.HomeItem;
 
 import java.util.ArrayList;
 
-import butterknife.Unbinder;
-
 public class HomeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView mainRv;
     private ArrayList<HomeItem> homeItemList;
     private HomeAdapter homeAdapter;
-    private Unbinder unBinder;
+//    private Unbinder unBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AdvancedAnimationActivity", AdvancedAnimationActivity.class));
         homeItemList.add(new HomeItem("ServiceTestActivity", ServiceTestActivity.class));
         homeItemList.add(new HomeItem("TransitionDetailsActivity", TransitionDetailsActivity.class));
+        homeItemList.add(new HomeItem("ConstraintActivity", ConstraintLayoutActivity.class));
     }
 
     @Override

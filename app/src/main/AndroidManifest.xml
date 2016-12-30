@@ -89,6 +89,8 @@
 
         <activity android:name=".concept.filesystemstorage.FileSystemStorageActivity">
         </activity>
+        <activity android:name=".concept.constraintlayout.ConstraintLayoutActivity">
+        </activity>
     </application>
 
 </manifest>
