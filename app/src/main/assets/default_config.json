@@ -1,0 +1,46 @@
+{
+  "track_config": [
+    {
+      "notification_title": "Sign-in on Tapzo",
+      "notification_delay": 1800000,
+      "notification_description": "Live like a VIP with your very own personal assistant.Get started now.",
+      "notification_pic_url": "http://www.xyz.com/deepesh.png",
+      "notification_id": 1,
+      "notification_deeplink_url": "akosha://company_screen",
+      "notification_type": 1
+    },
+    {
+      "notification_title": "Tell us about yourself",
+      "notification_delay": 3600000,
+      "notification_description": "We need some basic information about you to ensure that you have a great experience using Tapzo. Complete profile now.It will not take more than 10 seconds",
+      "notification_pic_url": "http://www.xyz.com/deepesh.png",
+      "notification_id": 2,
+      "notification_deeplink_url": "akosha://explore_screen",
+      "notification_type": 2
+    }
+  ],
+  "uninstall_config": {
+    "high_frequency": {
+      "total_duration": 180000,
+      "gap": 60000
+    },
+    "mid_frequency": {
+      "total_duration": 180000,
+      "gap": 60000
+    },
+    "low_frequency": {
+      "total_duration": 180000,
+      "gap": 60000
+    }
+  },
+  "first_time_recharge_notification": {
+    "title": "Save Rs.25 on 1st Recharge",
+    "content": "Valid on Prepaid/Postpaid/DTH transaction. Code: RCFIRST50",
+    "campaign_id": "recharge_clientsmarttrigger_nonairtel"
+  },
+  "first_time_recharge_notification_airtel": {
+    "title": "Win Rs.25 on 1st Recharge",
+    "content": "Every 2nd user wins Rs.25 cashback. Applicable on all mobile numbers. Code: EVERY2",
+    "campaign_id": "recharge_clientsmarttrigger_airtel"
+  }
+}

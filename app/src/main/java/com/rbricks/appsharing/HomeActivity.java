@@ -16,6 +16,7 @@ import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivit
 import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
 import com.rbricks.appsharing.concept.rxjava.RxJavaAdvancedActivity;
 import com.rbricks.appsharing.concept.streams.StreamsActivity;
+import com.rbricks.appsharing.concept.taskscheduling.alarammanaager.AlaramManagerActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 
@@ -66,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("ServiceTestActivity", ServiceTestActivity.class));
         homeItemList.add(new HomeItem("TransitionDetailsActivity", TransitionDetailsActivity.class));
         homeItemList.add(new HomeItem("ConstraintActivity", ConstraintLayoutActivity.class));
+        homeItemList.add(new HomeItem("AlaramManagerActivity", AlaramManagerActivity.class));
     }
 
     @Override

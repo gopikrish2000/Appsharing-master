@@ -20,7 +20,7 @@ public class SchedulingIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String intentServiceParam = intent.getExtras().getString("intentServiceParam");
+        String intentServiceParam = intent.getExtras() != null ? intent.getExtras().getString("intentServiceParam") : "";
         String str = intentServiceParam + "NewlyAdded";
         System.out.println("intentServiceParam Updated is = " + str);
         IntentFilter filter = new IntentFilter("com.gopi.broadcast");
