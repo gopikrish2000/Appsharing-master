@@ -1,8 +1,42 @@
 
-Size effects after adding libraries ::
 
-3,163,730 bytes (3.2 MB on disk) without supportstream n with jill
-3,371,766 bytes (3.4 MB on disk) with StreamSupport.
-3,491,995 bytes (3.5 MB on disk) with retrolambda.
-3,765,116 bytes (3.8 MB on disk) with both retrolambda n Streamsupport .
+*** to Learn : ***
 
+1. Layout Params
+2.
+
+
+*****
+
+***** Imp Points ****
+. view.getLayoutParams().getWidth() -> will be 0 in onCreate()  to get correct values do
+  imgView.measure(
+      MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+      MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+  imgView.layout(0, 0,
+      imgView.getMeasuredWidth(),
+      imgView.getMeasuredHeight());
+
+  ( or)
+
+  ViewTreeObserver viewTree = imgView.getViewTreeObserver();
+  viewTree.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+      public boolean onPreDraw() {
+          finalHeight = imgView.getMeasuredHeight();
+          finalWidth = imgView.getMeasuredWidth();
+          //print or do some code
+          return true;
+      }
+  });
+
+( or )
+final ViewTreeObserver vto = myView.getViewTreeObserver();
+    if (vto.isAlive()) {
+       vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+           public void onGlobalLayout() {
+              int witdth = lColorWheel.getWith()
+              // remove the listener... or we'll be doing this a lot.
+              vto.removeOnGlobalLayoutListener(this);
+          }
+      });
+   }

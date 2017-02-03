@@ -1,0 +1,4 @@
+
+. to get height/width use  view.getLayoutParams().height = 100   ( get or set )
+. if u do want to do any change to onCreateViewHolder then do adapter = new Adapter(..); recyclerview.setAdapter(adapter);
+.

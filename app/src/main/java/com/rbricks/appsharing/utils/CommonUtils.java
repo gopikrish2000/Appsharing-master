@@ -1,10 +1,14 @@
 package com.rbricks.appsharing.utils;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+
+import com.rbricks.appsharing.concept.Application.AppSharingApplication;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -154,5 +158,16 @@ public class CommonUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getDPsFromPixels(int pixels) {
+        /*
+            public abstract Resources getResources ()
+                Return a Resources instance for your application's package.
+        */
+        Context context = AppSharingApplication.getInstance();
+        Resources r = context.getResources();
+        int dps = Math.round(pixels / (r.getDisplayMetrics().densityDpi / 160f));
+        return dps;
     }
 }

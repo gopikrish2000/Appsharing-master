@@ -33,7 +33,6 @@
                 <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
             </intent-filter>
         </service>
-
         <service
             android:name=".concept.taskscheduling.services.GopiOneOffService"
             android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
@@ -98,6 +97,8 @@
         <activity android:name=".concept.filesystemstorage.FileSystemStorageActivity">
         </activity>
         <activity android:name=".concept.constraintlayout.ConstraintLayoutActivity">
+        </activity>
+        <activity android:name=".concept.resizablerecyclerview.ResizableRecyclerviewActivity">
         </activity>
     </application>
 
