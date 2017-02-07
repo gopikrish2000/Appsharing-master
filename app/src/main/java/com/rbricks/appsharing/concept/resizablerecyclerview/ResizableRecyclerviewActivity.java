@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.rbricks.appsharing.R;
-import com.rbricks.appsharing.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +38,8 @@ public class ResizableRecyclerviewActivity extends AppCompatActivity {
         values = new ArrayList<>();
         values.addAll(getValues(3));
         resizeRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        int widthPixels = CommonUtils.getDPsFromPixels(this.getResources().getDisplayMetrics().widthPixels);
-        int halfWidth = widthPixels / 2;
-//        int parentWidth = resizeRv.getLayoutParams().width;
-        int parentWidth = widthPixels;
+        int parentWidth = this.getResources().getDisplayMetrics().widthPixels;
+        Toast.makeText(this, " width in pixels is " + parentWidth, Toast.LENGTH_LONG).show();
         adapter = new ResizableRecyclerviewAdapter(values, parentWidth);
         resizeRv.setAdapter(adapter);
         RxView.clicks(findViewById(R.id.resize_btn)).subscribe(s -> {
@@ -62,11 +60,9 @@ public class ResizableRecyclerviewActivity extends AppCompatActivity {
             list.add(initialPartUrl + "1");
             list.add(initialPartUrl + "2");
         } else {
-            list.add(initialPartUrl + "1");
-            list.add(initialPartUrl + "2");
-            list.add(initialPartUrl + "3");
-            list.add(initialPartUrl + "4");
-            list.add(initialPartUrl + "5");
+            for (int i = 1; i <= size; i++) {
+                list.add(initialPartUrl + i + "");
+            }
         }
         return list;
     }

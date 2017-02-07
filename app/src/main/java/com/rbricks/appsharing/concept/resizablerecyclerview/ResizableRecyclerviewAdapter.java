@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.rbricks.appsharing.R;
@@ -35,7 +36,8 @@ public class ResizableRecyclerviewAdapter extends RecyclerView.Adapter<Resizable
         } else if (list.size() == 2) {
 //            resizableViewHolder.parentView.getLayoutParams().width = ((int)parentWidth/2);
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resize_recyclerview_twoitem, parent, false);
-            view.findViewById(R.id.resize_item_parent).getLayoutParams().width = parentWidth / 2;
+            Toast.makeText(parent.getContext(), (parentWidth / 2) + "", Toast.LENGTH_LONG).show();
+            view.findViewById(R.id.resize_item_parent).getLayoutParams().width = parentWidth / 2;   // set width always in Pixels.
         } else {
 //            resizableViewHolder.parentView.getLayoutParams().width = 100;
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resize_recyclerview_item, parent, false);

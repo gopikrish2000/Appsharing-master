@@ -90,7 +90,7 @@ public class LifeCycleFirstActivity extends AppCompatActivity {
     * 0. Android N features -> Split window, more doze mode , supporting GCM network manager , removal of connectivity_action broadcastreciever
     *    Android M features -> Permissions , doze introduced, Apache HttpClient removal, read/write bookmarks removed.
     *    Android L featues -> Material Design ( Cards , ripple effects , Toolbar, activity transitions. )  , 64 bit architecture ,
-    * 1. The order of Execution is FirstOnPause , SecondOnCreate - OnStart - OnResume , FirstOnSaveInstanceState , FirstResume
+    * 1. The order of Execution is FirstOnPause , SecondOnCreate - OnStart - OnResume , FirstOnSaveInstanceState , FirstStop
     * 2. You should avoid performing CPU-intensive work during onPause(), such as writing to a database, because it can slow the visible transition to the next activity (you should instead perform heavy-load shutdown operations during onStop()).
     * 3. .addToBackStack() when u want to undo on back pressed
     * 4. Use for removing all ur backstack fragments ;;  view.setOnKeyListener(new View.OnKeyListener() {
