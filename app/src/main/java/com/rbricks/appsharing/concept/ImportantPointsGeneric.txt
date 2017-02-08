@@ -9,7 +9,7 @@
 *****
 
 ***** Imp Points ****
-. view.getLayoutParams().getWidth() -> will be 0 in onCreate()  to get correct values do
+1. view.getLayoutParams().getWidth() -> will be 0 in onCreate()  to get correct values do
   imgView.measure(
       MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
       MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
@@ -40,3 +40,14 @@ final ViewTreeObserver vto = myView.getViewTreeObserver();
           }
       });
    }
+
+2. Difference between service and thread ?
+A) 1. Service can restart
+   2. Service has a context and that context is always valid  , Also u can export service to other application
+3. Difference between singleton and static
+A) "1. Singleton class follows OO principles. Eg can be inherited, polymorphism etc
+   2. Singleton allocated memory only getinstance is called where as static allocates memory as soon as launch of app
+4. Lifecycle of a thread
+A. New - Runnable- Running - Blocked- Terminated
+5. Why can you not create a new Activity() in android
+A. Strong reference so on low memory the all the activities get killed
