@@ -1,4 +1,7 @@
 
+** to do ** ( https://github.com/Farhaan10 )
+1. Implement Weather forcast that changes wallpaper every day.
+( see https://github.com/Farhaan10/Everyday_Wallpaper/blob/master/app/src/main/java/com/example/farhaan/everydaywallpaper/MainActivity.java ) for reference
 
 *** to Learn : ***
 

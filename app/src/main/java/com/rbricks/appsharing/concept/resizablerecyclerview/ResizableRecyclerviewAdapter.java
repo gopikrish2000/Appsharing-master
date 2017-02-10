@@ -68,5 +68,7 @@ public class ResizableRecyclerviewAdapter extends RecyclerView.Adapter<Resizable
             parentView = itemView.findViewById(R.id.resize_item_parent);
             imageView = ((ImageView) itemView.findViewById(R.id.resize_item_iv));
         }
+
+//        abstract void populate(ResizableViewHolder holder, int position, )
     }
 }
