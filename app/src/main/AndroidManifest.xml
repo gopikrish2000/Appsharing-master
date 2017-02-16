@@ -100,6 +100,8 @@
         </activity>
         <activity android:name=".concept.resizablerecyclerview.ResizableRecyclerviewActivity">
         </activity>
+        <activity android:name=".concept.java8.CustomLambdaReferenceActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
 import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
 import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
 import com.rbricks.appsharing.concept.constraintlayout.ConstraintLayoutActivity;
+import com.rbricks.appsharing.concept.java8.CustomLambdaReferenceActivity;
 import com.rbricks.appsharing.concept.memoryefficient.activities.BitmapMemoryActivity;
 import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivity;
 import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
@@ -72,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AlaramManagerActivity", AlaramManagerActivity.class));
         homeItemList.add(new HomeItem("BitmapMemoryEfficientActivity", BitmapMemoryActivity.class));
         homeItemList.add(new HomeItem("ResizableRecyclerviewActivity", ResizableRecyclerviewActivity.class));
+        homeItemList.add(new HomeItem("CustomLambdaReferenceActivity", CustomLambdaReferenceActivity.class));
     }
 
     @Override
