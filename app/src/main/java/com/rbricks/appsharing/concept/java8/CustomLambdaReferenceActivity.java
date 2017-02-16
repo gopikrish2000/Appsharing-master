@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.rbricks.appsharing.R;
 
+import java8.util.function.BiFunction;
+
 /**
  * Created by gopikrishna on 16/02/17.
  */
@@ -17,6 +19,7 @@ public class CustomLambdaReferenceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_lambda);
         customLambdaTake((a, b) -> a + b, 3, 5);
+        customLambdaFunctionTake((a, b) -> a + b, 3, 5);
     }
 
     //    Function function = (int a , int b)
@@ -26,6 +29,11 @@ public class CustomLambdaReferenceActivity extends AppCompatActivity {
 
     public void customLambdaTake(LambdaNew lambdaNew, int a, int b) {
         int val = lambdaNew.add(a, b);
+        System.out.println(" Custom Lambda val = " + val);
+    }
+
+    public void customLambdaFunctionTake(BiFunction<Integer, Integer, Integer> lambdaNew, int a, int b) {
+        int val = lambdaNew.apply(a, b);
         System.out.println(" Custom Lambda val = " + val);
     }
 }
