@@ -10,7 +10,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="first"
-        app:layout_marginLeftPercent="12%"
         android:background="@color/blue"
         android:textColor="@color/white"
         app:layout_widthPercent="20%"/>
@@ -22,9 +21,9 @@
         android:layout_toRightOf="@+id/percent_first"
         android:text="second"
         android:background="@color/red"
-        android:layout_marginLeft="5dp"
         android:textColor="@color/white"
-        app:layout_widthPercent="20%"/>
+        android:layout_centerHorizontal="true"
+        app:layout_widthPercent="50%"/>
 
     <TextView
         android:id="@+id/percent_third"
@@ -32,12 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/percent_second"
         android:text="third"
-        app:layout_marginLeftPercent="12%"
         android:background="@color/gray_dark"
         android:textColor="@color/white"
         app:layout_widthPercent="20%"/>
 
     <!--<TextView
+            app:layout_marginLeftPercent="25%"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_widthPercent="20%"
