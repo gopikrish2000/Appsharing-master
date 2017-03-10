@@ -1,5 +1,7 @@
 package com.rbricks.appsharing;
 
+import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

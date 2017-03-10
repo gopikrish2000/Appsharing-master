@@ -102,6 +102,8 @@
         </activity>
         <activity android:name=".concept.java8.CustomLambdaReferenceActivity">
         </activity>
+        <activity android:name=".concept.keyboardevents.KeyboardEventsActivity">
+        </activity>
     </application>
 
 </manifest>
