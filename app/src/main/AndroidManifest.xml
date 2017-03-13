@@ -67,7 +67,7 @@
         <activity android:name=".concept.notesapp.activities.NotesDetailsActivity"/>
         <activity android:name=".concept.notesapp.activities.NotesListingActivity"/>
         <activity android:name=".concept.notesapp.activities.NewNotesListingActivity"/>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity" android:label="Home Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -103,6 +103,8 @@
         <activity android:name=".concept.java8.CustomLambdaReferenceActivity">
         </activity>
         <activity android:name=".concept.keyboardevents.KeyboardEventsActivity">
+        </activity>
+        <activity android:name=".concept.customcanvasdrawing.CustomDrawingActivity">
         </activity>
     </application>
 

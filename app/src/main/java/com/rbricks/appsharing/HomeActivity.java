@@ -12,6 +12,7 @@ import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
 import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
 import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
 import com.rbricks.appsharing.concept.constraintlayout.ConstraintLayoutActivity;
+import com.rbricks.appsharing.concept.customcanvasdrawing.CustomDrawingActivity;
 import com.rbricks.appsharing.concept.java8.CustomLambdaReferenceActivity;
 import com.rbricks.appsharing.concept.keyboardevents.KeyboardEventsActivity;
 import com.rbricks.appsharing.concept.memoryefficient.activities.BitmapMemoryActivity;
@@ -58,10 +59,11 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, s.first.activityClass);
             startActivity(intent);
         });
+
     }
 
     private void fillHomeItems() {
-        homeItemList.add(new HomeItem("Notes Listing", NotesListingActivity.class));
+        /*homeItemList.add(new HomeItem("Notes Listing", NotesListingActivity.class));
         homeItemList.add(new HomeItem("New Notes Listing", NewNotesListingActivity.class));
         homeItemList.add(new HomeItem("BrindaAnimationActivity", BrindaAnimationActivity.class));
         homeItemList.add(new HomeItem("RxJavaAdvancedActivity", RxJavaAdvancedActivity.class));
@@ -75,7 +77,9 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("BitmapMemoryEfficientActivity", BitmapMemoryActivity.class));
         homeItemList.add(new HomeItem("ResizableRecyclerviewActivity", ResizableRecyclerviewActivity.class));
         homeItemList.add(new HomeItem("CustomLambdaReferenceActivity", CustomLambdaReferenceActivity.class));
-        homeItemList.add(new HomeItem("KeyboardEventsActivity", KeyboardEventsActivity.class));
+        homeItemList.add(new HomeItem("KeyboardEventsActivity", KeyboardEventsActivity.class));*/
+
+        homeItemList.add(new HomeItem("CustomDrawingActivity", CustomDrawingActivity.class));
     }
 
     @Override

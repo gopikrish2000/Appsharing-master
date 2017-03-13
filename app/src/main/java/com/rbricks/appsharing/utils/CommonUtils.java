@@ -170,4 +170,12 @@ public class CommonUtils {
         int dps = Math.round(pixels / (r.getDisplayMetrics().densityDpi / 160f));
         return dps;
     }
+
+    public static boolean nonNull(Object obj) {
+        return obj != null;
+    }
+
+    public static boolean isNull(Object obj) {
+        return obj == null;
+    }
 }
