@@ -1,44 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_location_suggestion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rbricks.appsharing.concept.scaleaview.ScaleAViewActivity">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    >
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@color/gray_light"
-        android:scaleY="0.75"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:letterSpacing="0.5"
+        android:text="set_pickup_location_caps"/>
 
-        <ImageView
-            android:id="@+id/scale_image_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
-            />
+    <TextView
+        android:id="@+id/title2"
+        android:layout_below="@id/title1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@android:color/background_dark"
+        android:text="Help us pick an outlet"/>
 
-        <TextView
-            android:id="@+id/scale_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/scale_image_iv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:text="title"
-            />
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/title2"
+        android:layout_above="@+id/scale_custom_option_list"
+        android:id="@+id/scale_recyclerview_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="@dimen/item_spacing"
+        android:layout_marginTop="28dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/scale_title_tv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:text="subTitle"
-            />
-    </RelativeLayout>
-
+    <LinearLayout
+        android:id="@+id/scale_custom_option_list"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        />
 </RelativeLayout>

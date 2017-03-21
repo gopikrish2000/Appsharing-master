@@ -7,21 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.rbricks.appsharing.concept.animations.AdvancedAnimationActivity;
-import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
-import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
-import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
-import com.rbricks.appsharing.concept.constraintlayout.ConstraintLayoutActivity;
 import com.rbricks.appsharing.concept.customcanvasdrawing.CustomDrawingActivity;
-import com.rbricks.appsharing.concept.java8.CustomLambdaReferenceActivity;
-import com.rbricks.appsharing.concept.keyboardevents.KeyboardEventsActivity;
-import com.rbricks.appsharing.concept.memoryefficient.activities.BitmapMemoryActivity;
-import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivity;
-import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
-import com.rbricks.appsharing.concept.resizablerecyclerview.ResizableRecyclerviewActivity;
-import com.rbricks.appsharing.concept.rxjava.RxJavaAdvancedActivity;
-import com.rbricks.appsharing.concept.streams.StreamsActivity;
-import com.rbricks.appsharing.concept.taskscheduling.alarammanaager.AlaramManagerActivity;
+import com.rbricks.appsharing.concept.scaleaview.ScaleAViewActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 
@@ -80,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("KeyboardEventsActivity", KeyboardEventsActivity.class));*/
 
         homeItemList.add(new HomeItem("CustomDrawingActivity", CustomDrawingActivity.class));
+        homeItemList.add(new HomeItem("ScaleAViewActivity", ScaleAViewActivity.class));
     }
 
     @Override
