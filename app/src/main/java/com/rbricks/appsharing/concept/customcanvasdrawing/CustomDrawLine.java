@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by dunzo on 13/03/17.
+ * Created by Gopi Krishna on 13/03/17.
  */
 
 public class CustomDrawLine extends View {
