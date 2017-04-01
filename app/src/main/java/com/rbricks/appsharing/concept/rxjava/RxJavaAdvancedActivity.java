@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.observables.ConnectableObservable;
 import rx.schedulers.Schedulers;
 
 import static com.jakewharton.rxbinding.view.RxView.clicks;
@@ -44,6 +45,52 @@ public class RxJavaAdvancedActivity extends AppCompatActivity {
         resultsTV = (TextView) findViewById(R.id.results_tv);
         implementationEditText = ((EditText) findViewById(R.id.process_et));
         checkSingleNDoubleClicks();
+    }
+
+    private void differenceBtwHotNColdObservables() {
+        Observable<Long> cold = Observable.interval(200, TimeUnit.MILLISECONDS);
+        cold.subscribe(i -> System.out.println("First: " + i));
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cold.subscribe(i -> System.out.println("Second: " + i));
+        /* Output is
+        * First: 0
+        First: 1
+        First: 2
+        Second: 0
+        First: 3
+        Second: 1
+        First: 4
+        Second: 2
+        ...
+        */
+
+        ConnectableObservable<Long> hot = Observable.interval(200, TimeUnit.MILLISECONDS).publish();
+        hot.connect();
+
+        hot.subscribe(i -> System.out.println("FirstHot: " + i));
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        hot.subscribe(i -> System.out.println("SecondHot: " + i));
+        /*
+        * First: 0
+        First: 1
+        First: 2
+        Second: 2
+        First: 3
+        Second: 3
+        First: 4
+        Second: 4
+        First: 5
+        Second: 5
+        * */
+
     }
 
     private void performCurrentImplementation() {
