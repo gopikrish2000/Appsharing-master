@@ -3,15 +3,12 @@ package com.rbricks.appsharing.services;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.IInterface;
 import android.os.Looper;
-import android.os.Parcel;
-import android.os.RemoteException;
+import android.os.ResultReceiver;
 import android.support.annotation.Nullable;
-
-import java.io.FileDescriptor;
 
 /**
  * Created by gopikrishna on 6/5/16.
@@ -32,7 +29,11 @@ public class GopiService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        final String param1 = intent.getExtras().getString("param1");
+        final String param1 = intent.getExtras().getString("param1");  // can pass ResultReceiver in the bundle for result passing.
+        ResultReceiver resultReceiver = intent.getParcelableExtra("result_receiver");
+        Bundle bundle = new Bundle();
+        bundle.putString("result", param1 + "MODI");
+        resultReceiver.send(200, bundle);
         System.out.println("param1 = " + param1);
 
         Thread thread = new Thread() {

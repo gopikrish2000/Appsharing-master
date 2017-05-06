@@ -110,6 +110,17 @@
         </activity>
         <activity android:name=".concept.scaleaview.ScaleAViewActivity">
         </activity>
+
+        <receiver android:name=".receivers.AppUpdateReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".bookingdotcom.FindViewByIdActivity">
+        </activity>
     </application>
 
 </manifest>

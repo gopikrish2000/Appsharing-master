@@ -4,7 +4,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rbricks.appsharing.services.GopiService;
@@ -21,9 +23,11 @@ public class ServiceTestActivity extends AppCompatActivity {
 
         this.gopiServiceIntent = new Intent(this, GopiService.class);
         gopiServiceIntent.putExtra("param1", "This is first param");
+        gopiServiceIntent.putExtra("result_receiver", new GopiResultReceiver(new Handler()));
         startService(gopiServiceIntent);
         bindService(gopiServiceIntent, serviceConnection, 0);
     }
+
 
     ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -39,6 +43,18 @@ public class ServiceTestActivity extends AppCompatActivity {
 
         }
     };
+
+    static class GopiResultReceiver extends ResultReceiver {
+        public GopiResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+//            super.onReceiveResult(resultCode, resultData);
+            System.out.println("Result Received with resultCode = " + resultCode + " resultData " + resultData);
+        }
+    }
 
     @Override
     protected void onDestroy() {

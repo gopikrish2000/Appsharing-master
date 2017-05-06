@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.rbricks.appsharing.bookingdotcom.FindViewByIdActivity;
 import com.rbricks.appsharing.concept.customcanvasdrawing.CustomDrawingActivity;
 import com.rbricks.appsharing.concept.scaleaview.ScaleAViewActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
@@ -68,6 +69,7 @@ public class HomeActivity extends AppCompatActivity {
 
         homeItemList.add(new HomeItem("CustomDrawingActivity", CustomDrawingActivity.class));
         homeItemList.add(new HomeItem("ScaleAViewActivity", ScaleAViewActivity.class));
+        homeItemList.add(new HomeItem("FindViewByIdActivity", FindViewByIdActivity.class));
     }
 
     @Override
