@@ -121,6 +121,8 @@
 
         <activity android:name=".bookingdotcom.FindViewByIdActivity">
         </activity>
+        <activity android:name=".concept.handlers.HandlerTestActivity">
+        </activity>
     </application>
 
 </manifest>
