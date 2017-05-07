@@ -40,7 +40,8 @@ public class HandlerTestActivity extends AppCompatActivity  {
                     default:
                         System.out.println("default MAIN handled message " + msg);
                 }
-            return false;
+//                msg.recycle();  ( not able to recycle message getting IllegalState message still in use exception. Check it.
+            return true;
         });
 
         mainThreadHandler.sendEmptyMessage(5);
@@ -75,13 +76,15 @@ public class HandlerTestActivity extends AppCompatActivity  {
 
         }, 3000);
 
-        Message msg = new Message();
-        msg.what = 3;
+//        Message msg = new Message();   // don't use new Message at all , use obtain instead.
+//        msg.what = 3;
+        Message msg = Message.obtain(backgroundThreadHandler, 3);
         Bundle bundle = new Bundle();
         bundle.putString("key", "sample gopi value");
         msg.setData(bundle);
         backgroundThreadHandler.sendMessageDelayed(msg, 3000);
         backgroundThreadHandler.sendEmptyMessageDelayed(4, 6000);
+//        msg.recycle();
     }
 
     private void interThreadCommunication() {
