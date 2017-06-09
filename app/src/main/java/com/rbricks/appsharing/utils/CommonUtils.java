@@ -178,4 +178,13 @@ public class CommonUtils {
     public static boolean isNull(Object obj) {
         return obj == null;
     }
+
+    public static void setAllNull(Object... objects) {
+        if (objects == null || objects.length == 0) {
+            return;
+        }
+        for (int i = 0; i < objects.length; i++) {
+            objects[i] = null;
+        }
+    }
 }

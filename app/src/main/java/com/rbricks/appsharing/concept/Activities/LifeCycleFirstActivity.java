@@ -3,7 +3,6 @@ package com.rbricks.appsharing.concept.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
 import com.rbricks.appsharing.R;
@@ -17,31 +16,41 @@ import com.rbricks.appsharing.R;
 public class LifeCycleFirstActivity extends AppCompatActivity {
 
     /* Complete Execution with fragment from FirstActivity to Second
-    *   LifeCycleFirstActivity.onCreate Completed Successfully
-        LifeCycleFragment.onAttach
-        LifeCycleFragment.onCreate
-        LifeCycleFragment.onCreateView
-        LifeCycleFragment.onActivityCreated
-
-        LifeCycleFirstActivity.onStart
-        LifeCycleFragment.onStart
-        LifeCycleFirstActivity.onResume
-        LifeCycleFragment.onResume
-
-        LifeCycleFragment.onPause
-        LifeCycleFirstActivity.onPause
-
-        //Second activity starting
-        LifeCycleSecondActivity***.onCreate
-        LifeCycleSecond***.onStart
-        LifeCycleSecond***.onResume
-
-        // After OnResume of Second first is stopped
-        LifeCycleFirstActivity.onSaveInstanceState
-        LifeCycleFragment.onStop
-        LifeCycleFirstActivity.onStop  ( if come back to activity again onRestart then onStart is called ... )
     *
-    * */
+    *   LifeCycleFirstActivity.onCreate
+         LifeCycleFragment.onAttach
+         LifeCycleFragment.onCreate
+         LifeCycleFragment.onCreateView
+         LifeCycleFragment.onActivityCreated
+         LifeCycleFirstActivity.onStart
+         LifeCycleFragment.onStart
+         LifeCycleFirstActivity.onResume
+         LifeCycleFragment.onResume
+
+         *** Button clicked to go to Second activity.****
+
+         LifeCycleFragment.onPause
+         LifeCycleFirstActivity.onPause
+         LifeCycleSecondActivity.onCreate
+         LifeCycleSecondActivity.onStart
+         LifeCycleSecondActivity.onResume
+         LifeCycleFragment.onSaveInstanceState
+         LifeCycleFirstActivity.onSaveInstanceState
+         LifeCycleFragment.onStop
+         LifeCycleFirstActivity.onStop
+
+         *** clicked back from Second activity. OR setResult(1) & finish() called. ****
+
+         LifeCycleSecondActivity.onPause
+         //  LifeCycleFirstActivity.onActivityResult  ( only when setResult has been called.)
+         LifeCycleFirstActivity.onRestart
+         LifeCycleFirstActivity.onStart
+         LifeCycleFragment.onStart
+         LifeCycleFirstActivity.onResume
+         LifeCycleFragment.onResume        // There is No onSaveInstanceState for second Activity as it is finishing.
+         LifeCycleSecondActivity.onStop
+         LifeCycleSecondActivity.onDestroy
+  */
     /*  Application LifeCycle methods.
     onConfigurationChanged(Configuration newConfig)
     Called by the system when the device configuration changes while your component is running.
@@ -143,12 +152,9 @@ public class LifeCycleFirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_life_cycle_first);
-        ((Button) findViewById(R.id.lifeCycleButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LifeCycleFirstActivity.this, LifeCycleSecondActivity.class);
-                startActivity(intent);
-            }
+        ((Button) findViewById(R.id.lifeCycleButton)).setOnClickListener(v -> {
+            Intent intent = new Intent(LifeCycleFirstActivity.this, LifeCycleSecondActivity.class);
+            startActivityForResult(intent, 222);
         });
 
         LifeCycleFragment lifeCycleFragment = new LifeCycleFragment();
@@ -178,6 +184,18 @@ public class LifeCycleFirstActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         System.out.println("LifeCycleFirstActivity.onPause");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("LifeCycleFirstActivity.onActivityResult");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("LifeCycleFirstActivity.onRestart");
     }
 
     @Override

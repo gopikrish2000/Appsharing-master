@@ -39,7 +39,7 @@ public class AlaramManagerActivity extends AppCompatActivity {
                 .setTag("GopiOneOffServiceTAG")
                 .setExtras(bundle)
                 .setExecutionWindow(15L, 25L)
-                .setRequiredNetwork(Task.NETWORK_STATE_ANY)
+                .setRequiredNetwork(Task.NETWORK_STATE_ANY)   // optimization will run only when network is available or any ...
                 .build();
         mGcmNetworkManager.schedule(task);  // gcmNetworkManager.cancelTask("TAG",gcmtaskService.class); for cancelling.
     }

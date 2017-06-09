@@ -1,0 +1,118 @@
+
+Hike Interview Experience ::
+
+In Telephonic.
+
+1. Implement Sigleton threadsafe
+2. sum of x numbers = K (constant) find all x such number efficiently.
+
+From Face2 Face *******
+1st round ::
+
+Ds :
+1. Stack find minimum value at any point of time.
+A. Keep one more stack with min value n do it. ( Asked me to do more efficiently bcoz if all elements in decreasing order u literally store all elements in Second Stack . Like use some mathematical formula to decrease the space complexity.)
+
+2. Given a String find the biggest Palindrome inside that string.
+  like "xyzabcbawerwererwerwabax"  => answer is abcba
+
+A. My Approaches ::
+
+a. Put All characters in LinkedhashMap with values as List<Integers>  like  ( X : value is 0 index , 20 index ...) . Then iterate over all the values of X & find whether a palindrome exists or not. If exists bigger put it in a variable n return it. Time Complexity is like O(n*n*n) => O(n3)
+
+b. for every index try to go left one char n right one char increasingly until u find a bigger palindrome . Time Complexity O(n2)  Doubt : timecomplexity ...
+
+c. He gave hint to use Dynamic programming with already done results in a map ... . One more is keep find 2 letter palindrome then increase it => 2 letter then add left , right letter of it as well n find the palindrome ...
+
+
+
+3. Write code for Singleton.
+4. Thread , Handler , IntentService ,
+
+5. How do u implement IntentService from Service.
+A. My code : But Problem is when no requests r running then thread will be blocked ( so no cpu ) but still IntentService is running forever. Can you optimize it.
+what is better running it forever or killing n restarting it ??
+class IntentService extends Service {
+
+    Queue<ParentClass> queue;
+    Thread intentThread;
+    public void onCreate() {
+       super.onCreate();
+       queue = new LinkedList<ParentClass>();
+       intentThread = new Thread( ()-> {
+        while(true) {
+         synchronized(queue) {
+          while(queue.size == 0) {
+             try {
+                  queue.wait();
+              } catch(InterruptedException e) {
+                  e.printStackTrace();
+              }
+           }
+              ParentClass object = queue.poll();
+              // do some processing like setting data or computing some logic ...
+              ParentResponse object = process(object);  // response has request.
+              onHandleIntent(object);
+         }
+        }
+       )
+    }
+    }
+
+    public IBinder bind() {
+         return null;
+    }
+
+    public synchronized void addRequest(ParentClass obj) {
+        queue.add(obj);
+        queue.notifyAll();
+    }
+
+    public int onStartCommand(Intent intent) {
+            super.onStartCommand(intent);
+            Bundle bundle = intent.getExtras();
+            if(bundle != null ){
+               ParentClass object = bundle.getSerialbleObject("abc");
+               addRequest(object);
+            }
+            return STICKY_ ;
+    }
+
+    public void onHandleIntent(ParentResponse object) {
+
+    }
+}
+
+
+
+
+******** Design Round **********
+
+1. Show list of rows which has images into UI . High level design required?
+A.  a. Image network retrieval with LinkedBlockingQueue with ThreadPoolExecutor
+    b. Differnt level of Image Caching with caching Interface implemented by DiskLruCache , MemoryLRUcache .. Write a factory to get the
+       appropriate implemenatation based on the request ....
+    c. How do you make sure that u update UI row exactly of that rowId ... Write UML diagrams of all the things discussed.
+
+2. Multiple Producer n consumer problem with synchronization only in a centralized class. How will you do that ??
+
+
+******** 3rd Round **********
+
+1. Print numbers sequentially , First Thread printing 1, 4,7 ...  , T2 printing 2,5,8... , T3 printing 3,6,9 ...-> output should be 1,2,3,4,
+5,6,7,8,9....
+A. Use modulus n numberOfThreads to solve this question.
+
+2. In DataBase delete columns dynamically or statically ( after upgrade )?
+A. For dynamically we need to get json from the server :
+
+   DbTransaction close when doing  dynamically.
+   For Delete : if the key is optional => Directly delete it ( May be read data of it n send to server once before deleting. )
+   For Insert : if key is optional => See a default value is given => if default value given add column will put with default values  => if u want column data for every row then take primary key n based on that update values of the row.
+
+   One more way is create a new table with differnt name n do all operations , then delete the original table n rename new table to old name
+   to use the existing table with correctly.
+
+
+
+

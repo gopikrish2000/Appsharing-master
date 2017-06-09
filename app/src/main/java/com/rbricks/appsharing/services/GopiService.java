@@ -21,6 +21,13 @@ public class GopiService extends Service {
 
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // Create is called first n only one thing , So do basic initializations here. better than onStartCommand which will be called
+        // for all the threads.
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

@@ -1,0 +1,63 @@
+
+******* Battery Optimizations ******
+1. Batching network requests,
+2. Disabling background service updates when you lose connectivity,
+3. Reducing the rate of such updates when the battery level is low, you can ensure that the impact of your app on battery life is minimized, without compromising the user experience
+4. Removing animations when battery is low.
+5. if an LTE(4G) radio is has DOUBLE THE BANDWIDTH AND DOUBLE THE ENERGY COST OF 3G, you should download 4 times as much data during each session—or potentially as much as 10mb
+6. Apps targeting Android 7.0 (API level 24) and higher do not receive CONNECTIVITY_ACTION broadcasts if they declare the broadcast receiver in their manifest. Apps will still receive CONNECTIVITY_ACTION broadcasts if they register their BroadcastReceiver with Context.registerReceiver() and that context is still valid.
+
+Three types of Network Data
+a. User initiated requests like - clicked on next page to get data n show next
+b. App initiated requests like - Requests initiated within Android app code that are not used to immediately satisfy a user action, such as an app request to cache the text of unread articles in a news app.
+c. Server-initiated network requests - Requests initiated by a server to your app that are not used to immediately satisfy a user action, such as notification of a newly available article in a news app.
+
+if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= 14) {
+    try {
+        TrafficStats.setThreadStatsTag(USER_INITIATED);     // APP initiated or server initiated ....
+        // make network request using HttpClient.execute()  // make call
+    } finally {
+        TrafficStats.clearThreadStatsTag();
+    }
+}
+
+ConnectivityManager cm =
+ (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+TelephonyManager tm =
+  (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+
+NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+int PrefetchCacheSize = DEFAULT_PREFETCH_CACHE;
+
+switch (activeNetwork.getType()) {
+  case (ConnectivityManager.TYPE_WIFI):
+    PrefetchCacheSize = MAX_PREFETCH_CACHE; break;
+  case (ConnectivityManager.TYPE_MOBILE): {
+    switch (tm.getNetworkType()) {
+      case (TelephonyManager.NETWORK_TYPE_LTE |
+            TelephonyManager.NETWORK_TYPE_HSPAP):
+        PrefetchCacheSize *= 4;
+        break;
+      case (TelephonyManager.NETWORK_TYPE_EDGE |
+            TelephonyManager.NETWORK_TYPE_GPRS):
+        PrefetchCacheSize /= 2;
+        break;
+      default: break;
+    }
+    break;
+  }
+  default: break;
+}
+
+
+
+
+***** Network Optimizations ******
+1. Compress Data
+2. Cache Files locally either to SD card or internal memory
+3. Based on network types ( wifi, 4g , 3g ) download data accordingly.
+4. Pre-fetch Network Data - When the user performs an action in your app, the app anticipates which data may be needed for the next user actions, fetches it in bulk in a single connection, and holds it until the user requests it. ( in news app fetch next page data along with current page ... )
+
+

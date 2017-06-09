@@ -51,6 +51,10 @@ A) 1. Service can restart
 A) "1. Singleton class follows OO principles. Eg can be inherited, polymorphism etc
    2. Singleton allocated memory only getinstance is called where as static allocates memory as soon as launch of app
 4. Lifecycle of a thread
-A. New - Runnable- Running - Blocked- Terminated
+A. New - Runnable- Running - Blocked ( waiting for lock ) - waiting( called wait() or sleep() ) - Terminated
 5. Why can you not create a new Activity() in android
 A. Strong reference so on low memory the all the activities get killed
+
+6. Start Service vs Bind service ?
+A. lifecycle of Start Service :: onCreate( only first time) -> onStartCommand -> until stopSelf() or context.stopService() -> onDestroy()
+   lifecycle of Bind Service :: onCreate( only first time) -> onBind -> until context.unBind() DOUBT -> onDestroy()

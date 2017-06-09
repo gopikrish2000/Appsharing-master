@@ -1,8 +1,9 @@
 package com.rbricks.appsharing.concept.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.rbricks.appsharing.R;
 
 public class LifeCycleSecondActivity extends AppCompatActivity {
@@ -11,25 +12,29 @@ public class LifeCycleSecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_life_cycle_second);
+        RxView.clicks(findViewById(R.id.lifeSecondBtn)).subscribe(s -> {
+            setResult(RESULT_OK);
+            finish();
+        });
         System.out.println("LifeCycleSecondActivity.onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("LifeCycleSecond***.onStart");
+        System.out.println("LifeCycleSecondActivity.onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("LifeCycleSecond***.onResume");
+        System.out.println("LifeCycleSecondActivity.onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        System.out.println("LifeCycleSecond***.onPause");
+        System.out.println("LifeCycleSecondActivity.onPause");
     }
 
     @Override
@@ -41,12 +46,12 @@ public class LifeCycleSecondActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        System.out.println("LifeCycleSecond***.onStop");
+        System.out.println("LifeCycleSecondActivity.onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("LifeCycleSecond***.onDestroy");
+        System.out.println("LifeCycleSecondActivity.onDestroy");
     }
 }

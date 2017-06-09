@@ -123,6 +123,10 @@
         </activity>
         <activity android:name=".concept.handlers.HandlerTestActivity">
         </activity>
+        <activity android:name=".concept.screenrotation.ScreenRotataionActivity">
+        </activity>
+        <activity android:name=".concept.customdraw.PianoDrawActivity">
+        </activity>
     </application>
 
 </manifest>

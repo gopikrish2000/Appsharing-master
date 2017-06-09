@@ -38,6 +38,8 @@ public class ResizableRecyclerviewActivity extends AppCompatActivity {
         values = new ArrayList<>();
         values.addAll(getValues(3));
         resizeRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        new StaggeredGridLayoutManager()
+//        new GridLayoutManager()
         int parentWidth = this.getResources().getDisplayMetrics().widthPixels;
         Toast.makeText(this, " width in pixels is " + parentWidth, Toast.LENGTH_LONG).show();
         adapter = new ResizableRecyclerviewAdapter(values, parentWidth);

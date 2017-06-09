@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,9 @@ public class ServiceTestActivity extends AppCompatActivity {
 
         this.gopiServiceIntent = new Intent(this, GopiService.class);
         gopiServiceIntent.putExtra("param1", "This is first param");
-        gopiServiceIntent.putExtra("result_receiver", new GopiResultReceiver(new Handler()));
+        HandlerThread handlerThread = new HandlerThread("bgthread");
+        handlerThread.start();
+        gopiServiceIntent.putExtra("result_receiver", new GopiResultReceiver(new Handler(handlerThread.getLooper()))); // if u want callback in bg thread.
         startService(gopiServiceIntent);
         bindService(gopiServiceIntent, serviceConnection, 0);
     }

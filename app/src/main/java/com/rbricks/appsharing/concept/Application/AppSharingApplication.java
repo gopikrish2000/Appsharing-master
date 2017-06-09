@@ -1,7 +1,9 @@
 package com.rbricks.appsharing.concept.Application;
 
+import android.app.Activity;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 
 import com.rbricks.appsharing.concept.notesapp.utils.NotesDbHelper;
 
@@ -22,6 +24,42 @@ public class AppSharingApplication extends Application {
         super.onCreate();
         appSharingApplication = this;
         initializeDb();
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                System.out.println("AppSharingApplication.onActivityCreated " + activity.getClass().getSimpleName() + " with bundle " + savedInstanceState);
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
     }
 
     public static AppSharingApplication getInstance() {

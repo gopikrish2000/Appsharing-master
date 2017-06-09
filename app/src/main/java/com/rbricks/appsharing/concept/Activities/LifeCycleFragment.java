@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static com.rbricks.appsharing.utils.CommonUtils.nonNull;
+
 /**
  * Created by gopikrishna on 6/6/16.
  */
@@ -36,7 +38,11 @@ public class LifeCycleFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         System.out.println("LifeCycleFragment.onActivityCreated");
-        String sampleFragmentSave = savedInstanceState.getString("sampleFragmentSave");
+        String sampleFragmentSave = nonNull(savedInstanceState) ? savedInstanceState.getString("sampleFragmentSave") : "";
+//        final String sampleFragmentSave;
+       /* Optional.of(savedInstanceState).map(s-> s.getString("sampleFragmentSave")).ifPresent(val -> {
+            sampleFragmentSave = val;
+        });*/
         System.out.println("sampleFragmentSave in Fragment from onSaveInstanceState of Fragment = " + sampleFragmentSave);
     }
 
@@ -44,6 +50,7 @@ public class LifeCycleFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("sampleFragmentSave", "sampleFragmentSave");
+        System.out.println("LifeCycleFragment.onSaveInstanceState");
     }
 
     @Override
