@@ -29,9 +29,11 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.runner.lifecycle.Stage.RESUMED;
+import static com.rbricks.appsharing.utils.EspressoUtil.waitForSeconds;
 
 /**
  * Created by gopikrishna on 22/11/16.
@@ -56,6 +58,7 @@ public class GopiExpressoTest {
         onView(withId(R.id.notes_search_bar)).check(matches(withText("gopi entering")));
 //        onView(withId(R.id.notes_search_bar)).perform(pressBack());
         onView(withText("Notes")).check(matches(isDisplayed()));
+        onView(isRoot()).perform(waitForSeconds(12));  // working one for waiting for time
     }
 
     @Test
@@ -65,24 +68,13 @@ public class GopiExpressoTest {
 //        Assert.assertTrue(getActivityInstance() instanceof NotesDetailsActivity);
 
         Espresso.pressBack();
-        long waitingTime = 1000;
-        // Make sure Espresso does not time out
-        IdlingPolicies.setMasterPolicyTimeout(
-                waitingTime * 2, TimeUnit.MILLISECONDS);
-        IdlingPolicies.setIdlingResourceTimeout(
-                waitingTime * 2, TimeUnit.MILLISECONDS);
-
-        // Now we wait
-        IdlingResource idlingResource = new ElapsedTimeIdlingResource(waitingTime);
-        Espresso.registerIdlingResources(idlingResource);
-
-        Espresso.unregisterIdlingResources(idlingResource);
     }
 
     @Test
     public void basicFlow() throws Exception {
         onView(withId(R.id.processanimation_et)).perform(typeText("1"), closeSoftKeyboard());
-        waitForTime(20000); // not working
+//        waitForTime(20000); // not working
+        onView(isRoot()).perform(waitForSeconds(4));
     }
 
     public void waitForTime(long waitingTime) {
