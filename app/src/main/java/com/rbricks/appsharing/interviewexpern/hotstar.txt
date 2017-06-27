@@ -1,0 +1,64 @@
+
+Online hacker earth test
+
+. few basic java questions with syntax ( i missed a few like ...)
+. some descriptive java questions like ( diff btw Comparator n Comparable )
+. Find longest palindrome in a given string. (Dynamic Programming)
+
+
+Interview
+
+. Diff btw listview n recyclerview . Implement using listview ( not answered confidently with code )
+A) Use convertView.setTag(ViewHolder) to avoid findViewById calls.
+
+. What Design Patterns u used n show me in the App ( big surprise , confused a bit in saying about strategy pattern , Command patterns with
+undo )
+A. Creation patterns(singleton, factory, builder , prototype) , Structural (Adapter, Decorator ABCDFFP ), Behavioural ( CCOMMIITSSV observer pattern, memento pattern( of filter undoing), Mediator Pattern ( in cases of bottom cart change ..), Iterator , Command Pattern (wrapping unrelated filter components as one n performing operations )...
+
+. Why event queue via Intent mechanism exists in android , instead of creating the objects ( i answered with hard reference to object not possible to garbage collect , he asked for more reasons ... ) [ IF THAT IS THE CASE WHY JAVA HASN'T DONE THAT WAY ]
+A) Intent is the way to have inter process communication (IPC ) , it uses Binder to do it.
+    a) API calls are synchronous while intent-based invocations are asynchronous.
+    b) API calls are compile-time binding while intent-based calls are run-time binding. ( Mix and match or rather plug and play of components at runtime. ie All apps with Intent_SHARE will show up n can run without itself knowing that about the user ) .
+    c) There is no hard reference of Activities, So no problem of garbage collection ...
+    d) Also it makes it possible to do something like PendingIntent which can be executed some time later not now. ( like in Alarm Manager, Notification Service )
+
+
+. To communicate to main thread why do u need handler ?
+A) ( i said to at any point you have a multiple events, so you need a queue => which looper is providing by using MessageQueue , Looper.prepare() , Looper.loop() which is infinte loop method)
+   You can also do it by view.post(runnable ) ...
+
+. Why main thread is only one in android ? ( for consistency i said , asked for more )
+A) As cost of synchronization is more , also to provide better consistency .
+
+. Where you use content provider, Intent Service .
+
+
+. Why u use service why not asyncTask , what are the advantages ( is it just restart when system closes it , also app need not be running for service to execute . He asked more )
+A) Upon Force kill from settings , even service will be killed but normal application stop ( by back button ) then Application still exist => Service will exist, even in low memory cases ,service restarts itself by using SKICKY .
+
+. What is AIDL , did you use it ?
+
+. How GCM works , why server needs to use GCM to send notifications, Why not send it directly . ( i said it keeps track of unsend notifications , once internet is present OS will poll instead of each app polling their own server n also handling the notification received or not. , He needs more info ) [ ]
+A) Once internet is present OS will poll instead of each app polling their own server n also handling the notification received or not
+Now imagine, all 50 applications used GCM. GCM will poll an endpoint at some regular time interval on behalf of all 50 apps. Let's say GCM polls once a minute to a server that all the respective apps' backends send their notifications to to send to a device. ...
+Saves Battery drain a lot ...
+
+. Use of Fragments y they are necessary ( said ok about reusable piece of code with lifecycle callbacks )
+
+
+. Dependency Injection frameworks , n how mockit works ...
+A) MyClass test = mock(MyClass.class);
+        // define return value for method getUniqueId()
+        when(test.getUniqueId()).thenReturn(43);
+
+        // use mock in test....
+        assertEquals(test.getUniqueId(), 43);
+
+. Backstack in fragments vs activities ? ( i screwed up badly in this as well :) )
+A) An activity is placed into a back stack of activities that's managed by the system when it's stopped, by default (so that the user can navigate back to it with the Back button, as discussed in Tasks and Back Stack). However, a fragment is placed into a back stack managed by the host activity only when you explicitly request that the instance be saved by calling addToBackStack() during a transaction that removes the fragment. ( SO BACKSTACK IS SAME FOR BOTH ACTIVITES N FRAGMENTS. )
+
+
+************************************************* Answers to Above *************************************************
+
+
+. For GCM works

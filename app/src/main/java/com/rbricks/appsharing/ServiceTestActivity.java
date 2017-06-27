@@ -36,7 +36,7 @@ public class ServiceTestActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             GopiService.GopiBinder gopiBinderService = (GopiService.GopiBinder) service;
-            String updatedInput = gopiBinderService.getUpdatedInput();
+            String updatedInput = gopiBinderService.getUpdatedInput();  // or do some long running process by giving interface callback.
             System.out.println("updatedInput in ServiceConnection is = " + updatedInput);
             System.out.println("updatedInput in ServiceConnection  with refVar is = " + gopiBinderService.getService().networkData);
         }

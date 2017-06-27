@@ -58,3 +58,82 @@ A. Strong reference so on low memory the all the activities get killed
 6. Start Service vs Bind service ?
 A. lifecycle of Start Service :: onCreate( only first time) -> onStartCommand -> until stopSelf() or context.stopService() -> onDestroy()
    lifecycle of Bind Service :: onCreate( only first time) -> onBind -> until context.unBind() DOUBT -> onDestroy()
+
+7. Why Intent is required instead of creating new Activity? ******
+A.
+An Intent is basically a message that is passed between components (such as Activities, Services, Broadcast Receivers, and Content Providers). So, it is almost equivalent to parameters passed to API calls. The fundamental differences between API calls and invoking components via intents are:
+
+    a) API calls are synchronous while intent-based invocations are asynchronous.
+    b) API calls are compile-time binding while intent-based calls are run-time binding.
+    c) There is no hard reference of Activities, So no problem of garbage collection ...
+    d) Also it makes it possible to do something like PendingIntent which can be executed some time later not now. ( like in Alarm Manager, Notification Service )
+
+Of course, Intents can be made to work exactly like API calls by using what are called explicit intents, which will be explained later. But more often than not, IMPLICIT INTENTS ARE THE WAY TO GO AND THAT IS WHAT IS EXPLAINED HERE.
+
+One component that wants to invoke another has to only express its intent to do a job. And any other component that exists and has claimed that it can do such a job through intent-filters, is invoked by the Android platform to accomplish the job. THIS MEANS, NEITHER COMPONENTS IS NOT AWARE OF EACH OTHER'S EXISTENCE BUT CAN STILL WORK TOGETHER TO GIVE THE DESIRED RESULT FOR THE END-USER.
+
+This invisible connection between components is achieved through the combination of intents, intent-filters and the Android platform.
+
+This leads to huge possibilities like:
+
+    a) Mix and match or rather plug and play of components at runtime.
+    b) Replacing the inbuilt Android applications with custom developed applications. ( how , it should show list of all apps listening to that action )
+    c) Component level reuse within and across applications.
+    d) Service orientation to the most granular level, if I may say.
+
+Here are additional technical details about Intents from the Android documentation.
+
+    An intent is an abstract description of an operation to be performed. It can be used with startActivity to launch an Activity, broadcastIntent to send it to any interested BroadcastReceiver components, and startService(Intent) or bindService(Intent, ServiceConnection, int) to communicate with a Background Service.
+
+    An Intent provides a facility for performing late runtime binding between the code in different applications. Its most significant use is in the launching of activities, where it can be thought of as the glue between activities. It is basically a passive data structure holding an abstract description of an action to be performed. The primary pieces of information in an intent are:
+
+        action The general action to be performed, such as ACTION_VIEW, ACTION_EDIT, ACTION_MAIN, etc.
+        data The data to operate on, such as a person record in the contacts database, expressed as a Uri.
+
+
+8. Looper understanding ?
+A. Looper.prepare() -> will create the MessageQueue n points reference of the current Thread.
+   Handler handler = new Handler(Looper.myLooper(), (Message msg) -> {
+     if(msg.what == 2) s.o.p("message received at ...");
+    } );
+    handler.sendEmptyMessage(4,6000);  // All these events will be dispatched by the infinite Looper.loop() method.
+   Looper.loop() -> is a INFINETE LOOP WAITS FOR MESSAGES TO RECEIVE TO BE DISPATCHED. It has queue.next() blocking method . if that returns null (indirectly queue is quitting -> somebody called Looper.quit() method )  then it will quit.
+
+9. Android how it is starting see classes
+A. AndroidThread Class
+
+10. what is difference between MVC , MVP , MVVM ?
+A) https://news.realm.io/news/eric-maxwell-mvc-mvp-and-mvvm-on-android/
+   *****MVC *****
+    Model is just pojo with state can be tested easily
+    View is xml file
+    Controller is just activity/fragment which has all business logic of changing model n attaching it to view.
+
+    Problems:: Controller is difficult to test , tightly coupled to view n Android API's
+
+   *****MVP *****
+    Model is just pojo with state can be tested easily ( Same as MVC)
+    View is xml file plus the Activity/Fragment which has all view related logic n exposes INTERFACE to presenter.
+    Presenter is seperate file which has all business logic of changing model n uses INTERFACE methods to update the View (Activity ..)
+
+    Advantages : Presenter independent of Android API's , u can use simple dummy interface to test the whole functionality.
+    Problems:: Still Presenter code will increase over time n difficult to split . To solve this use MVVM
+
+   *****MVVM *****
+    Model is just pojo with state can be tested easily ( Same as MVC, MVP)
+    View is xml file plus the Activity/Fragment which has all view related logic n it binds to ObservableData of ViewModal
+    ViewModel is seperate file which has all business logic of changing model , it just changes ObservableData , So View which is listening to it will automatically perform its ViewLogic when something happens.
+
+    Advantages : no need of dummy interface to test the whole functionality, Also with data binding you don't have to write a lot of logic, can put logic directly in XML. Just change the observableData thats it.
+    Problems:: Maintenance - Since views can bind to both variables and expressions, extraneous presentation logic can creep in over time, effectively adding code to our XML. To avoid this, always get values directly from the ViewModel rather than attempt to compute or derive them in the views binding expression. This way the computation can be unit tested appropriately.
+
+11. How mockit works ?
+A) MyClass test = mock(MyClass.class);
+
+        // define return value for method getUniqueId()
+        when(test.getUniqueId()).thenReturn(43);
+
+        // use mock in test....
+        assertEquals(test.getUniqueId(), 43);
+
+12. An activity is placed into a back stack of activities that's managed by the system when it's stopped, by default (so that the user can navigate back to it with the Back button, as discussed in Tasks and Back Stack). However, a fragment is placed into a back stack managed by the host activity only when you explicitly request that the instance be saved by calling addToBackStack() during a transaction that removes the fragment. ( So backstack is same for both activites n fragments. )

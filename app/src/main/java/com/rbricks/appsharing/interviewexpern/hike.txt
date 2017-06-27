@@ -75,10 +75,11 @@ class IntentService extends Service {
                ParentClass object = bundle.getSerialbleObject("abc");
                addRequest(object);
             }
-            return STICKY_ ;
+
+            return START_STICKY ;
     }
 
-    public void onHandleIntent(ParentResponse object) {
+    public void onHandleIntent(Intent intent) {
 
     }
 }
