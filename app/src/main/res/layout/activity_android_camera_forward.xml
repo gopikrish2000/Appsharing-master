@@ -7,14 +7,26 @@
     android:layout_height="match_parent"
     tools:context="com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity">
 
-    <ImageView
-        android:id="@+id/cam_forw_iv"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
         android:layout_above="@+id/cam_forw_gallerybtn"
         android:layout_marginBottom="8dp"
-        />
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/cam_forw_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <VideoView android:id="@+id/cam_for_videoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/cam_forw_gallerybtn"
@@ -32,5 +44,14 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/cam_forw_gallerybtn"
         android:text="Take pic"
+        />
+    <Button
+        android:id="@+id/cam_forw_takevideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/cam_forw_takepic"
+        android:text="Take Video"
         />
 </RelativeLayout>
