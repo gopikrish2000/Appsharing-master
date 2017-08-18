@@ -29,6 +29,10 @@ import com.rbricks.appsharing.concept.streams.StreamsActivity;
 import com.rbricks.appsharing.concept.taskscheduling.alarammanaager.AlaramManagerActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
+import com.rbricks.appsharing.newconcept.clickareaincrease.ClickAreaIncreaseActivity;
+import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
+import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity;
+import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventHandlingActivity;
 
 import java.util.ArrayList;
 
@@ -90,6 +94,10 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("FindViewByIdActivity", FindViewByIdActivity.class));
         homeItemList.add(new HomeItem("HandlerTestActivity", HandlerTestActivity.class));
         homeItemList.add(new HomeItem("PianoDrawActivity", PianoDrawActivity.class));
+        homeItemList.add(new HomeItem("TouchEventHandlingActivity", TouchEventHandlingActivity.class));
+        homeItemList.add(new HomeItem("ClickAreaIncreaseActivity", ClickAreaIncreaseActivity.class));
+        homeItemList.add(new HomeItem("BasicCameraActivity", BasicCameraActivity.class));
+        homeItemList.add(new HomeItem("AndroidCameraForwardActivity", AndroidCameraForwardActivity.class));
     }
 
     @Override
