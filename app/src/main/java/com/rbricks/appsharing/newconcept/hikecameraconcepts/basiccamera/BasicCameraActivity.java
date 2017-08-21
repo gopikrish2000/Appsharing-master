@@ -187,7 +187,7 @@ public class BasicCameraActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onPause() {
-        super.onPause();
+        super.onPause();   // some problem on doing these that after release you shouldn't use the camera object . else exception.
        /* try {
             camera.release();
             cameraPreview.getHolder().removeCallback(cameraPreview);
