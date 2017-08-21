@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicVideoActivity">
+
+    <com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.VideoCapture
+        android:id="@+id/vid_videocapture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/vid_takbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="18dp"
+        android:text="take vid"
+        />
+
+</RelativeLayout>
