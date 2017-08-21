@@ -7,25 +7,26 @@
     android:layout_height="match_parent"
     tools:context="com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_alignParentBottom="true">
 
-
-        <Button
-            android:id="@+id/cam_takepic_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="take Picture"
-            />
-    </RelativeLayout>
 
     <FrameLayout android:id="@+id/cam_preview_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </FrameLayout>
+
+    <RelativeLayout android:id="@+id/align_picture_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/cam_takepic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Picture"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>

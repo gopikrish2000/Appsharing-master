@@ -47,13 +47,15 @@ public class BasicCameraActivity extends AppCompatActivity implements View.OnCli
         camPreviewFrame = (FrameLayout) findViewById(R.id.cam_preview_frame);
         cameraPreview = new CameraPreview(this, getCameraInstance());
         camPreviewFrame.addView(cameraPreview);
+//        camera = cameraPreview.mCamera;
     }
 
     private void doProcess() {
     }
 
     private void takePhoto() {
-        Camera cameraInstance = camera;
+//        Camera cameraInstance = camera;
+//        camera.startPreview();
         camera.takePicture(null, null, (byte[] data, Camera camInstance) -> {
             File outPutFile = getOutputMediaFile();
             FileOutputStream fileOutputStream = null;
@@ -64,8 +66,9 @@ public class BasicCameraActivity extends AppCompatActivity implements View.OnCli
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            camera.release();
-            camera = null;
+//            camera.stopPreview();
+//            camera.release();
+//            camera = null;
         });
     }
 
@@ -137,19 +140,27 @@ public class BasicCameraActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void surfaceCreated(SurfaceHolder surfaceHolder) {
             try {
+                mCamera = camera;
                 mCamera.setPreviewDisplay(surfaceHolder);
+                mCamera.setDisplayOrientation(90);
                 mCamera.startPreview();
             } catch (IOException e) {
                 // left blank for now
-                mCamera = null;
+//                mCamera = null;
             }
         }
 
         @Override
         public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-            mCamera.stopPreview();
-            mCamera.release();
-            mCamera = null;
+//            if( mCamera != null )
+            try {
+                mCamera.stopPreview();
+                mCamera.release();
+                mCamera = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//            mCamera.release();
         }
 
         @Override
@@ -172,5 +183,31 @@ public class BasicCameraActivity extends AppCompatActivity implements View.OnCli
                 takePhoto();
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+       /* try {
+            camera.release();
+            cameraPreview.getHolder().removeCallback(cameraPreview);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*try {
+            if (camera != null) {
+                camera = Camera.open();
+//                camera.reconnect();
+                cameraPreview.getHolder().addCallback(cameraPreview);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 }
