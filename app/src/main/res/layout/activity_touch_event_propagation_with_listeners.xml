@@ -28,7 +28,7 @@
             android:background="@color/red"
             >
 
-            <com.rbricks.appsharing.newconcept.toucheventhandling.ChildTextView
+            <TextView
                 android:id="@+id/touch_child_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

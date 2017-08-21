@@ -7,33 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.rbricks.appsharing.bookingdotcom.FindViewByIdActivity;
-import com.rbricks.appsharing.concept.Activities.LifeCycleFirstActivity;
-import com.rbricks.appsharing.concept.animations.AdvancedAnimationActivity;
-import com.rbricks.appsharing.concept.animations.BrindaAnimationActivity;
-import com.rbricks.appsharing.concept.animations.PropertyAnimationActivity;
-import com.rbricks.appsharing.concept.animations.TransitionDetailsActivity;
-import com.rbricks.appsharing.concept.constraintlayout.ConstraintLayoutActivity;
-import com.rbricks.appsharing.concept.customcanvasdrawing.CustomDrawingActivity;
-import com.rbricks.appsharing.concept.customdraw.PianoDrawActivity;
-import com.rbricks.appsharing.concept.handlers.HandlerTestActivity;
-import com.rbricks.appsharing.concept.java8.CustomLambdaReferenceActivity;
-import com.rbricks.appsharing.concept.keyboardevents.KeyboardEventsActivity;
-import com.rbricks.appsharing.concept.memoryefficient.activities.BitmapMemoryActivity;
-import com.rbricks.appsharing.concept.notesapp.activities.NewNotesListingActivity;
-import com.rbricks.appsharing.concept.notesapp.activities.NotesListingActivity;
-import com.rbricks.appsharing.concept.resizablerecyclerview.ResizableRecyclerviewActivity;
-import com.rbricks.appsharing.concept.rxjava.RxJavaAdvancedActivity;
-import com.rbricks.appsharing.concept.scaleaview.ScaleAViewActivity;
-import com.rbricks.appsharing.concept.streams.StreamsActivity;
-import com.rbricks.appsharing.concept.taskscheduling.alarammanaager.AlaramManagerActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
-import com.rbricks.appsharing.newconcept.clickareaincrease.ClickAreaIncreaseActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicVideoActivity;
-import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventHandlingActivity;
+import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationActivity;
+import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity;
 
 import java.util.ArrayList;
 
@@ -95,11 +75,12 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("FindViewByIdActivity", FindViewByIdActivity.class));
         homeItemList.add(new HomeItem("HandlerTestActivity", HandlerTestActivity.class));
         homeItemList.add(new HomeItem("PianoDrawActivity", PianoDrawActivity.class));
-        homeItemList.add(new HomeItem("TouchEventHandlingActivity", TouchEventHandlingActivity.class));
         homeItemList.add(new HomeItem("ClickAreaIncreaseActivity", ClickAreaIncreaseActivity.class));*/
         homeItemList.add(new HomeItem("BasicCameraActivity", BasicCameraActivity.class));
         homeItemList.add(new HomeItem("AndroidCameraForwardActivity", AndroidCameraForwardActivity.class));
         homeItemList.add(new HomeItem("BasicVideoActivity", BasicVideoActivity.class));
+        homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));
+        homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
     }
 
     @Override

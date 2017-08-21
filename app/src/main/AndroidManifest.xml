@@ -136,7 +136,7 @@
         </activity>
         <activity android:name=".concept.customdraw.PianoDrawActivity">
         </activity>
-        <activity android:name=".newconcept.toucheventhandling.TouchEventHandlingActivity">
+        <activity android:name=".newconcept.toucheventhandling.TouchEventPropagationActivity">
         </activity>
         <activity android:name=".newconcept.clickareaincrease.ClickAreaIncreaseActivity">
         </activity>
@@ -145,6 +145,8 @@
         <activity android:name=".newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity">
         </activity>
         <activity android:name=".newconcept.hikecameraconcepts.basiccamera.BasicVideoActivity">
+        </activity>
+        <activity android:name=".newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity">
         </activity>
     </application>
 
