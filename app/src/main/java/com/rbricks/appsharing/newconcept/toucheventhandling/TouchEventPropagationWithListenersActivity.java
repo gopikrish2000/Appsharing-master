@@ -9,7 +9,7 @@ import com.rbricks.appsharing.R;
 
 public class TouchEventPropagationWithListenersActivity extends AppCompatActivity {
 
-     private OuterParentRelativeLayout touchParentBlueRl;
+    private OuterParentRelativeLayout touchParentBlueRl;
     private InnerParentRelativeLayout touchChildRedRl;
     private TextView touchChildTv;
 
@@ -26,5 +26,8 @@ public class TouchEventPropagationWithListenersActivity extends AppCompatActivit
             System.out.println("TouchEventPropagationWithListenersActivity.onTouchEvent() ");
             return true;
         }));
+
+//        JpegImageMetadata
+//        TiffImageMetadata
     }
 }

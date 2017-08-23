@@ -5,7 +5,9 @@ import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import com.commonsware.cwac.cam2.util.Utils;
 import com.rbricks.appsharing.concept.notesapp.utils.NotesDbHelper;
+import com.rbricks.appsharing.utils.CommonUtils;
 
 
 /**
@@ -24,6 +26,7 @@ public class AppSharingApplication extends Application {
         super.onCreate();
         appSharingApplication = this;
         initializeDb();
+        CommonUtils.setDensityMultiplier(getResources().getDisplayMetrics());
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {

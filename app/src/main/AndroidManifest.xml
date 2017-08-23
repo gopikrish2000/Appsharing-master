@@ -148,6 +148,8 @@
         </activity>
         <activity android:name=".newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity">
         </activity>
+        <activity android:name=".newconcept.centerrecyclerview.CenterRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>

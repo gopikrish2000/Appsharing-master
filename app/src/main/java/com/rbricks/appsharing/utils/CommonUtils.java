@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
 
+import com.commonsware.cwac.cam2.util.Utils;
 import com.rbricks.appsharing.concept.Application.AppSharingApplication;
 
 import java.text.ParseException;
@@ -29,6 +31,8 @@ import static android.text.format.DateFormat.format;
 public class CommonUtils {
 
     public static Func1<String, Boolean> isNullOrEmptyRx = s -> (s == null || s.trim().isEmpty());
+    public static float ScaledDensityMultiplier, DensityMultiplier;
+    public static int DensityDpi, DisplayWidthPixels, DisplayHeightPixels;
 
     public static boolean isNullOrEmpty(String s) {
         return (s == null || s.trim().isEmpty());
@@ -187,4 +191,39 @@ public class CommonUtils {
             objects[i] = null;
         }
     }
+
+    public static void setDensityMultiplier(DisplayMetrics displayMetrics) {
+        ScaledDensityMultiplier = displayMetrics.scaledDensity;
+        DensityDpi = displayMetrics.densityDpi;
+        DensityMultiplier = displayMetrics.density;
+        DisplayWidthPixels = displayMetrics.widthPixels;
+        DisplayHeightPixels = displayMetrics.heightPixels;
+    }
+
+    public static int dpToPx(float dp) {
+        return (int) (dp * DensityMultiplier);
+    }
+
+    public static float pxToDp(int px) {
+        return (px / DensityMultiplier);
+    }
+
+    public static int spToPx(float sp) {
+        return (int) (sp * ScaledDensityMultiplier);
+    }
+
+    public static int getDeviceWidth()
+	{
+		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().widthPixels;
+	}
+
+	public static int getDeviceHeight()
+	{
+		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().heightPixels;
+	}
+
+	public static int getDeviceDensityDPI()
+	{
+		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().densityDpi;
+	}
 }
