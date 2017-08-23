@@ -38,5 +38,7 @@ public class CenterViewPagerActivity extends AppCompatActivity {
         int firstItemWidth = (viewWidth - itemWidth) / 2;
         PagerAdapter pagerAdapter = new CenteredPagerAdapter(this, list, firstItemWidth);
         centerViewPager.setAdapter(pagerAdapter);
+//        centerViewPager.setPageMargin(-1 * CommonUtils.dpToPx(64));
+// Setting negative page margin will give space between the Pager items.
     }
 }
