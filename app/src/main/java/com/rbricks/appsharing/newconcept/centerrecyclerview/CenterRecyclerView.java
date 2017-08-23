@@ -3,7 +3,9 @@ package com.rbricks.appsharing.newconcept.centerrecyclerview;
 import android.graphics.PointF;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSmoothScroller;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -245,6 +247,8 @@ public class CenterRecyclerView {
                 });
                 centerRecyclerViewAdapter = new CenterRecyclerViewAdapter(captureBtnOnTouchListener, itemList, (int) firstItemWidth);
                 recyclerView.setAdapter(centerRecyclerViewAdapter);
+//                SnapHelper snapHelper = new PagerSnapHelper();
+//                snapHelper.attachToRecyclerView(recyclerView);  to make it work like ViewPager but is not working smoothly.
                 return true;
             }
         });

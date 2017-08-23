@@ -150,6 +150,8 @@
         </activity>
         <activity android:name=".newconcept.centerrecyclerview.CenterRecyclerViewActivity">
         </activity>
+        <activity android:name=".newconcept.centeredViewPager.CenterViewPagerActivity">
+        </activity>
     </application>
 
 </manifest>

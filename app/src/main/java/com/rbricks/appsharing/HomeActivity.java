@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
+import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity;
@@ -83,6 +84,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));
         homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
         homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
+        homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
     }
 
     @Override
