@@ -152,6 +152,8 @@
         </activity>
         <activity android:name=".newconcept.centeredViewPager.CenterViewPagerActivity">
         </activity>
+        <activity android:name=".newconcept.snappyRecyclerView.SnappyRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>

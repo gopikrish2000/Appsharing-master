@@ -14,6 +14,7 @@ import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewAc
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicVideoActivity;
+import com.rbricks.appsharing.newconcept.snappyRecyclerView.SnappyRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationActivity;
 import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity;
 
@@ -85,6 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
         homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
+        homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
     }
 
     @Override
