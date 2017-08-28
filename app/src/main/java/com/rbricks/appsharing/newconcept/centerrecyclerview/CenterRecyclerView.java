@@ -137,15 +137,16 @@ public class CenterRecyclerView {
         int dx = (int) (itemWidth * (count));
         recyclerView.smoothScrollBy(dx, 0);
 
-        /*HikeCamUtils.recordCenterRecyclerViewEvent(scrollSource, mSource, HikeCamUtils.getCurrentCamSwitch(), Utils.getDeviceOrientationString(HikeMessengerApp.getInstance().getApplicationContext()), getMaskNameByPath(selectedItem), getMaskNameByPath(selectedItem + count), System.currentTimeMillis() - time, selectedItem == itemList.size() - 2, HikeCamUtils.sessionId);*//*
+        /*HikeCamUtils.recordCenterRecyclerViewEvent(scrollSource, mSource, HikeCamUtils.getCurrentCamSwitch(), Utils.getDeviceOrientationString(HikeMessengerApp.getInstance().getApplicationContext()), getMaskNameByPath(selectedItem), getMaskNameByPath(selectedItem + count), System.currentTimeMillis() - time, selectedItem == itemList.size() - 2, HikeCamUtils.sessionId);*/
         time = System.currentTimeMillis();
-        selectedItem = selectedItem + count; */
+        selectedItem = selectedItem + count;
     }
 
     private void calculatePositionAndScroll(RecyclerView recyclerView) {
         int expectedPosition = Math.round((allPixelsMove) / itemWidth);
         selectedItem = expectedPosition + 1;
         scrollListToPosition(recyclerView, expectedPosition);
+      // scrollByItem(1);
     }
 
     public void scrollListToPosition(RecyclerView recyclerView, int expectedPosition) {
