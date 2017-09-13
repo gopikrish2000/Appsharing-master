@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
+import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioPlaybackActivity;
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
@@ -80,15 +81,17 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("HandlerTestActivity", HandlerTestActivity.class));
         homeItemList.add(new HomeItem("PianoDrawActivity", PianoDrawActivity.class));
         homeItemList.add(new HomeItem("ClickAreaIncreaseActivity", ClickAreaIncreaseActivity.class));*/
-        homeItemList.add(new HomeItem("BasicCameraActivity", BasicCameraActivity.class));
+
+      /*  homeItemList.add(new HomeItem("BasicCameraActivity", BasicCameraActivity.class));
         homeItemList.add(new HomeItem("AndroidCameraForwardActivity", AndroidCameraForwardActivity.class));
         homeItemList.add(new HomeItem("BasicVideoActivity", BasicVideoActivity.class));
-        homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));
+        homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));*/
         homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
         homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
         homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
+        homeItemList.add(new HomeItem("AudioPlaybackActivity", AudioPlaybackActivity.class));
     }
 
     @Override

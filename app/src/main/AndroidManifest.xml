@@ -156,6 +156,10 @@
         </activity>
         <activity android:name=".newconcept.moveFragmentUponSwipe.MoveFragmentUponSwipeActivity">
         </activity>
+        <activity android:name=".newconcept.jniconcepts.FirstJNIActivity">
+        </activity>
+        <activity android:name=".newconcept.audioNVideoconcepts.audio.AudioPlaybackActivity">
+        </activity>
     </application>
 
 </manifest>
