@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioPlaybackActivity;
+import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.VideoPlaybackActivity;
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
@@ -92,6 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
         homeItemList.add(new HomeItem("AudioPlaybackActivity", AudioPlaybackActivity.class));
+        homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));
     }
 
     @Override

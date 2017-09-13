@@ -160,6 +160,8 @@
         </activity>
         <activity android:name=".newconcept.audioNVideoconcepts.audio.AudioPlaybackActivity">
         </activity>
+        <activity android:name=".newconcept.audioNVideoconcepts.video.VideoPlaybackActivity">
+        </activity>
     </application>
 
 </manifest>

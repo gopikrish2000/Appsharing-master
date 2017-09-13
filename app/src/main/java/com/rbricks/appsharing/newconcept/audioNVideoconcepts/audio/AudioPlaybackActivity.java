@@ -20,6 +20,8 @@ public class AudioPlaybackActivity extends AppCompatActivity {
 
         playBtn = ((Button) findViewById(R.id.audio_play_pause));
         mediaPlayer = MediaPlayer.create(this, R.raw.unnatu);
+//        mediaPlayer.prepareAsync();
+//        mediaPlayer.setOn
 
 
         playBtn.setOnClickListener(view -> {
