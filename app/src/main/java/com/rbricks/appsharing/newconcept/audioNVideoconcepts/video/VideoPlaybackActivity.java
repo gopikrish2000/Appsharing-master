@@ -11,6 +11,8 @@ import android.widget.VideoView;
 
 import com.rbricks.appsharing.R;
 
+import java.io.File;
+
 public class VideoPlaybackActivity extends AppCompatActivity {
 
     private Button playBtn;
@@ -25,7 +27,7 @@ public class VideoPlaybackActivity extends AppCompatActivity {
         videoView = ((VideoView) findViewById(R.id.video_container));
 
          MediaController mediaController= new MediaController(this);
-            mediaController.setAnchorView(videoView);
+        mediaController.setAnchorView(videoView);
 
               //specify the location of media file
 //           Uri uri=Uri.parse(Environment.getExternalStorageDirectory().getPath()+"/media/1.mp4");
