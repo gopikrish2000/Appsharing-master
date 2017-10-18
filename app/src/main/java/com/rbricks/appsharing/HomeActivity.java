@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.rbricks.appsharing.architecture.MVP.MVPArchitectureActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioMixingActivity;
@@ -96,6 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AudioPlaybackActivity", AudioPlaybackActivity.class));
         homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));
         homeItemList.add(new HomeItem("AudioMixingActivity", AudioMixingActivity.class));
+        homeItemList.add(new HomeItem("MVPArchitectureActivity", MVPArchitectureActivity.class));
     }
 
     @Override

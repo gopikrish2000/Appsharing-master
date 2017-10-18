@@ -164,6 +164,8 @@
         </activity>
         <activity android:name=".newconcept.audioNVideoconcepts.audio.AudioMixingActivity">
         </activity>
+        <activity android:name=".architecture.MVP.MVPArchitectureActivity">
+        </activity>
     </application>
 
 </manifest>
