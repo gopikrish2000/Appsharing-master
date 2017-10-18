@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity">
+
+    <EditText
+        android:id="@+id/mvvm_email_et"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="email"/>
+
+    <EditText
+        android:id="@+id/mvvm_phone_et"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@+id/mvvm_email_et"
+        android:hint="second"/>
+
+    <Button
+        android:id="@+id/mvvm_submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mvvm_email_et"
+        android:layout_marginTop="8dp"
+        android:text="Submit"
+        />
+
+</RelativeLayout>

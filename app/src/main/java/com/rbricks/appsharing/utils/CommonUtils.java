@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
 
 import com.commonsware.cwac.cam2.util.Utils;
 import com.rbricks.appsharing.concept.Application.AppSharingApplication;
@@ -226,4 +227,8 @@ public class CommonUtils {
 	{
 		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().densityDpi;
 	}
+
+    public static void showToast(String msg) {
+        Toast.makeText(AppSharingApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+    }
 }

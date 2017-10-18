@@ -166,6 +166,8 @@
         </activity>
         <activity android:name=".architecture.MVP.MVPArchitectureActivity">
         </activity>
+        <activity android:name=".architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity">
+        </activity>
     </application>
 
 </manifest>

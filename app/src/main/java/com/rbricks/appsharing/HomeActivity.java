@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.rbricks.appsharing.architecture.MVP.MVPArchitectureActivity;
+import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioMixingActivity;
@@ -15,12 +16,8 @@ import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioPlayback
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.VideoPlaybackActivity;
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
-import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.AndroidCameraForwardActivity;
-import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicCameraActivity;
-import com.rbricks.appsharing.newconcept.hikecameraconcepts.basiccamera.BasicVideoActivity;
 import com.rbricks.appsharing.newconcept.moveFragmentUponSwipe.MoveFragmentUponSwipeActivity;
 import com.rbricks.appsharing.newconcept.snappyRecyclerView.SnappyRecyclerViewActivity;
-import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationActivity;
 import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity;
 
 import java.util.ArrayList;
@@ -98,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));
         homeItemList.add(new HomeItem("AudioMixingActivity", AudioMixingActivity.class));
         homeItemList.add(new HomeItem("MVPArchitectureActivity", MVPArchitectureActivity.class));
+        homeItemList.add(new HomeItem("MVVMArchitectureActivity", MVVMArchitectureActivity.class));
     }
 
     @Override
