@@ -8,20 +8,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.observables.ConnectableObservable;
-import rx.schedulers.Schedulers;
 
-import static com.jakewharton.rxbinding.view.RxView.clicks;
-import static com.jakewharton.rxbinding.widget.RxTextView.textChangeEvents;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observables.ConnectableObservable;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.jakewharton.rxbinding2.view.RxView.clicks;
+import static com.jakewharton.rxbinding2.widget.RxTextView.textChangeEvents;
 import static com.rbricks.appsharing.utils.CommonUtils.isNullOrEmpty;
 
 public class RxJavaAdvancedActivity extends AppCompatActivity {
@@ -154,14 +156,15 @@ public class RxJavaAdvancedActivity extends AppCompatActivity {
     }
 
     private void first() {
-        Observable<List<Integer>> collectIntList = Observable.just(1, -2, 4, 3, 10, 8, 9).filter(s -> s > 1).toSortedList();
-        collectIntList.switchMap(Observable::from).filter(s -> s > 3).map(s -> s + "").reduce("", (a, b) -> a + b + " , | ").map(s -> s.substring(0, s.length() - 4))
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> resultsTV.setText(s + ""));
+        //Todo fix this for new RXJava2.0
+       /* Single<List<Integer>> listSingle = Observable.fromArray(1, -2, 4, 3, 10, 8, 9).filter(s -> s > 1).toSortedList();
+        listSingle.flattenAsObservable().filter(s -> s > 3).map(s -> s + "").reduce("", (a, b) -> a + b + " , | ").map(s -> s.substring(0, s.length() - 4))
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> resultsTV.setText(s + ""));*/
     }
 
     private void checkSingleNDoubleClicks() {
         View view = resultsTV;
-        RxView.clicks(view).buffer(500, TimeUnit.MILLISECONDS).map(List::size).filter(clicksCount -> clicksCount > 0)
+        clicks(view).buffer(500, TimeUnit.MILLISECONDS).map(List::size).filter(clicksCount -> clicksCount > 0)
                 .subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(clicksCount -> {
             if (clicksCount == 1) {
                 Toast.makeText(RxJavaAdvancedActivity.this, "Double Tap or click on Edit button to edit. ", Toast.LENGTH_SHORT).show();

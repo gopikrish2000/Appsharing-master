@@ -12,7 +12,8 @@ import android.widget.ImageView;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.concept.memoryefficient.utils.BitmapMemoryCache;
 
-import rx.Observable;
+
+import io.reactivex.Observable;
 
 import static com.rbricks.appsharing.concept.notesapp.utils.RxApiUtil.build;
 

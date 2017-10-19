@@ -23,11 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
-import static com.jakewharton.rxbinding.widget.RxTextView.textChangeEvents;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.jakewharton.rxbinding2.widget.RxTextView.textChangeEvents;
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setGone;
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setVisibleView;
 import static com.rbricks.appsharing.utils.CommonUtils.doUnsubscribe;
@@ -46,7 +47,7 @@ public class NotesSearchDialogFragment extends DialogFragment implements MVPNote
     private ArrayList<NotesItem> notesItemList;
     private NotesListingAdapter notesListingAdapter;
     private FloatingActionButton fabButton;
-    private CompositeSubscription lifeCycle;
+    private CompositeDisposable lifeCycle;
     private static final String NOTES_LIST = "NOTES_LIST";
     private ProgressDialog progressDialog;
     private View noNotesFoundView;
@@ -69,7 +70,7 @@ public class NotesSearchDialogFragment extends DialogFragment implements MVPNote
         searchBarEt = (EditText) view.findViewById(R.id.notes_search_bar);
         notesSearchRv = (RecyclerView) view.findViewById(R.id.notes_search_rv);
         noNotesFoundView = view.findViewById(R.id.no_results_found_view);
-        lifeCycle = new CompositeSubscription();
+        lifeCycle = new CompositeDisposable();
     }
 
     @Override

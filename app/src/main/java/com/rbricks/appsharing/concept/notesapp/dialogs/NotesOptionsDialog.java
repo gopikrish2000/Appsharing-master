@@ -11,7 +11,8 @@ import android.widget.Toast;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
 
-import rx.subjects.PublishSubject;
+
+import io.reactivex.subjects.PublishSubject;
 
 import static com.rbricks.appsharing.utils.CommonUtils.dismissDialog;
 

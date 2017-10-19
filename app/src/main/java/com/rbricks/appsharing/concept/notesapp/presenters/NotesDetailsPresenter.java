@@ -10,7 +10,8 @@ import com.rbricks.appsharing.concept.notesapp.intdefs.NotesActionType;
 import com.rbricks.appsharing.concept.notesapp.interfaces.BasePresenterInterface;
 import com.rbricks.appsharing.concept.notesapp.interfaces.MVPNotesDetailsInterface;
 
-import rx.subscriptions.CompositeSubscription;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 import static com.rbricks.appsharing.concept.notesapp.utils.RxApiUtil.build;
 import static com.rbricks.appsharing.utils.CommonUtils.doUnsubscribe;
@@ -25,7 +26,7 @@ public class NotesDetailsPresenter implements BasePresenterInterface {
     private Activity context;
     private MVPNotesDetailsInterface mvpNotesDetailsInterface;
     private boolean isSubscribed;
-    private CompositeSubscription lifeCycle;
+    private CompositeDisposable lifeCycle;
     private boolean isAddFlow;
     private NotesItem notesItem;
     private boolean isSearchFlow;
@@ -34,7 +35,7 @@ public class NotesDetailsPresenter implements BasePresenterInterface {
         this.mvpNotesDetailsInterface = mvpNotesInterface;
         this.context = context;
         this.isSubscribed = true;
-        lifeCycle = new CompositeSubscription();
+        lifeCycle = new CompositeDisposable();
         this.isAddFlow = isAddFlow;
         this.notesItem = notesItem;
         this.isSearchFlow = isSearchFlow;

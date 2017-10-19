@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.rbricks.appsharing.utils.CommonUtils;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+
+import org.reactivestreams.Subscription;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by gopi on 18/10/17.
@@ -15,21 +18,21 @@ import rx.subscriptions.CompositeSubscription;
 
 public class BaseActivity extends AppCompatActivity {
 
-    CompositeSubscription baseCompositeSubscription;
+    CompositeDisposable baseCompositeDisposable;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        baseCompositeSubscription = new CompositeSubscription();
+        baseCompositeDisposable = new CompositeDisposable();
     }
 
-    public void add(Subscription subscription) {
-        baseCompositeSubscription.add(subscription);
+    public void add(Disposable subscription) {
+        baseCompositeDisposable.add(subscription);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CommonUtils.doUnsubscribe(baseCompositeSubscription);
+        CommonUtils.doUnsubscribe(baseCompositeDisposable);
     }
 }

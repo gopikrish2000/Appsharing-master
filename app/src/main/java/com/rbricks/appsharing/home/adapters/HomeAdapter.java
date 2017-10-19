@@ -14,9 +14,10 @@ import com.rbricks.appsharing.home.domains.HomeItem;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.subjects.PublishSubject;
+import io.reactivex.subjects.PublishSubject;
 
-import static com.jakewharton.rxbinding.view.RxView.clicks;
+import static com.jakewharton.rxbinding2.view.RxView.clicks;
+
 
 /**
  * Created by gopikrishna on 11/11/16.

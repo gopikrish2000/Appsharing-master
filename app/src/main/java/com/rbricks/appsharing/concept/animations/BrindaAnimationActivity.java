@@ -15,14 +15,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class BrindaAnimationActivity extends AppCompatActivity {
 
@@ -77,7 +78,7 @@ public class BrindaAnimationActivity extends AppCompatActivity {
                 .setDuration(4000).start();*/
         moveViewToScreenCenter(brindImageView);
 
-        Observable.just(1).delay(4, TimeUnit.SECONDS).subscribeOn(rx.schedulers.Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
+        Observable.just(1).delay(4, TimeUnit.SECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
             bottomTv.setVisibility(View.VISIBLE);
             bottomTv.animate().translationYBy(-250).setInterpolator(new AccelerateDecelerateInterpolator()).alpha(1f)
                     .setDuration(4000).start();

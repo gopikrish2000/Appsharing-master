@@ -1,8 +1,7 @@
 package com.rbricks.appsharing.architecture.MVVM.withoutDataBinding;
 
-import com.jakewharton.rxbinding.widget.RxTextView;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by gopi on 18/10/17.

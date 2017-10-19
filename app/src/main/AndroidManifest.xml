@@ -168,6 +168,8 @@
         </activity>
         <activity android:name=".architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity">
         </activity>
+        <activity android:name=".architecture.MVVM.withDataBinding.MVVMArchitectureDataBindingActivity">
+        </activity>
     </application>
 
 </manifest>

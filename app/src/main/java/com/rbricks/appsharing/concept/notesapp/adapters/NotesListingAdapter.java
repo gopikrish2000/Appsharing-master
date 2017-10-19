@@ -8,14 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.subjects.PublishSubject;
+
+import io.reactivex.subjects.PublishSubject;
 
 import static com.rbricks.appsharing.utils.CommonUtils.getDateTimeFromString;
 import static com.rbricks.appsharing.utils.CommonUtils.getFormattedDate;

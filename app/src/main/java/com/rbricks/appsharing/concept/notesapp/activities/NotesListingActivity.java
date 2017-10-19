@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.concept.notesapp.adapters.NotesListingAdapter;
 import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
@@ -27,9 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setGone;
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setVisibleView;
@@ -81,7 +82,7 @@ public class NotesListingActivity extends AppCompatActivity implements MVPNotesI
     private ArrayList<NotesItem> notesItemList;
     private NotesListingAdapter notesListingAdapter;
     private FloatingActionButton fabButton;
-    private CompositeSubscription lifeCycle;
+    private CompositeDisposable lifeCycle;
     private static final String NOTES_LIST = "NOTES_LIST";
     private ProgressDialog progressDialog;
     private View noNotesFoundView;
@@ -102,7 +103,7 @@ public class NotesListingActivity extends AppCompatActivity implements MVPNotesI
     }
 
     private void initActions() {
-        lifeCycle = new CompositeSubscription();
+        lifeCycle = new CompositeDisposable();
         initializeToolbar(getString(R.string.notes_listing_title));
         notesListingPresenter = new NotesListingPresenter(this, this);
         notesItemList = new ArrayList<>();

@@ -13,7 +13,8 @@ import com.rbricks.appsharing.concept.notesapp.utils.SqlliteTables.NotesListingT
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
+
+import io.reactivex.Observable;
 
 import static com.rbricks.appsharing.utils.CommonUtils.getCurrentDateTimeForDb;
 import static com.rbricks.appsharing.utils.CommonUtils.isNullOrEmpty;

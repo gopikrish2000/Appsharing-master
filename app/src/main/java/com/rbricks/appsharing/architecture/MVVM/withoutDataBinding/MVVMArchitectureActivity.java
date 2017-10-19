@@ -6,13 +6,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding.view.RxView;
-import com.jakewharton.rxbinding.widget.RxTextView;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.rbricks.appsharing.BaseActivity;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.utils.CommonUtils;
 
-import rx.Observable;
 
 public class MVVMArchitectureActivity extends BaseActivity {
     private EditText phoneEt; // Login Check Application

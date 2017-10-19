@@ -1,31 +1,17 @@
 package com.rbricks.appsharing.concept.rxjava;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.internal.util.Predicate;
 import com.rbricks.appsharing.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.AsyncSubject;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func2;
-import rx.schedulers.Schedulers;
-import rx.subjects.AsyncSubject;
-import rx.subjects.BehaviorSubject;
-import rx.subjects.PublishSubject;
-import rx.subjects.ReplaySubject;
-import rx.subjects.Subject;
 
 public class RxJavaSampleActivity extends AppCompatActivity {
 
@@ -86,7 +72,7 @@ public class RxJavaSampleActivity extends AppCompatActivity {
                 //compose will change instanteously on whole initial stream. not like FlatMap which creates/works on onNext only.
                 .compose(s -> s.observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()))
 //                .onErrorReturn(error -> "Uh oh")  // will return "Uh oh" once after exception
-                .onErrorResumeNext(s -> Observable.just(1000l, 2000l))  // will continue with new Observable on Error.
+                .onErrorResumeNext((ObservableSource<? extends Long>) s -> Observable.just(1000l, 2000l))  // will continue with new Observable on Error.
 //                .onExceptionResumeNext(Observable.just(101l,102l))  // will continue with new Observable on Error.
                 .subscribe(s -> System.out.println(s));
     }
@@ -106,7 +92,7 @@ public class RxJavaSampleActivity extends AppCompatActivity {
             System.out.println(" Second one " + s);
         });
         publishSubject.onNext("5");
-        publishSubject.onCompleted();
+        publishSubject.onComplete();
     }
 
     interface PredicateMy {

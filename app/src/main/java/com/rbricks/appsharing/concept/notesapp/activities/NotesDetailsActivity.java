@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.concept.notesapp.customviews.MultiLineEditText;
 import com.rbricks.appsharing.concept.notesapp.domains.NotesItem;
@@ -26,8 +26,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.subscriptions.CompositeSubscription;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setGone;
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setVisibleView;
@@ -51,7 +52,7 @@ public class NotesDetailsActivity extends AppCompatActivity implements MVPNotesD
     private Button doneButton;
     private EditText headerEditText;
     private TextView headerTitleTv;
-    private CompositeSubscription lifeCycle;
+    private CompositeDisposable lifeCycle;
     private NotesDetailsPresenter notesDetailsPresenter;
 
     public static final String NOTES_ITEM = "NOTES_ITEM";
@@ -94,7 +95,7 @@ public class NotesDetailsActivity extends AppCompatActivity implements MVPNotesD
     }
 
     private void initializeClicks() {
-        lifeCycle = new CompositeSubscription();
+        lifeCycle = new CompositeDisposable();
         notesDetailsPresenter = new NotesDetailsPresenter(this, this, isAddFlow, notesItem, itemPosition, isSearchFlow);
         lifeCycle.add(RxView.clicks(editButton).throttleFirst(1, TimeUnit.SECONDS).subscribe(s -> {
             notesDetailsPresenter.onEditButtonClick();

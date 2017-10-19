@@ -1,6 +1,13 @@
 package com.rbricks.appsharing.architecture.MVVM.withDataBinding;
 
-import rx.Observable;
+import android.databinding.ObservableField;
+
+import com.rbricks.appsharing.utils.ReadOnlyField;
+
+import io.reactivex.Observable;
+
+import static com.rbricks.appsharing.utils.FieldUtils.toField;
+import static com.rbricks.appsharing.utils.FieldUtils.toObservable;
 
 /**
  * Created by gopi on 18/10/17.
@@ -8,26 +15,17 @@ import rx.Observable;
 
 public class MVVMDataBindingViewModel {
 
-    Observable<String> email;
-    Observable<String> phone;
+    public ObservableField<String> phoneOF  = new ObservableField<>("");
+    public ObservableField<String> emailOF= new ObservableField<>("");
+    public ObservableField<Boolean> submitResultEnabilityOF = new ObservableField<>(false);
 
-    public void setEmail(Observable<String> email) {
-        this.email = email;
-    }
-
-    public void setPhone(Observable<String> phone) {
-        this.phone = phone;
-    }
 
     public MVVMDataBindingViewModel() {
+        getResultObservable();
     }
 
-    public Observable<Boolean> getResultObservable() {
-        return Observable.combineLatest(email, phone, (emailRes, phoneRes) -> {
-            if (emailRes.length() > 5 && phoneRes.length() > 2) {
-                return true;
-            }
-            return false;
-        });
+    public void getResultObservable() {
+        Observable<Boolean> submitEnabledObservable = Observable.combineLatest(toObservable(emailOF), toObservable(phoneOF), (s, s2) -> s.length() > 5 && s2.length() > 2);
+        submitResultEnabilityOF = toField(submitEnabledObservable);
     }
 }

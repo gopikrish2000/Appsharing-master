@@ -20,9 +20,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.function.Function;
 
-import rx.functions.Func1;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.Disposable;
 
 import static android.text.format.DateFormat.format;
 
@@ -31,7 +31,7 @@ import static android.text.format.DateFormat.format;
  */
 public class CommonUtils {
 
-    public static Func1<String, Boolean> isNullOrEmptyRx = s -> (s == null || s.trim().isEmpty());
+    public static Function<String, Boolean> isNullOrEmptyRx = s -> (s == null || s.trim().isEmpty());
     public static float ScaledDensityMultiplier, DensityMultiplier;
     public static int DensityDpi, DisplayWidthPixels, DisplayHeightPixels;
 
@@ -125,11 +125,11 @@ public class CommonUtils {
         return result;
     }
 
-    public static void doUnsubscribe(CompositeSubscription lifeCycle) {
-        if (lifeCycle == null || lifeCycle.isUnsubscribed()) {
+    public static void doUnsubscribe(Disposable lifeCycle) {
+        if (lifeCycle == null || lifeCycle.isDisposed()) {
             return;
         }
-        lifeCycle.unsubscribe();
+        lifeCycle.dispose();
     }
 
     public static void dismissDialog(AlertDialog dialog) {

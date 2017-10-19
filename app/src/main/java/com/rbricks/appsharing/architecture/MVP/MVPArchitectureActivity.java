@@ -5,30 +5,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.rbricks.appsharing.R;
 import com.rbricks.appsharing.utils.CommonUtils;
 
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+
 
 public class MVPArchitectureActivity extends AppCompatActivity implements MVPArchitectureViewContractInterface {
 
     private MVPArchitecturePresenter mvpArchitecturePresenter;
     private View bgView;
-    private CompositeSubscription compositeSubscription;
+    private CompositeDisposable compositeDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvparchitecture);
         mvpArchitecturePresenter = new MVPArchitecturePresenter(this, new MVPDataInteractor());
-        compositeSubscription = new CompositeSubscription();
+        compositeDisposable = new CompositeDisposable();
         initViews();
     }
 
     private void initViews() {
         bgView = findViewById(R.id.mvp_view_bg);
-        compositeSubscription.add(RxView.clicks(findViewById(R.id.mvp_submit)).subscribe(s -> {
+        compositeDisposable.add(RxView.clicks(findViewById(R.id.mvp_submit)).subscribe(s -> {
             mvpArchitecturePresenter.onSubmitButtonClicked();
         }));
     }
@@ -42,7 +43,7 @@ public class MVPArchitectureActivity extends AppCompatActivity implements MVPArc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CommonUtils.doUnsubscribe(compositeSubscription);
+        CommonUtils.doUnsubscribe(compositeDisposable);
         mvpArchitecturePresenter.unSubscribe();
     }
 }

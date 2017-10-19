@@ -15,8 +15,9 @@ import com.rbricks.appsharing.concept.notesapp.interfaces.BasePresenterInterface
 import com.rbricks.appsharing.concept.notesapp.interfaces.MVPNotesInterface;
 import com.rbricks.appsharing.concept.notesapp.utils.RxApiUtil;
 
-import rx.subjects.PublishSubject;
-import rx.subscriptions.CompositeSubscription;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.subjects.PublishSubject;
 
 import static com.rbricks.appsharing.utils.CommonUtils.doUnsubscribe;
 
@@ -29,13 +30,13 @@ public class NotesListingPresenter implements BasePresenterInterface {
     private Activity context;
     private MVPNotesInterface mvpNotesInterface;
     private boolean isSubscribed;
-    private CompositeSubscription lifeCycle;
+    private CompositeDisposable lifeCycle;
 
     public NotesListingPresenter(MVPNotesInterface mvpNotesInterface, Activity context) {
         this.mvpNotesInterface = mvpNotesInterface;
         this.context = context;
         this.isSubscribed = true;
-        lifeCycle = new CompositeSubscription();
+        lifeCycle = new CompositeDisposable();
     }
 
     public void fetchNotesList() {

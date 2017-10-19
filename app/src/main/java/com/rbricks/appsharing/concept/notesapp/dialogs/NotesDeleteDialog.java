@@ -6,7 +6,8 @@ import android.support.v7.app.AlertDialog;
 
 import com.rbricks.appsharing.R;
 
-import rx.subjects.PublishSubject;
+
+import io.reactivex.subjects.PublishSubject;
 
 import static com.rbricks.appsharing.utils.CommonUtils.dismissDialog;
 

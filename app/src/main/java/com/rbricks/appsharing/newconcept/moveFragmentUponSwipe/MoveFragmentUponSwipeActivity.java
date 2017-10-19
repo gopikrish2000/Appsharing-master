@@ -16,8 +16,9 @@ import com.rbricks.appsharing.utils.CommonUtils;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static com.rbricks.appsharing.concept.notesapp.utils.ViewUtils.setGone;
 import static com.rbricks.appsharing.utils.CommonUtils.DisplayWidthPixels;

@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.rbricks.appsharing.utils.RxJavaFactory;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,10 +27,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by gopikrishna on 6/3/16.
@@ -66,20 +68,8 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
         objectObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
-                    @Override
-                    public void onCompleted() {
-                        System.out.println("completed called");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        System.out.println("BottomSheetDialogHelpchat.onError");
-                    }
-
-                    @Override
-                    public void onNext(Object o) {
-                        System.out.println("BottomSheetDialogHelpchat.onNext");
+                .subscribe( o -> {
+                                            System.out.println("BottomSheetDialogHelpchat.onNext");
                         chooserArrayAdapter.notifyDataSetChanged();
                         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
                         mBottomSheetDialog.setContentView(view);
@@ -126,8 +116,9 @@ public class BottomSheetDialogHelpchat extends BottomSheetDialog {
 
                             }
                         });
-                    }
+
                 });
+
     }
 
     private static Callable refreshInBackground(final Context context, final List<ResolveInfo> resInfosNew, final List<String> packagesList,final boolean isShowAllApps) {
