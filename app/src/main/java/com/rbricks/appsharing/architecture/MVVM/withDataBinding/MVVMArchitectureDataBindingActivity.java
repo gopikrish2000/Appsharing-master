@@ -33,31 +33,14 @@ public class MVVMArchitectureDataBindingActivity extends BaseActivity {
     }
 
     private void initViews() {
-//        phoneEt = (EditText) findViewById(R.id.mvvm_phone_et);
-//        emailEt = (EditText) findViewById(R.id.mvvm_email_et);
         submitBtn = ((Button) findViewById(R.id.mvvm_submit_btn));
         RxView.clicks(submitBtn).subscribe(s -> {
             CommonUtils.showToast("Submit button clicked");
         });
-
-        initLogic();
-
-    }
-
-    private void initLogic() {
-
-//        viewModel.setEmail(RxTextView.textChanges(emailEt).map(CharSequence::toString));
-//        viewModel.setPhone(RxTextView.textChanges(phoneEt).map(CharSequence::toString));
-
-//        viewModel.getResultObservable().subscribe(s -> {
-//            submitBtn.setEnabled(s);
-//        });
-
     }
 
     @Override
     protected void onDestroy() {
-//        getDefaultBinder().bind(binding, null);
         binding.executePendingBindings();
         binding.unbind();
         binding = null;

@@ -24,7 +24,6 @@ public class MVVMDataBindingViewModel {
     public ObservableField<String> emailOF= new ObservableField<>("");
     public ReadOnlyField<String> submitTextOF;
     public ReadOnlyField<Boolean> submitButtonEnabledOF;
-//    public ReadOnlyField<Boolean> submitResultEnabilityOF;
 
 
     public MVVMDataBindingViewModel() {

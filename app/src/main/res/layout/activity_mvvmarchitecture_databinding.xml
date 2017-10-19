@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="com.rbricks.appsharing.architecture.MVVM.withDataBinding.BindConvertorUtil" alias="convertorUtil" />
        <variable name="obj" type="com.rbricks.appsharing.architecture.MVVM.withDataBinding.MVVMDataBindingViewModel"/>
    </data>
 
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/mvvm_email_et"
         android:layout_marginTop="8dp"
-        android:text="@{obj.submitTextOF}"
+        android:text="@{convertorUtil.modifyString(obj.submitTextOF)}"
         android:enabled="@{obj.submitButtonEnabledOF}"
         />
 
