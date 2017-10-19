@@ -20,9 +20,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.function.Function;
 
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 
 import static android.text.format.DateFormat.format;
 

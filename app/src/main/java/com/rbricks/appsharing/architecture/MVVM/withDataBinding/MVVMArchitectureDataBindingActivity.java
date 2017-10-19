@@ -13,9 +13,9 @@ import com.rbricks.appsharing.databinding.ActivityMvvmarchitectureDatabindingBin
 import com.rbricks.appsharing.utils.CommonUtils;
 
 public class MVVMArchitectureDataBindingActivity extends BaseActivity {
-    private EditText phoneEt; // Login Check Application
-    private EditText emailEt;
     private Button submitBtn;
+    ActivityMvvmarchitectureDatabindingBinding binding;
+
     // If both email & mobile are valid then Submit button is enabled ( should happen dynamically with each letter typed )
 
     /* Model shouldn't know about ViewModel
@@ -26,9 +26,9 @@ public class MVVMArchitectureDataBindingActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMvvmarchitectureDatabindingBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_mvvmarchitecture_databinding);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_mvvmarchitecture_databinding);
         MVVMDataBindingViewModel viewModel = new MVVMDataBindingViewModel();
-        viewDataBinding.setObj(viewModel);
+        binding.setObj(viewModel);
         initViews();
     }
 
@@ -53,6 +53,15 @@ public class MVVMArchitectureDataBindingActivity extends BaseActivity {
 //            submitBtn.setEnabled(s);
 //        });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+//        getDefaultBinder().bind(binding, null);
+        binding.executePendingBindings();
+        binding.unbind();
+        binding = null;
+        super.onDestroy();
     }
 
 

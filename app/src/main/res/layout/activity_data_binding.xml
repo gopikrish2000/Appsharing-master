@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="obj"
+            type="com.rbricks.appsharing.architecture.dataBinding.DataViewModel"/>
+    </data>
+
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.rbricks.appsharing.architecture.dataBinding.DataBindingActivity">
+
+        <TextView
+            android:id="@+id/bind_show_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="@{obj.first}"
+            android:textColor="@color/red"
+            android:textSize="15sp"
+            />
+
+        <EditText
+            android:id="@+id/bind_et"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bind_show_text"
+            android:layout_marginTop="16dp"
+            android:text="@={obj.first}"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:id="@+id/bing_genrate_rand_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bind_et"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="print random number"
+            />
+
+    </RelativeLayout>
+</layout>

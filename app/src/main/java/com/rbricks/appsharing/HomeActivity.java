@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.rbricks.appsharing.architecture.MVP.MVPArchitectureActivity;
 import com.rbricks.appsharing.architecture.MVVM.withDataBinding.MVVMArchitectureDataBindingActivity;
 import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity;
+import com.rbricks.appsharing.architecture.dataBinding.DataBindingActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioMixingActivity;
@@ -98,6 +99,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("MVPArchitectureActivity", MVPArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMArchitectureActivity", MVVMArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMDataBinding", MVVMArchitectureDataBindingActivity.class));
+        homeItemList.add(new HomeItem("DataBindingActivity", DataBindingActivity.class));
     }
 
     @Override
