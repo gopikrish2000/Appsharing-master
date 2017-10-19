@@ -38,6 +38,16 @@
         android:enabled="@{obj.submitButtonEnabledOF}"
         />
 
+    <TextView
+        android:id="@+id/mvvm_showtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{obj.modifyStringNonStatic(obj.submitTextOF)}"
+        android:textColor="@color/red"
+        android:layout_centerInParent="true"
+        android:textSize="16sp"
+        />
+
 </RelativeLayout>
 
 </layout>

@@ -38,4 +38,8 @@ public class MVVMDataBindingViewModel {
         submitTextOF = toField(submitTextObservable);
 
     }
+
+    public String modifyStringNonStatic(String input) {
+        return input + " converted";
+    }
 }
