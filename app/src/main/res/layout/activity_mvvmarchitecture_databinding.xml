@@ -15,7 +15,7 @@
         android:id="@+id/mvvm_email_et"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@{obj.emailOF}"
+        android:text="@={obj.emailOF}"
         android:hint="email"/>
 
     <EditText
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/mvvm_email_et"
-        android:text="@{obj.phoneOF}"
+        android:text="@={obj.phoneOF}"
         android:hint="second"/>
 
     <Button
@@ -34,6 +34,7 @@
         android:layout_below="@+id/mvvm_email_et"
         android:layout_marginTop="8dp"
         android:text="@{obj.submitTextOF}"
+        android:enabled="@{obj.submitButtonEnabledOF}"
         />
 
 </RelativeLayout>

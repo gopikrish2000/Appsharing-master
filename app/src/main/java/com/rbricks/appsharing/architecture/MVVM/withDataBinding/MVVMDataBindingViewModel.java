@@ -23,6 +23,7 @@ public class MVVMDataBindingViewModel {
     public ObservableField<String> phoneOF  = new ObservableField<>("");
     public ObservableField<String> emailOF= new ObservableField<>("");
     public ReadOnlyField<String> submitTextOF;
+    public ReadOnlyField<Boolean> submitButtonEnabledOF;
 //    public ReadOnlyField<Boolean> submitResultEnabilityOF;
 
 
@@ -31,14 +32,11 @@ public class MVVMDataBindingViewModel {
     }
 
     public void getResultObservable() {
-        /*Observable<Boolean> submitEnabledObservable = Observable.combineLatest(toObservable(emailOF), toObservable(phoneOF), (s, s2) -> s.length() > 5 && s2.length() > 2);
-        submitResultEnabilityOF = toField(submitEnabledObservable);*/
+        Observable<Boolean> submitEnabledObservable = Observable.combineLatest(toObservable(emailOF), toObservable(phoneOF), (s, s2) -> s.length() > 5 && s2.length() > 2);
+        submitButtonEnabledOF = toField(submitEnabledObservable);
 
-        Observable<String> submitEnabledObservable = Observable.combineLatest(toObservable(emailOF), toObservable(phoneOF), (s, s2) -> s + s2);
-        submitTextOF = toField(submitEnabledObservable);
-        submitEnabledObservable.debounce(500, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
-            CommonUtils.showToast(s);
-        });
+        Observable<String> submitTextObservable = Observable.combineLatest(toObservable(emailOF), toObservable(phoneOF), (s, s2) -> s+ s2);
+        submitTextOF = toField(submitTextObservable);
 
     }
 }
