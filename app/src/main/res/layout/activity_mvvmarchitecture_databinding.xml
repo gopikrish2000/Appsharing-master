@@ -48,6 +48,14 @@
         android:textSize="16sp"
         />
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/mvvm_showtv"
+        android:layout_centerHorizontal="true"
+        android:src="@{obj.url}"
+        />
+
 </RelativeLayout>
 
 </layout>

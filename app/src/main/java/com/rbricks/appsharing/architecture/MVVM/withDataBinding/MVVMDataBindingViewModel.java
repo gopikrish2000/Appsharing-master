@@ -24,6 +24,7 @@ public class MVVMDataBindingViewModel {
     public ObservableField<String> emailOF= new ObservableField<>("");
     public ReadOnlyField<String> submitTextOF;
     public ReadOnlyField<Boolean> submitButtonEnabledOF;
+    public String url = "http://via.placeholder.com/200x100";
 
 
     public MVVMDataBindingViewModel() {
@@ -40,6 +41,6 @@ public class MVVMDataBindingViewModel {
     }
 
     public String modifyStringNonStatic(String input) {
-        return input + " converted";
+        return input + " nonstaticConverted";
     }
 }

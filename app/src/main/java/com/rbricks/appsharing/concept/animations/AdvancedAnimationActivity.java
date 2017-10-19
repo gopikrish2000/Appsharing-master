@@ -22,8 +22,8 @@ import java8.util.stream.RefStreams;
 import java8.util.stream.Stream;
 import java8.util.stream.StreamSupport;
 
-import static com.jakewharton.rxbinding.view.RxView.clicks;
-import static com.jakewharton.rxbinding.widget.RxTextView.textChangeEvents;
+import static com.jakewharton.rxbinding2.view.RxView.clicks;
+import static com.jakewharton.rxbinding2.widget.RxTextView.textChangeEvents;
 import static com.rbricks.appsharing.utils.CommonUtils.isNullOrEmpty;
 
 public class AdvancedAnimationActivity extends AppCompatActivity {
