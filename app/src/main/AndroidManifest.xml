@@ -172,6 +172,8 @@
         </activity>
         <activity android:name=".architecture.dataBinding.DataBindingActivity">
         </activity>
+        <activity android:name=".concept.createBitmapFromView.CreateBitmapFromViewActivity">
+        </activity>
     </application>
 
 </manifest>
