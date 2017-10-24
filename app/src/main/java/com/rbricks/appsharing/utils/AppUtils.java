@@ -1,7 +1,9 @@
 package com.rbricks.appsharing.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
@@ -106,6 +108,11 @@ public class AppUtils {
         return false;
     }
 
-
+    public static boolean hasGLES20() {
+        ActivityManager am = (ActivityManager)
+                AppSharingApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo info = am.getDeviceConfigurationInfo();
+        return info.reqGlEsVersion >= 0x20000;
+    }
 
 }

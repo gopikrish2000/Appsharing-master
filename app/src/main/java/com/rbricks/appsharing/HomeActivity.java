@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import com.rbricks.appsharing.architecture.MVP.MVPArchitectureActivity;
 import com.rbricks.appsharing.architecture.MVVM.withDataBinding.MVVMArchitectureDataBindingActivity;
 import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity;
+import com.rbricks.appsharing.architecture.OpenGLES2.basic.OpenGl2BasicActivity;
+import com.rbricks.appsharing.architecture.OpenGLES2.shapes.triangle.OpenGLTriangleActivity;
 import com.rbricks.appsharing.architecture.dataBinding.DataBindingActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
@@ -88,18 +90,21 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AndroidCameraForwardActivity", AndroidCameraForwardActivity.class));
         homeItemList.add(new HomeItem("BasicVideoActivity", BasicVideoActivity.class));
         homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));*/
+      /*
         homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
         homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
         homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
         homeItemList.add(new HomeItem("AudioPlaybackActivity", AudioPlaybackActivity.class));
-        homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));
+        homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));*/
         homeItemList.add(new HomeItem("AudioMixingActivity", AudioMixingActivity.class));
         homeItemList.add(new HomeItem("MVPArchitectureActivity", MVPArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMArchitectureActivity", MVVMArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMDataBinding", MVVMArchitectureDataBindingActivity.class));
         homeItemList.add(new HomeItem("DataBindingActivity", DataBindingActivity.class));
+        homeItemList.add(new HomeItem("OpenGl2BasicActivity", OpenGl2BasicActivity.class));
+        homeItemList.add(new HomeItem("OpenGLTriangleActivity", OpenGLTriangleActivity.class));
     }
 
     @Override

@@ -13,6 +13,9 @@
         android:name="android.hardware.camera"
         android:required="false"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="false"/>
 
     <application
         android:name=".concept.Application.AppSharingApplication"
@@ -173,6 +176,10 @@
         <activity android:name=".architecture.dataBinding.DataBindingActivity">
         </activity>
         <activity android:name=".concept.createBitmapFromView.CreateBitmapFromViewActivity">
+        </activity>
+        <activity android:name=".architecture.OpenGLES2.basic.OpenGl2BasicActivity">
+        </activity>
+        <activity android:name=".architecture.OpenGLES2.shapes.triangle.OpenGLTriangleActivity">
         </activity>
     </application>
 
