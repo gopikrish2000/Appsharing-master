@@ -1,5 +1,6 @@
 package com.rbricks.appsharing.utils;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -178,6 +179,18 @@ public class CommonUtils {
         }
         for (int i = 0; i < strings.length; i++) {
             if (input.equals(strings[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean valueInList(int input, int... integers) {
+        if (integers == null || integers.length == 0) {
+            return false;
+        }
+        for (int i = 0; i < integers.length; i++) {
+            if (input == (integers[i])) {
                 return true;
             }
         }
