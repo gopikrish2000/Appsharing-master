@@ -48,6 +48,9 @@ public class CommonUtils {
 
     public static final long MILLISECS_PER_DAY = 24 * 60 * 60 * 1000;
 
+    public static boolean isNonNullOrEmpty(@Nullable CharSequence str) {
+        return !isNullOrEmpty(str);
+    }
 
     public static boolean isNullOrEmpty(@Nullable CharSequence str) {
         return (str == null || str.length() == 0 || str.toString().trim().length() == 0);

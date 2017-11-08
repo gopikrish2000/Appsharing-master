@@ -23,7 +23,7 @@ import com.rbricks.appsharing.utils.CommonUtils;
 
 public class ViewUtils {
 
-    public static void enableVisibility(View view, int visibility) {
+    public static void setVisibility(View view, int visibility) {
         if (view != null) {
             view.setVisibility(visibility);
         }
@@ -34,7 +34,7 @@ public class ViewUtils {
             return;
         }
         for (View view : views) {
-            enableVisibility(view, View.GONE);
+            setVisibility(view, View.GONE);
         }
     }
 
@@ -43,7 +43,56 @@ public class ViewUtils {
             return;
         }
         for (View view : views) {
-            enableVisibility(view, View.VISIBLE);
+            setVisibility(view, View.VISIBLE);
+        }
+    }
+
+    public static void setInVisible(View... views) {
+        if(views == null){
+            return;
+        }
+        for (View view : views) {
+            setVisibility(view,View.INVISIBLE);
+        }
+    }
+
+    public static void setEnabled(View... views) {
+        if(views == null){
+            return;
+        }
+        for (View view : views) {
+            if (view != null) {
+                view.setEnabled(true);
+            }
+        }
+    }
+
+    public static void setDisabled(View... views) {
+        if(views == null){
+            return;
+        }
+        for (View view : views) {
+            if (view != null) {
+                view.setEnabled(false);
+            }
+        }
+    }
+
+    public static void toggleViewsVisibility(View first, boolean isFirstVisible, View second) {
+        if (isFirstVisible) {
+            setVisibleView(first);
+            setGone(second);
+        } else {
+            setVisibleView(second);
+            setGone(first);
+        }
+    }
+
+    public static void viewVisibilityWithBoolean(View view, boolean isVisible) {
+        if (isVisible) {
+            setVisibleView(view);
+        } else {
+            setGone(view);
         }
     }
 
