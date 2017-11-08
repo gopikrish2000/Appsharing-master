@@ -64,6 +64,13 @@ public class CommonUtils {
         return split == null || split.length == 0;
     }
 
+    public static boolean equalsIgnoreCase(String first, String second) {
+        if (isNullOrEmpty(first) || isNullOrEmpty(second)) {
+            return false;
+        }
+        return first.equalsIgnoreCase(second);
+    }
+
     public static String getFormattedDate(Date date) {
         if (date == null) {
             return "";
