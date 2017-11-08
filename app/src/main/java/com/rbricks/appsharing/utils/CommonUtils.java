@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -17,8 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import io.reactivex.disposables.Disposable;
@@ -34,19 +37,11 @@ public class CommonUtils {
     public static Function<String, Boolean> isNullOrEmptyRx = s -> (s == null || s.trim().isEmpty());
     public static float ScaledDensityMultiplier, DensityMultiplier;
     public static int DensityDpi, DisplayWidthPixels, DisplayHeightPixels;
+    public static final long MILLISECS_PER_DAY = 24 * 60 * 60 * 1000;
 
     public static boolean isNullOrEmpty(String s) {
         return (s == null || s.trim().isEmpty());
     }
-
-    public static String getCurrentDateTimeForDb() {
-        Calendar.getInstance().setTimeZone(TimeZone.getTimeZone("IST"));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = Calendar.getInstance().getTime();
-        return dateFormat.format(date);
-    }
-
-    public static final long MILLISECS_PER_DAY = 24 * 60 * 60 * 1000;
 
     public static boolean isNonNullOrEmpty(@Nullable CharSequence str) {
         return !isNullOrEmpty(str);
@@ -71,11 +66,18 @@ public class CommonUtils {
         return first.equalsIgnoreCase(second);
     }
 
-    public static String getFormattedDate(Date date) {
-        if (date == null) {
+    public static String getNonNull(String input) {
+        if (isNullOrEmpty(input)) {
             return "";
         }
-        return format("MMM dd", date).toString();
+        return input;
+    }
+
+    public static String ifNullReturn(String input, String defaultString) {
+        if (isNullOrEmpty(input)) {
+            return defaultString;
+        }
+        return input;
     }
 
     public static String getIntentValue(Intent intent, String key) {
@@ -100,6 +102,132 @@ public class CommonUtils {
         } catch (NumberFormatException e) {
             return 0;
         }
+    }
+
+    public static String getArgumentValue(Bundle bundle, String key) {
+        if (bundle == null) {
+            return "";
+        }
+        Object object = bundle.get(key);
+        if (object == null) {
+            return "";
+        }
+        String result = String.valueOf(object);
+        if (isNullOrEmpty(result)) {
+            return "";
+        }
+        return result;
+    }
+
+    public static Map<String, String> getNonEmptyIntentMap(Intent intent) {
+        Map<String, String> map = new HashMap<>();
+        if (intent == null || intent.getExtras() == null) {
+            return map;
+        }
+
+        Bundle bundle = intent.getExtras();
+        for (String key : bundle.keySet()) {
+            Object valueObj = bundle.get(key);
+            if (valueObj != null) {
+                String value = valueObj.toString();
+                if (!isNullOrEmpty(value)) {
+                    map.put(key, value);
+                }
+            }
+        }
+        return map;
+    }
+
+
+    public static boolean nonNull(Object obj) {
+        return obj != null;
+    }
+
+    public static boolean isNull(Object obj) {
+        return obj == null;
+    }
+
+    public static void setAllNull(Object... objects) {
+        if (objects == null || objects.length == 0) {
+            return;
+        }
+        for (int i = 0; i < objects.length; i++) {
+            objects[i] = null;
+        }
+    }
+
+    public static boolean isNonNullAll(Object... objects) {
+        if (objects == null || objects.length == 0) {
+            return false;
+        }
+        for (int i = 0; i < objects.length; i++) {
+            if (isNull(objects[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isNullAny(Object... objects) {
+        return !isNonNullAll(objects);
+    }
+
+    public static boolean valueInList(String input, String... strings) {
+        if (isNullOrEmpty(input) || strings == null || strings.length == 0) {
+            return false;
+        }
+        for (int i = 0; i < strings.length; i++) {
+            if (input.equals(strings[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /*  Non Data input related Methods */
+
+    public static void setDensityMultiplier(DisplayMetrics displayMetrics) {
+        ScaledDensityMultiplier = displayMetrics.scaledDensity;
+        DensityDpi = displayMetrics.densityDpi;
+        DensityMultiplier = displayMetrics.density;
+        DisplayWidthPixels = displayMetrics.widthPixels;
+        DisplayHeightPixels = displayMetrics.heightPixels;
+    }
+
+    public static int dpToPx(float dp) {
+        return (int) (dp * DensityMultiplier);
+    }
+
+    public static float pxToDp(int px) {
+        return (px / DensityMultiplier);
+    }
+
+    public static int spToPx(float sp) {
+        return (int) (sp * ScaledDensityMultiplier);
+    }
+
+    public static int getDeviceWidth() {
+        return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().widthPixels;
+    }
+
+    public static int getDeviceHeight() {
+        return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().heightPixels;
+    }
+
+    public static int getDeviceDensityDPI() {
+        return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().densityDpi;
+    }
+
+    public static void showToast(String msg) {
+        Toast.makeText(AppSharingApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static String getCurrentDateTimeForDb() {
+        Calendar.getInstance().setTimeZone(TimeZone.getTimeZone("IST"));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = Calendar.getInstance().getTime();
+        return dateFormat.format(date);
     }
 
     public static Date getDateTimeFromString(String dateString) {
@@ -186,59 +314,11 @@ public class CommonUtils {
         return dps;
     }
 
-    public static boolean nonNull(Object obj) {
-        return obj != null;
-    }
-
-    public static boolean isNull(Object obj) {
-        return obj == null;
-    }
-
-    public static void setAllNull(Object... objects) {
-        if (objects == null || objects.length == 0) {
-            return;
+    public static String getFormattedDate(Date date) {
+        if (date == null) {
+            return "";
         }
-        for (int i = 0; i < objects.length; i++) {
-            objects[i] = null;
-        }
+        return format("MMM dd", date).toString();
     }
 
-    public static void setDensityMultiplier(DisplayMetrics displayMetrics) {
-        ScaledDensityMultiplier = displayMetrics.scaledDensity;
-        DensityDpi = displayMetrics.densityDpi;
-        DensityMultiplier = displayMetrics.density;
-        DisplayWidthPixels = displayMetrics.widthPixels;
-        DisplayHeightPixels = displayMetrics.heightPixels;
-    }
-
-    public static int dpToPx(float dp) {
-        return (int) (dp * DensityMultiplier);
-    }
-
-    public static float pxToDp(int px) {
-        return (px / DensityMultiplier);
-    }
-
-    public static int spToPx(float sp) {
-        return (int) (sp * ScaledDensityMultiplier);
-    }
-
-    public static int getDeviceWidth()
-	{
-		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().widthPixels;
-	}
-
-	public static int getDeviceHeight()
-	{
-		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().heightPixels;
-	}
-
-	public static int getDeviceDensityDPI()
-	{
-		return AppSharingApplication.getInstance().getApplicationContext().getResources().getDisplayMetrics().densityDpi;
-	}
-
-    public static void showToast(String msg) {
-        Toast.makeText(AppSharingApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
-    }
 }
