@@ -181,6 +181,8 @@
         </activity>
         <activity android:name=".architecture.OpenGLES2.shapes.triangle.OpenGLTriangleActivity">
         </activity>
+        <activity android:name=".newconcept.debounceWithoutRxJava.DebounceWithoutRxJavaActivity">
+        </activity>
     </application>
 
 </manifest>
