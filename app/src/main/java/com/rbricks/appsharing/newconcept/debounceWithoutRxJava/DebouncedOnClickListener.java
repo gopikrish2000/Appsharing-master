@@ -6,17 +6,14 @@ import android.view.View;
 /**
  * A Debounced OnClickListener
  * Rejects clicks that are too close together in time.
- * This class is safe to use as an OnClickListener for multiple views, and will debounce each one separately.
  */
 public abstract class DebouncedOnClickListener implements View.OnClickListener {
 
     private long threshold;
     private long lastClickMillis;
 
-
     /**
      * Implement this in your subclass instead of onClick
-     *
      * @param v The view that was clicked
      */
     public abstract void onDebouncedClick(View v);
@@ -26,8 +23,6 @@ public abstract class DebouncedOnClickListener implements View.OnClickListener {
     }
 
     /**
-     * The one and only constructor
-     *
      * @param threshold The minimum allowed time between clicks - any click sooner than this after a previous click will be rejected
      */
     public DebouncedOnClickListener(long threshold) {
@@ -44,7 +39,7 @@ public abstract class DebouncedOnClickListener implements View.OnClickListener {
         lastClickMillis = currentTimestamp;
     }
 
-    public static View.OnClickListener wrap(final View.OnClickListener onClickListener) {
+    static View.OnClickListener wrap(final View.OnClickListener onClickListener) {
         return new DebouncedOnClickListener() {
             @Override
             public void onDebouncedClick(View v) {

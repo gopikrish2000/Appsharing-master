@@ -20,6 +20,7 @@ import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioPlayback
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.VideoPlaybackActivity;
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
+import com.rbricks.appsharing.newconcept.debounceWithoutRxJava.DebounceWithoutRxJavaActivity;
 import com.rbricks.appsharing.newconcept.moveFragmentUponSwipe.MoveFragmentUponSwipeActivity;
 import com.rbricks.appsharing.newconcept.snappyRecyclerView.SnappyRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity;
@@ -105,6 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("DataBindingActivity", DataBindingActivity.class));
         homeItemList.add(new HomeItem("OpenGl2BasicActivity", OpenGl2BasicActivity.class));
         homeItemList.add(new HomeItem("OpenGLTriangleActivity", OpenGLTriangleActivity.class));
+        homeItemList.add(new HomeItem("DebounceWithoutRxJavaActivity", DebounceWithoutRxJavaActivity.class));
     }
 
     @Override

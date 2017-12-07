@@ -22,24 +22,11 @@ public class DebounceWithoutRxJavaActivity extends AppCompatActivity {
         View debounceBtn = findViewById(R.id.debounce_btn);
         Random random = new Random();
 
-        debounceBtn.setOnClickListener(DebouncedOnClickListener.wrap(view -> {
-            String randomNumb = random.nextInt(100) + "";
-            debounceTv.setText(randomNumb);
-        }));
-
-        // second way
-
-        new DebounceClick(debounceBtn, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         DebounceClick.clicksOther(debounceBtn, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String randomNumb = random.nextInt(100) + "";
+                debounceTv.setText(randomNumb);
             }
         });
     }

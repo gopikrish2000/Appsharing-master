@@ -2,6 +2,8 @@ package com.rbricks.appsharing.newconcept.debounceWithoutRxJava;
 
 import android.view.View;
 
+import com.rbricks.appsharing.utils.CommonUtils;
+
 /**
  * Created by gopi on 14/11/17.
  */
@@ -21,6 +23,8 @@ public class DebounceClick {
     }
 
     public static void clicksOther(View view, View.OnClickListener clickListener){
-        view.setOnClickListener(DebouncedOnClickListener.wrap(clickListener));
+        if (CommonUtils.nonNull(view)) {
+            view.setOnClickListener(DebouncedOnClickListener.wrap(clickListener));
+        }
     }
 }
