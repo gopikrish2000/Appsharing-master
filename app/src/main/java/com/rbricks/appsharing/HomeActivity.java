@@ -13,6 +13,7 @@ import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitect
 import com.rbricks.appsharing.architecture.OpenGLES2.basic.OpenGl2BasicActivity;
 import com.rbricks.appsharing.architecture.OpenGLES2.shapes.triangle.OpenGLTriangleActivity;
 import com.rbricks.appsharing.architecture.dataBinding.DataBindingActivity;
+import com.rbricks.appsharing.concept.animations.HikeFaceFilterAnimationActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioMixingActivity;
@@ -107,6 +108,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("OpenGl2BasicActivity", OpenGl2BasicActivity.class));
         homeItemList.add(new HomeItem("OpenGLTriangleActivity", OpenGLTriangleActivity.class));
         homeItemList.add(new HomeItem("DebounceWithoutRxJavaActivity", DebounceWithoutRxJavaActivity.class));
+        homeItemList.add(new HomeItem("HikeFaceFilterAnimationActivity", HikeFaceFilterAnimationActivity.class));
     }
 
     @Override
