@@ -78,6 +78,11 @@ public class ViewUtils {
         }
     }
 
+    public static boolean isViewVisible(View view) {
+        if(view == null) return false;
+        return (view.getVisibility() == View.VISIBLE);
+    }
+
     public static void toggleViewsVisibility(View first, boolean isFirstVisible, View second) {
         if (isFirstVisible) {
             setVisibleView(first);

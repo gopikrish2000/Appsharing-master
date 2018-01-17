@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rbricks.appsharing.concept.Activities.QuickTestActivity">
+
+    <RelativeLayout
+        android:id="@+id/firstParentRl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <ImageView
+            android:id="@+id/first_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cab_icon"
+            />
+
+        <TextView
+            android:id="@+id/first_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/first_iv"
+            android:layout_marginTop="8dp"
+            android:textColor="#142031"
+            android:textSize="14sp"
+            android:text="abcd"
+            />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/first_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="click me"
+        />
+
+</RelativeLayout>

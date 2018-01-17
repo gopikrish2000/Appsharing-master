@@ -185,6 +185,8 @@
         </activity>
         <activity android:name=".concept.animations.HikeFaceFilterAnimationActivity">
         </activity>
+        <activity android:name=".concept.Activities.QuickTestActivity">
+        </activity>
     </application>
 
 </manifest>

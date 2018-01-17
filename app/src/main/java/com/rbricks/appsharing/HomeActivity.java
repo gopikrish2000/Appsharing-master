@@ -13,6 +13,7 @@ import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitect
 import com.rbricks.appsharing.architecture.OpenGLES2.basic.OpenGl2BasicActivity;
 import com.rbricks.appsharing.architecture.OpenGLES2.shapes.triangle.OpenGLTriangleActivity;
 import com.rbricks.appsharing.architecture.dataBinding.DataBindingActivity;
+import com.rbricks.appsharing.concept.Activities.QuickTestActivity;
 import com.rbricks.appsharing.concept.animations.HikeFaceFilterAnimationActivity;
 import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
@@ -92,9 +93,9 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("AndroidCameraForwardActivity", AndroidCameraForwardActivity.class));
         homeItemList.add(new HomeItem("BasicVideoActivity", BasicVideoActivity.class));
         homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));*/
-      /*
+
         homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
-        homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
+       /* homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
         homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
@@ -109,6 +110,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("OpenGLTriangleActivity", OpenGLTriangleActivity.class));
         homeItemList.add(new HomeItem("DebounceWithoutRxJavaActivity", DebounceWithoutRxJavaActivity.class));
         homeItemList.add(new HomeItem("HikeFaceFilterAnimationActivity", HikeFaceFilterAnimationActivity.class));
+        homeItemList.add(new HomeItem("QuickTestActivity", QuickTestActivity.class));
     }
 
     @Override
