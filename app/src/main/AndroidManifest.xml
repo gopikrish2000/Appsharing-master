@@ -187,6 +187,8 @@
         </activity>
         <activity android:name=".concept.Activities.QuickTestActivity">
         </activity>
+        <activity android:name=".newconcept.audioNVideoconcepts.video.BasicCameraVideoActivity">
+        </activity>
     </application>
 
 </manifest>

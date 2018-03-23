@@ -19,6 +19,7 @@ import com.rbricks.appsharing.home.adapters.HomeAdapter;
 import com.rbricks.appsharing.home.domains.HomeItem;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioMixingActivity;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.audio.AudioPlaybackActivity;
+import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.BasicCameraVideoActivity;
 import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.VideoPlaybackActivity;
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
@@ -111,6 +112,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("DebounceWithoutRxJavaActivity", DebounceWithoutRxJavaActivity.class));
         homeItemList.add(new HomeItem("HikeFaceFilterAnimationActivity", HikeFaceFilterAnimationActivity.class));
         homeItemList.add(new HomeItem("QuickTestActivity", QuickTestActivity.class));
+        homeItemList.add(new HomeItem("BasicCameraVideoActivity", BasicCameraVideoActivity.class));
     }
 
     @Override
