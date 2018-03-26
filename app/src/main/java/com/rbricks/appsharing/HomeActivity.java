@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.rbricks.appsharing.HikeHackathon.HikeHackathonActivity;
 import com.rbricks.appsharing.architecture.MVP.MVPArchitectureActivity;
 import com.rbricks.appsharing.architecture.MVVM.withDataBinding.MVVMArchitectureDataBindingActivity;
 import com.rbricks.appsharing.architecture.MVVM.withoutDataBinding.MVVMArchitectureActivity;
@@ -102,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
         homeItemList.add(new HomeItem("AudioPlaybackActivity", AudioPlaybackActivity.class));
         homeItemList.add(new HomeItem("VideoPlaybackActivity", VideoPlaybackActivity.class));*/
-        homeItemList.add(new HomeItem("AudioMixingActivity", AudioMixingActivity.class));
+        /*homeItemList.add(new HomeItem("AudioMixingActivity", AudioMixingActivity.class));
         homeItemList.add(new HomeItem("MVPArchitectureActivity", MVPArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMArchitectureActivity", MVVMArchitectureActivity.class));
         homeItemList.add(new HomeItem("MVVMDataBinding", MVVMArchitectureDataBindingActivity.class));
@@ -112,7 +113,8 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("DebounceWithoutRxJavaActivity", DebounceWithoutRxJavaActivity.class));
         homeItemList.add(new HomeItem("HikeFaceFilterAnimationActivity", HikeFaceFilterAnimationActivity.class));
         homeItemList.add(new HomeItem("QuickTestActivity", QuickTestActivity.class));
-        homeItemList.add(new HomeItem("BasicCameraVideoActivity", BasicCameraVideoActivity.class));
+        homeItemList.add(new HomeItem("BasicCameraVideoActivity", BasicCameraVideoActivity.class));*/
+        homeItemList.add(new HomeItem("HikeHackathonActivity", HikeHackathonActivity.class));
     }
 
     @Override

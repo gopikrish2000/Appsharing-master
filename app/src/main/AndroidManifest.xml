@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -188,6 +189,8 @@
         <activity android:name=".concept.Activities.QuickTestActivity">
         </activity>
         <activity android:name=".newconcept.audioNVideoconcepts.video.BasicCameraVideoActivity">
+        </activity>
+        <activity android:name=".HikeHackathon.HikeHackathonActivity">
         </activity>
     </application>
 
