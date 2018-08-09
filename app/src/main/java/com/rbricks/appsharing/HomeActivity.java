@@ -25,6 +25,7 @@ import com.rbricks.appsharing.newconcept.audioNVideoconcepts.video.VideoPlayback
 import com.rbricks.appsharing.newconcept.centeredViewPager.CenterViewPagerActivity;
 import com.rbricks.appsharing.newconcept.centerrecyclerview.CenterRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.debounceWithoutRxJava.DebounceWithoutRxJavaActivity;
+import com.rbricks.appsharing.newconcept.gesturesHandling.GestureHandlingActivity;
 import com.rbricks.appsharing.newconcept.moveFragmentUponSwipe.MoveFragmentUponSwipeActivity;
 import com.rbricks.appsharing.newconcept.snappyRecyclerView.SnappyRecyclerViewActivity;
 import com.rbricks.appsharing.newconcept.toucheventhandling.TouchEventPropagationWithListenersActivity;
@@ -96,8 +97,8 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("BasicVideoActivity", BasicVideoActivity.class));
         homeItemList.add(new HomeItem("TouchEventPropagationActivity", TouchEventPropagationActivity.class));*/
 
-        homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
-       /* homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
+       /* homeItemList.add(new HomeItem("TouchEventPropagationWithListenersActivity", TouchEventPropagationWithListenersActivity.class));
+        homeItemList.add(new HomeItem("CenterRecyclerViewActivity", CenterRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("CenterViewPagerActivity", CenterViewPagerActivity.class));
         homeItemList.add(new HomeItem("SnappyRecyclerViewActivity", SnappyRecyclerViewActivity.class));
         homeItemList.add(new HomeItem("MoveFragmentUponSwipeActivity", MoveFragmentUponSwipeActivity.class));
@@ -114,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         homeItemList.add(new HomeItem("HikeFaceFilterAnimationActivity", HikeFaceFilterAnimationActivity.class));
         homeItemList.add(new HomeItem("QuickTestActivity", QuickTestActivity.class));
         homeItemList.add(new HomeItem("BasicCameraVideoActivity", BasicCameraVideoActivity.class));*/
-        homeItemList.add(new HomeItem("HikeHackathonActivity", HikeHackathonActivity.class));
+        homeItemList.add(new HomeItem("GestureHandlingActivity", GestureHandlingActivity.class));
     }
 
     @Override

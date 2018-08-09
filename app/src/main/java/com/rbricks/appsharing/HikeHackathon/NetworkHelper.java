@@ -1,5 +1,6 @@
 package com.rbricks.appsharing.HikeHackathon;
 
+import android.os.Environment;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -9,7 +10,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -65,12 +68,11 @@ public class NetworkHelper {
             dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
+//            dos.writeBytes("Content-Type: " + URLConnection.guessContentTypeFromName(fileName));
+            dos.writeBytes("Content-Type: " + "application/octet-stream");
+            dos.writeBytes(lineEnd);
             dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\"" + fileName + "\"" + lineEnd);
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(
-                    "Content-Type: "
-                            + URLConnection.guessContentTypeFromName(fileName));
-            dos.writeBytes(lineEnd);
+//            dos.writeBytes(lineEnd);
             dos.writeBytes("Content-Transfer-Encoding: binary");
             dos.writeBytes(lineEnd);
 
@@ -140,117 +142,61 @@ public class NetworkHelper {
 
     } // end upLoad2Server
 
-    private static String copyMethodUpload(String sourceFileUri, String upLoadServerUri) {
-//        String upLoadServerUri = "your remote server link";
-        // String [] string = sourceFileUri;
-        String fileName = sourceFileUri;
-
-        HttpURLConnection conn = null;
-        DataOutputStream dos = null;
-        DataInputStream inStream = null;
-        String lineEnd = "\r\n";
-        String twoHyphens = "--";
-        String boundary = "*****";
-        int bytesRead, bytesAvailable, bufferSize;
-        byte[] buffer;
-        int maxBufferSize = 1 * 1024 * 1024;
-        String responseFromServer = "";
-
-        File sourceFile = new File(sourceFileUri);
-        if (!sourceFile.isFile()) {
-            Log.e("Huzza", "Source File Does not exist");
-            return "";
-        }
-        int serverResponseCode = 404;
-        try { // open a URL connection to the Servlet
-            FileInputStream fileInputStream = new FileInputStream(sourceFile);
-            URL url = new URL(upLoadServerUri);
-            conn = (HttpURLConnection) url.openConnection(); // Open a HTTP  connection to  the URL
-            conn.setDoInput(true); // Allow Inputs
-            conn.setDoOutput(true); // Allow Outputs
-            conn.setUseCaches(false); // Don't use a Cached Copy
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("ENCTYPE", "multipart/form-data");
-            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("uploaded_file", fileName);
-            dos = new DataOutputStream(conn.getOutputStream());
-
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\"" + fileName + "\"" + lineEnd);
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(
-                    "Content-Type: "
-                            + URLConnection.guessContentTypeFromName(fileName));
-            dos.writeBytes(lineEnd);
-            dos.writeBytes("Content-Transfer-Encoding: binary");
-            dos.writeBytes(lineEnd);
-
-            bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size
-            Log.i("Huzza", "Initial .available : " + bytesAvailable);
-
-            bufferSize = Math.min(bytesAvailable, maxBufferSize);
-            buffer = new byte[bufferSize];
-
-            // read file and write it into form...
-            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-            while (bytesRead > 0) {
-                dos.write(buffer, 0, bufferSize);
-                bytesAvailable = fileInputStream.available();
-                bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-            }
-
-            // send multipart form data necesssary after file data...
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-            // Responses from the server (code and message)
-            serverResponseCode = conn.getResponseCode();
-            String serverResponseMessage = conn.getResponseMessage();
-
-            Log.i("Upload file to server", "HTTP Response is : " + serverResponseMessage + ": " + serverResponseCode);
-            // close streams
-            Log.i("Upload file to server", fileName + " File is written");
-            fileInputStream.close();
-            dos.flush();
-            dos.close();
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-            Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-//this block will give the response of upload link
-        BufferedReader rd = null;
+   /* private static String copyMethodUpload(String sourceFileUri, String upLoadServerUri) {
+        HttpClient httpClient = new DefaultHttpClient();
+        StringBuilder builder = new StringBuilder();
         try {
-            rd = new BufferedReader(new InputStreamReader(conn
-                    .getInputStream()));
-            String line;
-            StringBuilder sb = new StringBuilder();
-            while ((line = rd.readLine()) != null) {
-                sb.append(line);
-            }
-            String resultJson = sb.toString();
-            Log.i("Huzza", "Response Received is : " + resultJson);
-            JSONObject jsonObject = new JSONObject(resultJson);
-            String url = jsonObject.optString("url");
-            return url;
-        } catch (Exception ioex) {
-            Log.e("Huzza", "error: " + ioex.getMessage(), ioex);
-        } finally {
-            if (rd != null) {
-                try {
-                    rd.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return "";  // like 200 (Ok)
+            HttpPost request = new HttpPost(TapabookUrls.urlSubirTapa);
 
-    } // end upLoad2Server
+            MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+            entity.addPart("String_Data_Parameter_Name", new StringBody("String_Value"));
+            entity.addPart("Numeric_Data_Parameter_Name", new StringBody(NumericValue + ""));
+
+            *//****************************//*
+
+            File f = new File(Environment.getExternalStorageDirectory()
+                    + File.separator + "test.jpg");
+            f.createNewFile();
+            //write the bytes in file
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(outStream.toByteArray());
+            // remember close the FileOutput
+            fo.close();
+            FileBody picBody = new FileBody(f, "image/jpeg");
+
+            *//****************************//*
+
+            entity.addPart("File_Parameter_Name", picBody);
+            request.setEntity(entity);
+            HttpResponse response = httpClient.execute(request);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) {
+                HttpEntity responseEntity = response.getEntity();
+                InputStream content = responseEntity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+                json = builder.toString();
+//             Tapabook.d( "SubeTapaAsincrono json : " + json);
+            }
+
+        } catch (IllegalStateException e) {
+            Log.e("FileUpload IllegalStateException ", e.getMessage());
+        } catch (IOException e) {
+            Log.e("FileUpload IOException ", e.getMessage());
+        } catch (ParseException e) {
+            Log.e("FileUpload ParseException " + e.getMessage());
+
+        } finally {
+            // close connections
+            httpClient.getConnectionManager().shutdown();
+        }
+
+    }*/
 
     public static Observable<String> uploadToServer(final String sourceFileUri, final String upLoadServerUri) {
         return Observable.create(new ObservableOnSubscribe<String>() {
